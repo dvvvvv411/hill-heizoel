@@ -1,8 +1,8 @@
 
 {
-  "name": "HILL-Clear Heizöl Bayern",
-  "short_name": "HILL-Clear",
-  "description": "Heizöl günstig bestellen in Bayern - Kostenlose Lieferung ab 500L",
+  "name": "Hill - Heizöl für Bayern",
+  "short_name": "Hill Heizöl",
+  "description": "Hill - Heizöl für Bayern günstig bestellen - Kostenlose Lieferung ab 500L",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
