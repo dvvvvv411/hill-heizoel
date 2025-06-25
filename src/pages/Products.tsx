@@ -2,7 +2,6 @@
 import Header from '../components/Header';
 import ProductHero from '../components/ProductHero';
 import ProductComparison from '../components/ProductComparison';
-import ProductSelector from '../components/ProductSelector';
 import TechnicalSpecs from '../components/TechnicalSpecs';
 import StorageRecommendations from '../components/StorageRecommendations';
 import EnvironmentalAspects from '../components/EnvironmentalAspects';
@@ -14,7 +13,6 @@ const Products = () => {
     <div className="min-h-screen">
       <Header />
       <ProductHero />
-      <ProductSelector />
       <ProductComparison />
       <TechnicalSpecs />
       <QualityCertificates />
