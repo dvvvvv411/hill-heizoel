@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Shield, Truck, Bell, Phone, Clock } from 'lucide-react';
@@ -150,7 +149,7 @@ const QualityAssuranceSection = () => {
               <Button variant="outline" className="bg-white text-primary-600 hover:bg-gray-50">
                 Qualitätszertifikate ansehen
               </Button>
-              <Button variant="outline" className="border-white text-white hover:bg-primary-800 hover:border-primary-800">
+              <Button variant="outline" className="bg-white text-primary-600 hover:bg-gray-50">
                 Kundenservice kontaktieren
               </Button>
             </div>
