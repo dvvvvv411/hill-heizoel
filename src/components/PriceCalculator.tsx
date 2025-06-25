@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -130,13 +129,13 @@ const PriceCalculator = () => {
               <SelectItem value="standard_heizoel">
                 <div className="flex justify-between items-center w-full">
                   <span>Standard Heizöl</span>
-                  <span className="font-bold text-primary-600 ml-4">{prices.standard_heizoel.toFixed(2)}€/L</span>
+                  <span className="font-bold text-accent-orange-600 ml-4">{prices.standard_heizoel.toFixed(2)}€/L</span>
                 </div>
               </SelectItem>
               <SelectItem value="premium_heizoel">
                 <div className="flex justify-between items-center w-full">
                   <span>Premium Heizöl</span>
-                  <span className="font-bold text-primary-600 ml-4">{prices.premium_heizoel.toFixed(2)}€/L</span>
+                  <span className="font-bold text-accent-orange-600 ml-4">{prices.premium_heizoel.toFixed(2)}€/L</span>
                 </div>
               </SelectItem>
             </SelectContent>
@@ -167,7 +166,7 @@ const PriceCalculator = () => {
         </div>
 
         {/* Live Price Display */}
-        <div className="bg-primary-50 p-4 rounded-lg space-y-3">
+        <div className="bg-gradient-to-r from-primary-50 to-accent-orange-50 p-4 rounded-lg space-y-3 border border-accent-orange-200">
           <div className="flex justify-between text-sm text-gray-600">
             <span>Produkt:</span>
             <span className="font-medium">{getDisplayName(oilType)}</span>
@@ -178,12 +177,12 @@ const PriceCalculator = () => {
           </div>
           <div className="flex justify-between text-sm text-gray-600">
             <span>Preis pro Liter:</span>
-            <span className="font-medium">{currentPrice.toFixed(2)}€</span>
+            <span className="font-medium text-accent-orange-600">{currentPrice.toFixed(2)}€</span>
           </div>
           <div className="border-t pt-2">
-            <div className="flex justify-between items-center text-xl font-bold text-primary-600">
+            <div className="flex justify-between items-center text-xl font-bold">
               <span>Gesamtpreis:</span>
-              <span>{totalAmount.toFixed(2)}€</span>
+              <span className="text-accent-orange-600">{totalAmount.toFixed(2)}€</span>
             </div>
           </div>
         </div>
@@ -191,7 +190,7 @@ const PriceCalculator = () => {
         {/* Features */}
         <div className="space-y-2 text-sm text-gray-600">
           <div className="flex items-center space-x-2">
-            <Truck size={16} className="text-primary-600" />
+            <Truck size={16} className="text-accent-orange-500" />
             <span>Kostenlose Lieferung</span>
           </div>
           <div className="flex items-center space-x-2">
@@ -199,7 +198,7 @@ const PriceCalculator = () => {
             <span>Lieferung innerhalb 4-7 Werktagen</span>
           </div>
           <div className="flex items-center space-x-2">
-            <Shield size={16} className="text-primary-600" />
+            <Shield size={16} className="text-accent-orange-500" />
             <span>Geprüfte Qualität nach DIN-Norm</span>
           </div>
         </div>

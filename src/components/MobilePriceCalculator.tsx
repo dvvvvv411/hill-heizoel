@@ -1,4 +1,3 @@
-
 import { useState, useRef } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -144,14 +143,14 @@ const MobilePriceCalculator = () => {
                   className={cn(
                     "flex-shrink-0 w-full p-4 border-2 rounded-lg cursor-pointer transition-all snap-start",
                     oilType === product.id 
-                      ? "border-primary-600 bg-primary-50" 
+                      ? "border-accent-orange-500 bg-accent-orange-50" 
                       : "border-gray-200 bg-white"
                   )}
                   onClick={() => selectProduct(product.id)}
                 >
                   <div className="text-center">
                     <h4 className="font-semibold text-sm mb-1">{product.name}</h4>
-                    <p className="text-2xl font-bold text-primary-600 mb-1">
+                    <p className="text-2xl font-bold text-accent-orange-600 mb-1">
                       {product.price.toFixed(2)}€/L
                     </p>
                     <p className="text-xs text-gray-600 mb-2">{product.description}</p>
@@ -177,7 +176,7 @@ const MobilePriceCalculator = () => {
               <Button
                 type="button"
                 variant="outline"
-                className="flex-shrink-0 w-12 h-12 p-0"
+                className="flex-shrink-0 w-12 h-12 p-0 border-accent-orange-300 hover:bg-accent-orange-50"
                 onClick={() => adjustLiters(-100)}
                 disabled={liters <= minLiters}
               >
@@ -197,7 +196,7 @@ const MobilePriceCalculator = () => {
               <Button
                 type="button"
                 variant="outline"
-                className="flex-shrink-0 w-12 h-12 p-0"
+                className="flex-shrink-0 w-12 h-12 p-0 border-accent-orange-300 hover:bg-accent-orange-50"
                 onClick={() => adjustLiters(100)}
                 disabled={liters >= maxLiters}
               >
@@ -211,7 +210,7 @@ const MobilePriceCalculator = () => {
                   type="button"
                   variant="outline"
                   size="sm"
-                  className="text-xs px-3 py-1 h-8"
+                  className="text-xs px-3 py-1 h-8 border-accent-orange-300 hover:bg-accent-orange-50 hover:border-accent-orange-500"
                   onClick={() => setLiters(amount)}
                 >
                   {amount}L
@@ -221,7 +220,7 @@ const MobilePriceCalculator = () => {
           </div>
 
           {/* Price Display */}
-          <div className="bg-primary-50 p-4 rounded-lg space-y-2">
+          <div className="bg-gradient-to-r from-primary-50 to-accent-orange-50 p-4 rounded-lg space-y-2 border border-accent-orange-200">
             <div className="flex justify-between text-sm text-gray-600">
               <span>Produkt:</span>
               <span className="font-medium">{currentProduct.name}</span>
@@ -232,12 +231,12 @@ const MobilePriceCalculator = () => {
             </div>
             <div className="flex justify-between text-sm text-gray-600">
               <span>Preis pro Liter:</span>
-              <span className="font-medium">{currentPrice.toFixed(2)}€</span>
+              <span className="font-medium text-accent-orange-600">{currentPrice.toFixed(2)}€</span>
             </div>
             <div className="border-t pt-2">
-              <div className="flex justify-between items-center text-xl font-bold text-primary-600">
+              <div className="flex justify-between items-center text-xl font-bold">
                 <span>Gesamtpreis:</span>
-                <span>{totalAmount.toFixed(2)}€</span>
+                <span className="text-accent-orange-600">{totalAmount.toFixed(2)}€</span>
               </div>
             </div>
           </div>
@@ -245,7 +244,7 @@ const MobilePriceCalculator = () => {
           {/* Features */}
           <div className="space-y-2 text-sm text-gray-600">
             <div className="flex items-center space-x-2">
-              <Truck size={14} className="text-primary-600" />
+              <Truck size={14} className="text-accent-orange-500" />
               <span>Kostenlose Lieferung</span>
             </div>
             <div className="flex items-center space-x-2">
@@ -253,7 +252,7 @@ const MobilePriceCalculator = () => {
               <span>Lieferung in 4-7 Werktagen</span>
             </div>
             <div className="flex items-center space-x-2">
-              <Shield size={14} className="text-primary-600" />
+              <Shield size={14} className="text-accent-orange-500" />
               <span>Geprüfte DIN-Qualität</span>
             </div>
           </div>
@@ -265,7 +264,7 @@ const MobilePriceCalculator = () => {
         <Button 
           onClick={handleOrder}
           disabled={isLoading || liters < minLiters || liters > maxLiters}
-          className="w-full bg-primary-600 hover:bg-primary-700 text-white h-14 text-lg font-semibold transition-all duration-200 hover:scale-105"
+          className="w-full bg-accent-orange-500 hover:bg-accent-orange-600 text-white h-14 text-lg font-semibold transition-all duration-200 hover:scale-105"
         >
           {isLoading ? (
             <div className="flex items-center space-x-2">

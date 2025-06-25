@@ -1,3 +1,4 @@
+
 import { Phone, Mail, MapPin, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -18,7 +19,7 @@ const Footer = () => {
               Qualität, Service und faire Preise.
             </p>
             <div className="flex space-x-4">
-              <div className="bg-primary-600 w-10 h-10 rounded-full flex items-center justify-center">
+              <div className="bg-accent-orange-600 w-10 h-10 rounded-full flex items-center justify-center">
                 <span className="text-sm font-bold">H</span>
               </div>
               <div>
@@ -32,12 +33,12 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="text-lg font-semibold">Quick Links</h3>
             <ul className="space-y-2 text-gray-300">
-              <li><Link to="/" className="hover:text-primary-400 transition-colors">Home</Link></li>
-              <li><Link to="/produkte" className="hover:text-primary-400 transition-colors">Produkte</Link></li>
-              <li><Link to="/services" className="hover:text-primary-400 transition-colors">Services</Link></li>
-              <li><Link to="/ueber-uns" className="hover:text-primary-400 transition-colors">Über uns</Link></li>
-              <li><Link to="/agb" className="hover:text-primary-400 transition-colors">AGB</Link></li>
-              <li><Link to="/datenschutz" className="hover:text-primary-400 transition-colors">Datenschutz</Link></li>
+              <li><Link to="/" className="hover:text-accent-orange-400 transition-colors">Home</Link></li>
+              <li><Link to="/produkte" className="hover:text-accent-orange-400 transition-colors">Produkte</Link></li>
+              <li><Link to="/services" className="hover:text-accent-orange-400 transition-colors">Services</Link></li>
+              <li><Link to="/ueber-uns" className="hover:text-accent-orange-400 transition-colors">Über uns</Link></li>
+              <li><Link to="/agb" className="hover:text-accent-orange-400 transition-colors">AGB</Link></li>
+              <li><Link to="/datenschutz" className="hover:text-accent-orange-400 transition-colors">Datenschutz</Link></li>
             </ul>
           </div>
 
@@ -46,7 +47,7 @@ const Footer = () => {
             <h3 className="text-lg font-semibold">Kontakt</h3>
             <div className="space-y-3 text-gray-300">
               <div className="flex items-center space-x-3">
-                <Phone size={16} className="text-primary-400" />
+                <Phone size={16} className="text-accent-orange-400" />
                 <span>089 123 456 789</span>
               </div>
               <div className="flex items-center space-x-3">
@@ -54,7 +55,7 @@ const Footer = () => {
                 <span>info@hill-heizoel.de</span>
               </div>
               <div className="flex items-start space-x-3">
-                <MapPin size={16} className="text-primary-400 mt-1" />
+                <MapPin size={16} className="text-accent-orange-400 mt-1" />
                 <div>
                   <div>Rottmannstr. 22a</div>
                   <div>80333 München</div>
@@ -76,8 +77,8 @@ const Footer = () => {
                 <div>Sa: 09:00 - 14:00</div>
                 <div>So: Notfall-Hotline</div>
               </div>
-              <div className="mt-4 p-3 bg-primary-900 rounded-lg">
-                <div className="text-sm font-semibold text-primary-400 mb-1">
+              <div className="mt-4 p-3 bg-accent-orange-900 rounded-lg border border-accent-orange-700">
+                <div className="text-sm font-semibold text-accent-orange-400 mb-1">
                   24/7 Notfall-Service
                 </div>
                 <div className="text-xs text-gray-300">
@@ -95,10 +96,10 @@ const Footer = () => {
               © 2025 HILL-Clear Projects GmbH. Alle Rechte vorbehalten.
             </div>
             <div className="flex space-x-6 mt-4 md:mt-0 text-sm text-gray-400">
-              <Link to="/impressum" className="hover:text-primary-400 transition-colors">Impressum</Link>
-              <Link to="/datenschutz" className="hover:text-primary-400 transition-colors">Datenschutz</Link>
-              <Link to="/agb" className="hover:text-primary-400 transition-colors">AGB</Link>
-              <Link to="/widerrufsrecht" className="hover:text-primary-400 transition-colors">Widerrufsrecht</Link>
+              <Link to="/impressum" className="hover:text-accent-orange-400 transition-colors">Impressum</Link>
+              <Link to="/datenschutz" className="hover:text-accent-orange-400 transition-colors">Datenschutz</Link>
+              <Link to="/agb" className="hover:text-accent-orange-400 transition-colors">AGB</Link>
+              <Link to="/widerrufsrecht" className="hover:text-accent-orange-400 transition-colors">Widerrufsrecht</Link>
             </div>
           </div>
         </div>

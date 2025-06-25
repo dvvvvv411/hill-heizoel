@@ -25,7 +25,7 @@ const HeroSection = () => {
           {/* Left Content */}
           <div className="space-y-6 lg:space-y-8 animate-fade-in">
             <div className="space-y-4">
-              <div className="inline-flex items-center px-3 py-2 lg:px-4 bg-primary-100 text-primary-700 rounded-full text-sm font-medium">
+              <div className="inline-flex items-center px-3 py-2 lg:px-4 bg-accent-orange-100 text-accent-orange-700 rounded-full text-sm font-medium">
                 🔥 Heizöl-Experte seit über 20 Jahren
               </div>
               
@@ -38,21 +38,21 @@ const HeroSection = () => {
               </h1>
               
               <p className="text-lg lg:text-xl text-gray-600 max-w-lg">
-                Kostenlose Lieferung • Ab 70 Cent pro Liter • Schnell & zuverlässig
+                Kostenlose Lieferung • <span className="text-accent-orange-600 font-semibold">Ab 70 Cent pro Liter</span> • Schnell & zuverlässig
               </p>
             </div>
 
             {/* USPs */}
             <div className="space-y-3">
               {[
-                'Kostenlose Lieferung ab 1000 Liter',
-                'Lieferung innerhalb 4-7 Werktagen',
-                'Geprüfte Premium-Qualität',
-                'Über 100.000 zufriedene Kunden'
+                { text: 'Kostenlose Lieferung ab 1000 Liter', highlight: true },
+                { text: 'Lieferung innerhalb 4-7 Werktagen', highlight: false },
+                { text: 'Geprüfte Premium-Qualität', highlight: false },
+                { text: 'Über 100.000 zufriedene Kunden', highlight: true }
               ].map((usp, index) => (
                 <div key={index} className="flex items-center space-x-3">
-                  <CheckCircle className="text-primary-600 flex-shrink-0" size={18} />
-                  <span className="text-gray-700 font-medium text-sm lg:text-base">{usp}</span>
+                  <CheckCircle className={`flex-shrink-0 ${usp.highlight ? 'text-accent-orange-500' : 'text-primary-600'}`} size={18} />
+                  <span className="text-gray-700 font-medium text-sm lg:text-base">{usp.text}</span>
                 </div>
               ))}
             </div>
@@ -68,7 +68,7 @@ const HeroSection = () => {
               </Button>
               <Button 
                 variant="outline" 
-                className="border-primary-600 text-primary-600 hover:bg-primary-50 px-8 py-4 text-lg font-semibold"
+                className="border-accent-orange-500 text-accent-orange-600 hover:bg-accent-orange-50 hover:border-accent-orange-600 px-8 py-4 text-lg font-semibold"
               >
                 089 123 456 789
               </Button>
@@ -91,7 +91,7 @@ const HeroSection = () => {
               <p className="text-sm text-gray-500 mb-4">Vertrauen Sie auf über 20 Jahre Erfahrung</p>
               <div className="grid grid-cols-3 gap-4 lg:flex lg:items-center lg:space-x-8">
                 <div className="text-center">
-                  <div className="text-xl lg:text-2xl font-bold text-primary-600">100.000+</div>
+                  <div className="text-xl lg:text-2xl font-bold text-accent-orange-600">100.000+</div>
                   <div className="text-xs lg:text-sm text-gray-500">Zufriedene Kunden</div>
                 </div>
                 <div className="text-center">
@@ -99,7 +99,7 @@ const HeroSection = () => {
                   <div className="text-xs lg:text-sm text-gray-500">Jahre Erfahrung</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-xl lg:text-2xl font-bold text-primary-600">24h</div>
+                  <div className="text-xl lg:text-2xl font-bold text-accent-orange-600">24h</div>
                   <div className="text-xs lg:text-sm text-gray-500">Service</div>
                 </div>
               </div>

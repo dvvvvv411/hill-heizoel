@@ -34,7 +34,7 @@ const CTAButton: React.FC<CTAButtonProps> = ({
   
   const variantClasses = {
     primary: "bg-hill-green hover:bg-hill-green-dark text-white shadow-medium hover:shadow-strong",
-    secondary: "bg-white hover:bg-hill-gray text-hill-green border-2 border-hill-green hover:border-hill-green-dark shadow-soft hover:shadow-medium",
+    secondary: "bg-accent-orange-500 hover:bg-accent-orange-600 text-white shadow-medium hover:shadow-strong",
     outline: "border-2 border-hill-green text-hill-green hover:bg-hill-green hover:text-white",
     ghost: "text-hill-green hover:bg-hill-gray"
   };

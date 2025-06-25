@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Menu, X, Phone, Bell } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -19,11 +20,11 @@ const Header = () => {
               <div className="flex items-center space-x-6">
                 <ClickToCall variant="header" />
                 <div className="flex items-center space-x-2">
-                  <Bell size={14} />
+                  <Bell size={14} className="text-accent-orange-500" />
                   <span>info@hill-heizoel.de</span>
                 </div>
               </div>
-              <div className="text-primary-600 font-medium">
+              <div className="text-accent-orange-500 font-medium">
                 Kostenlose Lieferung in Bayern
               </div>
             </div>
@@ -40,16 +41,16 @@ const Header = () => {
             </Link>
 
             <nav className="flex items-center space-x-8">
-              <Link to="/" className="text-gray-700 hover:text-primary-600 transition-colors">
+              <Link to="/" className="text-gray-700 hover:text-accent-orange-500 transition-colors font-medium">
                 Startseite
               </Link>
-              <Link to="/produkte" className="text-gray-700 hover:text-primary-600 transition-colors">
+              <Link to="/produkte" className="text-gray-700 hover:text-accent-orange-500 transition-colors font-medium">
                 Produkte
               </Link>
-              <Link to="/services" className="text-gray-700 hover:text-primary-600 transition-colors">
+              <Link to="/services" className="text-gray-700 hover:text-accent-orange-500 transition-colors font-medium">
                 Services
               </Link>
-              <Link to="/ueber-uns" className="text-gray-700 hover:text-primary-600 transition-colors">
+              <Link to="/ueber-uns" className="text-gray-700 hover:text-accent-orange-500 transition-colors font-medium">
                 Über uns
               </Link>
               <Button className="bg-primary-600 hover:bg-primary-700 text-white px-6">
@@ -75,14 +76,14 @@ const Header = () => {
             <div className="flex items-center space-x-2">
               <a
                 href="tel:089123456789"
-                className="p-2 bg-primary-600 text-white rounded-full hover:bg-primary-700 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+                className="p-2 bg-accent-orange-500 text-white rounded-full hover:bg-accent-orange-600 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
                 aria-label="Anrufen"
               >
                 <Phone size={20} />
               </a>
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="p-2 border border-gray-300 rounded-full min-w-[44px] min-h-[44px] flex items-center justify-center"
+                className="p-2 border border-gray-300 rounded-full min-w-[44px] min-h-[44px] flex items-center justify-center hover:border-accent-orange-500 transition-colors"
                 aria-label="Menü öffnen"
               >
                 {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -98,28 +99,28 @@ const Header = () => {
             <nav className="space-y-1">
               <Link 
                 to="/" 
-                className="block py-3 px-4 text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-colors rounded-lg font-medium min-h-[48px] flex items-center"
+                className="block py-3 px-4 text-gray-700 hover:bg-accent-orange-50 hover:text-accent-orange-600 transition-colors rounded-lg font-medium min-h-[48px] flex items-center"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Startseite
               </Link>
               <Link 
                 to="/produkte" 
-                className="block py-3 px-4 text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-colors rounded-lg font-medium min-h-[48px] flex items-center"
+                className="block py-3 px-4 text-gray-700 hover:bg-accent-orange-50 hover:text-accent-orange-600 transition-colors rounded-lg font-medium min-h-[48px] flex items-center"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Produkte
               </Link>
               <Link 
                 to="/services" 
-                className="block py-3 px-4 text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-colors rounded-lg font-medium min-h-[48px] flex items-center"
+                className="block py-3 px-4 text-gray-700 hover:bg-accent-orange-50 hover:text-accent-orange-600 transition-colors rounded-lg font-medium min-h-[48px] flex items-center"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Services
               </Link>
               <Link 
                 to="/ueber-uns" 
-                className="block py-3 px-4 text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-colors rounded-lg font-medium min-h-[48px] flex items-center"
+                className="block py-3 px-4 text-gray-700 hover:bg-accent-orange-50 hover:text-accent-orange-600 transition-colors rounded-lg font-medium min-h-[48px] flex items-center"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Über uns
