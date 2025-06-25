@@ -36,7 +36,7 @@ const Header = () => {
               <img 
                 src="https://i.imgur.com/ku1Plmj.png" 
                 alt="HILL-Heizöl" 
-                className="h-8"
+                className="h-24"
               />
             </Link>
 
@@ -69,7 +69,7 @@ const Header = () => {
               <img 
                 src="https://i.imgur.com/ku1Plmj.png" 
                 alt="HILL-Heizöl" 
-                className="h-6"
+                className="h-18"
               />
             </Link>
 
