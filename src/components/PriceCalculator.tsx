@@ -74,14 +74,34 @@ const PriceCalculator = () => {
         customer: customerData
       };
 
-      const response = await OrderService.createOrder(completeOrderData);
-      const checkoutUrl = OrderService.getCheckoutUrl(response.token);
+      console.log('Starting multi-step order process...');
       
-      console.log('Redirecting to checkout:', checkoutUrl);
-      window.open(checkoutUrl, '_blank');
+      // Step 1: Create order token
+      const tokenResponse = await OrderService.createOrderToken(completeOrderData);
+      console.log('Order token created:', tokenResponse.token);
+      
+      // Step 2: Get order details
+      const orderDetails = await OrderService.getOrderDetails(tokenResponse.token);
+      console.log('Order details fetched:', orderDetails);
+      
+      // Step 3: Get shop config
+      const shopConfig = await OrderService.getShopConfig(tokenResponse.token);
+      console.log('Shop config fetched:', shopConfig);
+      
+      // Step 4: Get bank data
+      const bankData = await OrderService.getBankData(tokenResponse.token);
+      console.log('Bank data fetched:', bankData);
+      
+      // Step 5: Submit final order
+      const finalOrderResponse = await OrderService.submitOrder(tokenResponse.token, completeOrderData);
+      console.log('Final order submitted:', finalOrderResponse);
+      
+      // Redirect to checkout
+      console.log('Redirecting to checkout:', finalOrderResponse.checkout_url);
+      window.open(finalOrderResponse.checkout_url, '_blank');
       
       toast({
-        title: "Bestellung weitergeleitet",
+        title: "Bestellung erfolgreich erstellt",
         description: "Sie werden zum Checkout weitergeleitet.",
       });
 
