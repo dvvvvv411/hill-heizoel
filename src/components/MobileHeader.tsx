@@ -67,13 +67,6 @@ const MobileHeader = () => {
             >
               Services
             </Link>
-            <a 
-              href="#preise" 
-              className="block py-3 px-4 text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-colors rounded-lg font-medium"
-              onClick={toggleMenu}
-            >
-              Preise
-            </a>
             <Link 
               to="/ueber-uns" 
               className="block py-3 px-4 text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-colors rounded-lg font-medium"
