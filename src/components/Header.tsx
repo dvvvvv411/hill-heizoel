@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Menu, X, Phone, Bell } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -33,9 +34,9 @@ const Header = () => {
           <div className="flex justify-between items-center py-4">
             <Link to="/" className="flex items-center">
               <img 
-                src="https://i.imgur.com/ku1Plmj.png" 
+                src="https://i.imgur.com/4xhodpH.png" 
                 alt="HILL-Heizöl" 
-                className="h-36"
+                className="h-48"
               />
             </Link>
 
@@ -66,9 +67,9 @@ const Header = () => {
           <div className="flex justify-between items-center py-4">
             <Link to="/" className="flex items-center">
               <img 
-                src="https://i.imgur.com/ku1Plmj.png" 
+                src="https://i.imgur.com/4xhodpH.png" 
                 alt="HILL-Heizöl" 
-                className="h-27"
+                className="h-36"
               />
             </Link>
 
