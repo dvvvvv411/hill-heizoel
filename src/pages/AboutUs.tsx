@@ -277,9 +277,9 @@ const AboutUs = () => {
               <div className="bg-gradient-to-br from-primary-100 to-primary-200 rounded-xl p-8 text-center">
                 <div className="text-6xl mb-4">🗺️</div>
                 <h4 className="text-xl font-bold text-gray-900 mb-2">Kostenlose Lieferung</h4>
-                <p className="text-gray-700 mb-4">ab 500 Liter in ganz Bayern</p>
-                <div className="text-2xl font-bold text-primary-600">24-48h</div>
-                <div className="text-sm text-gray-600">Lieferzeit</div>
+                <p className="text-gray-700 mb-4">ab 1500 Liter in ganz Bayern</p>
+                <div className="text-2xl font-bold text-primary-600">4-7</div>
+                <div className="text-sm text-gray-600">Werktage</div>
               </div>
             </div>
           </div>
