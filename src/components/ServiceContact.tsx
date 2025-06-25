@@ -1,6 +1,7 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Phone, Bell, Clock, Map } from 'lucide-react';
+import { Phone, Bell, Map } from 'lucide-react';
 
 const ServiceContact = () => {
   const contactOptions = [
@@ -10,13 +11,6 @@ const ServiceContact = () => {
       info: '089 123 456 789',
       description: 'Kostenlose Beratung und Bestellannahme',
       availability: 'Mo-Fr 7:00-18:00, Sa 8:00-12:00'
-    },
-    {
-      icon: Clock,
-      title: 'Notfall-Hotline',
-      info: '089 123 456 790',
-      description: 'Für dringende Heizöllieferungen',
-      availability: '24/7 erreichbar'
     },
     {
       icon: Bell,
@@ -47,7 +41,7 @@ const ServiceContact = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <div className="grid md:grid-cols-3 gap-6 mb-12">
           {contactOptions.map((option, index) => {
             const IconComponent = option.icon;
             return (
@@ -68,51 +62,12 @@ const ServiceContact = () => {
           })}
         </div>
 
-        <div className="max-w-4xl mx-auto">
-          <Card className="shadow-lg">
-            <CardHeader className="text-center">
-              <CardTitle className="text-2xl">Häufig gestellte Fragen</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <h4 className="font-semibold mb-2">Wie lange dauert eine Lieferung?</h4>
-                  <p className="text-gray-600 text-sm mb-4">
-                    Reguläre Lieferungen erfolgen innerhalb von 1-3 Werktagen. 
-                    Express-Lieferungen sind binnen 4 Stunden möglich.
-                  </p>
-                  
-                  <h4 className="font-semibold mb-2">Was ist die Mindestbestellmenge?</h4>
-                  <p className="text-gray-600 text-sm mb-4">
-                    Die Mindestbestellmenge beträgt 500 Liter für kostenlose Lieferung. 
-                    Kleinere Mengen sind gegen Aufpreis möglich.
-                  </p>
-                </div>
-                
-                <div>
-                  <h4 className="font-semibold mb-2">Wie erfolgt die Bezahlung?</h4>
-                  <p className="text-gray-600 text-sm mb-4">
-                    Sie können bar bei Lieferung, per Überweisung oder Lastschrift bezahlen. 
-                    Firmenkunden erhalten auf Wunsch eine Rechnung.
-                  </p>
-                  
-                  <h4 className="font-semibold mb-2">Sind die Preise inkl. MwSt.?</h4>
-                  <p className="text-gray-600 text-sm mb-4">
-                    Alle angezeigten Preise sind Endpreise inkl. MwSt. und Lieferung. 
-                    Es fallen keine zusätzlichen Kosten an.
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
         <div className="text-center mt-12">
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button className="bg-primary-600 hover:bg-primary-700 text-white px-8 py-3">
               Jetzt bestellen
             </Button>
-            <Button variant="outline" className="border-primary-600 text-primary-600 hover:bg-primary-50 px-8 py-3">
+            <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50 px-8 py-3">
               Kostenlose Beratung
             </Button>
           </div>
