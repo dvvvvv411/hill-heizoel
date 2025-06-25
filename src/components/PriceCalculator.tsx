@@ -7,31 +7,21 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Label } from "@/components/ui/label";
 import { Truck, Shield, Clock, Calculator } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
-import { OrderData, PriceData, CustomerData, CompleteOrderData } from '../types/order';
-import { OrderService } from '../services/orderService';
-import { calculateNetAmount, calculateTaxAmount, formatPrice } from '../utils/taxCalculations';
-import CustomerDataForm from './CustomerDataForm';
-
-type Step = 'calculator' | 'customer-data';
 
 const PriceCalculator = () => {
-  const [currentStep, setCurrentStep] = useState<Step>('calculator');
   const [liters, setLiters] = useState<number>(1500);
   const [oilType, setOilType] = useState<'standard_heizoel' | 'premium_heizoel'>('standard_heizoel');
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
-  // Prices are gross prices (including 19% MwSt)
-  const prices: PriceData = {
+  const prices = {
     standard_heizoel: 0.70,
     premium_heizoel: 0.73
   };
 
   const shopId = "83f973c5-280e-484a-bbfe-00b994b7988c";
   const currentPrice = prices[oilType];
-  const totalGrossAmount = liters * currentPrice;
-  const netAmount = calculateNetAmount(totalGrossAmount);
-  const taxAmount = calculateTaxAmount(netAmount);
+  const totalAmount = liters * currentPrice;
   const minLiters = 1500;
   const maxLiters = 32000;
 
@@ -42,7 +32,7 @@ const PriceCalculator = () => {
     }
   };
 
-  const handleProceedToCustomerData = () => {
+  const handleOrder = async () => {
     if (liters < minLiters || liters > maxLiters) {
       toast({
         title: "Ungültige Literzahl",
@@ -51,69 +41,63 @@ const PriceCalculator = () => {
       });
       return;
     }
-    setCurrentStep('customer-data');
-  };
 
-  const handleCustomerDataSubmit = async (customerData: CustomerData) => {
     setIsLoading(true);
     
     try {
-      const orderData: OrderData = {
+      console.log('Sending order request with data:', {
         product: oilType,
         liters: liters,
         shop_id: shopId,
-        total_amount: totalGrossAmount,
+        total_amount: totalAmount,
         delivery_fee: 0,
-        price_per_liter: currentPrice,
-        tax_amount: taxAmount,
-        net_amount: netAmount
-      };
-
-      const completeOrderData: CompleteOrderData = {
-        ...orderData,
-        customer: customerData
-      };
-
-      console.log('Starting multi-step order process...');
-      
-      // Step 1: Create order token
-      const tokenResponse = await OrderService.createOrderToken(completeOrderData);
-      console.log('Order token created:', tokenResponse.token);
-      
-      // Step 2: Get order details
-      const orderDetails = await OrderService.getOrderDetails(tokenResponse.token);
-      console.log('Order details fetched:', orderDetails);
-      
-      // Step 3: Get shop config
-      const shopConfig = await OrderService.getShopConfig(tokenResponse.token);
-      console.log('Shop config fetched:', shopConfig);
-      
-      // Step 4: Get bank data
-      const bankData = await OrderService.getBankData(tokenResponse.token);
-      console.log('Bank data fetched:', bankData);
-      
-      // Step 5: Submit final order
-      const finalOrderResponse = await OrderService.submitOrder(tokenResponse.token, completeOrderData);
-      console.log('Final order submitted:', finalOrderResponse);
-      
-      // Redirect to checkout
-      console.log('Redirecting to checkout:', finalOrderResponse.checkout_url);
-      window.open(finalOrderResponse.checkout_url, '_blank');
-      
-      toast({
-        title: "Bestellung erfolgreich erstellt",
-        description: "Sie werden zum Checkout weitergeleitet.",
+        price_per_liter: currentPrice
       });
 
-      // Reset form after successful order
-      setCurrentStep('calculator');
-      setLiters(1500);
-      setOilType('standard_heizoel');
+      const response = await fetch('https://luhhnsvwtnmxztcmdxyq.supabase.co/functions/v1/get-order-token', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          product: oilType,
+          liters: liters,
+          shop_id: shopId,
+          total_amount: totalAmount,
+          delivery_fee: 0,
+          price_per_liter: currentPrice
+        })
+      });
+
+      console.log('API Response status:', response.status);
+      
+      if (response.ok) {
+        const data = await response.json();
+        console.log('API Response data:', data);
+        
+        if (data.token) {
+          // Redirect to checkout with token
+          const checkoutUrl = `https://checkout.hill-heizoel.de/checkout?token=${data.token}`;
+          console.log('Redirecting to:', checkoutUrl);
+          window.open(checkoutUrl, '_blank');
+          
+          toast({
+            title: "Bestellung weitergeleitet",
+            description: "Sie werden zum Checkout weitergeleitet.",
+          });
+        } else {
+          throw new Error('Kein Token erhalten');
+        }
+      } else {
+        const errorData = await response.text();
+        console.error('API Error response:', errorData);
+        throw new Error(`API Error: ${response.status}`);
+      }
     } catch (error) {
       console.error('Order error:', error);
       toast({
         title: "Fehler bei der Bestellung",
-        description: "Bitte versuchen Sie es später erneut oder kontaktieren Sie uns telefonisch unter 089 628 26 595.",
+        description: "Bitte versuchen Sie es später erneut oder kontaktieren Sie uns telefonisch unter 089 123 456 789.",
         variant: "destructive"
       });
     } finally {
@@ -121,23 +105,9 @@ const PriceCalculator = () => {
     }
   };
 
-  const handleBackToCalculator = () => {
-    setCurrentStep('calculator');
-  };
-
   const getDisplayName = (type: string) => {
     return type === 'standard_heizoel' ? 'Standard Heizöl' : 'Premium Heizöl';
   };
-
-  if (currentStep === 'customer-data') {
-    return (
-      <CustomerDataForm
-        onSubmit={handleCustomerDataSubmit}
-        isLoading={isLoading}
-        onBack={handleBackToCalculator}
-      />
-    );
-  }
 
   return (
     <Card className="w-full max-w-md mx-auto shadow-xl border-0 bg-white/95 backdrop-blur-sm">
@@ -160,13 +130,13 @@ const PriceCalculator = () => {
               <SelectItem value="standard_heizoel">
                 <div className="flex justify-between items-center w-full">
                   <span>Standard Heizöl</span>
-                  <span className="font-bold text-accent-orange-600 ml-4">{formatPrice(prices.standard_heizoel)}€/L</span>
+                  <span className="font-bold text-accent-orange-600 ml-4">{prices.standard_heizoel.toFixed(2)}€/L</span>
                 </div>
               </SelectItem>
               <SelectItem value="premium_heizoel">
                 <div className="flex justify-between items-center w-full">
                   <span>Premium Heizöl</span>
-                  <span className="font-bold text-accent-orange-600 ml-4">{formatPrice(prices.premium_heizoel)}€/L</span>
+                  <span className="font-bold text-accent-orange-600 ml-4">{prices.premium_heizoel.toFixed(2)}€/L</span>
                 </div>
               </SelectItem>
             </SelectContent>
@@ -208,20 +178,12 @@ const PriceCalculator = () => {
           </div>
           <div className="flex justify-between text-sm text-gray-600">
             <span>Preis pro Liter:</span>
-            <span className="font-medium text-accent-orange-600">{formatPrice(currentPrice)}€</span>
-          </div>
-          <div className="flex justify-between text-sm text-gray-600">
-            <span>Nettobetrag:</span>
-            <span className="font-medium">{formatPrice(netAmount)}€</span>
-          </div>
-          <div className="flex justify-between text-sm text-gray-600">
-            <span>MwSt. (19%):</span>
-            <span className="font-medium">{formatPrice(taxAmount)}€</span>
+            <span className="font-medium text-accent-orange-600">{currentPrice.toFixed(2)}€</span>
           </div>
           <div className="border-t pt-2">
             <div className="flex justify-between items-center text-xl font-bold">
               <span>Gesamtpreis:</span>
-              <span className="text-accent-orange-600">{formatPrice(totalGrossAmount)}€</span>
+              <span className="text-accent-orange-600">{totalAmount.toFixed(2)}€</span>
             </div>
           </div>
         </div>
@@ -244,11 +206,18 @@ const PriceCalculator = () => {
 
         {/* Order Button */}
         <Button 
-          onClick={handleProceedToCustomerData}
-          disabled={liters < minLiters || liters > maxLiters}
+          onClick={handleOrder}
+          disabled={isLoading || liters < minLiters || liters > maxLiters}
           className="w-full bg-primary-600 hover:bg-primary-700 text-white h-12 text-lg font-semibold transition-all duration-200 hover:scale-105"
         >
-          Weiter zur Bestellung
+          {isLoading ? (
+            <div className="flex items-center space-x-2">
+              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+              <span>Wird verarbeitet...</span>
+            </div>
+          ) : (
+            'Jetzt bestellen'
+          )}
         </Button>
 
         <p className="text-xs text-gray-500 text-center">

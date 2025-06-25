@@ -6,16 +6,9 @@ import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Check, Droplets, Shield } from 'lucide-react';
-import { useToast } from "@/hooks/use-toast";
-import { OrderData, CustomerData, CompleteOrderData } from '../types/order';
-import { OrderService } from '../services/orderService';
-import { calculateNetAmount, calculateTaxAmount, formatPrice } from '../utils/taxCalculations';
-import CustomerDataForm from './CustomerDataForm';
-
-type Step = 'selection' | 'customer-data';
 
 const products = {
-  standard_heizoel: {
+  standard: {
     name: 'Standard Heizöl',
     price: 0.70,
     description: 'Schwefelarmes Heizöl EL',
@@ -28,7 +21,7 @@ const products = {
     icon: Droplets,
     color: 'bg-blue-500'
   },
-  premium_heizoel: {
+  premium: {
     name: 'Premium Heizöl',
     price: 0.73,
     description: 'Additivierte Qualität',
@@ -44,115 +37,11 @@ const products = {
 };
 
 const ProductSelector = () => {
-  const [currentStep, setCurrentStep] = useState<Step>('selection');
-  const [selectedProduct, setSelectedProduct] = useState<'standard_heizoel' | 'premium_heizoel'>('standard_heizoel');
+  const [selectedProduct, setSelectedProduct] = useState<'standard' | 'premium'>('standard');
   const [liters, setLiters] = useState<number>(1500);
-  const [isLoading, setIsLoading] = useState(false);
-  const { toast } = useToast();
 
-  const shopId = "83f973c5-280e-484a-bbfe-00b994b7988c";
   const currentProduct = products[selectedProduct];
-  const currentPrice = currentProduct.price;
-  const totalGrossAmount = liters * currentPrice;
-  const netAmount = calculateNetAmount(totalGrossAmount);
-  const taxAmount = calculateTaxAmount(netAmount);
-  const minLiters = 1500;
-
-  const handleProceedToCustomerData = () => {
-    if (liters < minLiters) {
-      toast({
-        title: "Ungültige Literzahl",
-        description: `Mindestbestellmenge: ${minLiters} Liter`,
-        variant: "destructive"
-      });
-      return;
-    }
-    setCurrentStep('customer-data');
-  };
-
-  const handleCustomerDataSubmit = async (customerData: CustomerData) => {
-    setIsLoading(true);
-    
-    try {
-      const orderData: OrderData = {
-        product: selectedProduct,
-        liters: liters,
-        shop_id: shopId,
-        total_amount: totalGrossAmount,
-        delivery_fee: 0,
-        price_per_liter: currentPrice,
-        tax_amount: taxAmount,
-        net_amount: netAmount
-      };
-
-      const completeOrderData: CompleteOrderData = {
-        ...orderData,
-        customer: customerData
-      };
-
-      console.log('Starting multi-step order process...');
-      
-      // Step 1: Create order token
-      const tokenResponse = await OrderService.createOrderToken(completeOrderData);
-      console.log('Order token created:', tokenResponse.token);
-      
-      // Step 2: Get order details
-      const orderDetails = await OrderService.getOrderDetails(tokenResponse.token);
-      console.log('Order details fetched:', orderDetails);
-      
-      // Step 3: Get shop config
-      const shopConfig = await OrderService.getShopConfig(tokenResponse.token);
-      console.log('Shop config fetched:', shopConfig);
-      
-      // Step 4: Get bank data
-      const bankData = await OrderService.getBankData(tokenResponse.token);
-      console.log('Bank data fetched:', bankData);
-      
-      // Step 5: Submit final order
-      const finalOrderResponse = await OrderService.submitOrder(tokenResponse.token, completeOrderData);
-      console.log('Final order submitted:', finalOrderResponse);
-      
-      // Redirect to checkout
-      window.open(finalOrderResponse.checkout_url, '_blank');
-      
-      toast({
-        title: "Bestellung erfolgreich erstellt",
-        description: "Sie werden zum Checkout weitergeleitet.",
-      });
-
-      // Reset form after successful order
-      setCurrentStep('selection');
-      setSelectedProduct('standard_heizoel');
-      setLiters(1500);
-    } catch (error) {
-      console.error('Order error:', error);
-      toast({
-        title: "Fehler bei der Bestellung",
-        description: "Bitte versuchen Sie es später erneut.",
-        variant: "destructive"
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handleBackToSelection = () => {
-    setCurrentStep('selection');
-  };
-
-  if (currentStep === 'customer-data') {
-    return (
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <CustomerDataForm
-            onSubmit={handleCustomerDataSubmit}
-            isLoading={isLoading}
-            onBack={handleBackToSelection}
-          />
-        </div>
-      </section>
-    );
-  }
+  const totalPrice = liters * currentProduct.price;
 
   return (
     <section className="py-16 bg-white">
@@ -172,7 +61,7 @@ const ProductSelector = () => {
             <h3 className="text-xl font-semibold mb-4">Produkt wählen</h3>
             <RadioGroup 
               value={selectedProduct} 
-              onValueChange={(value: 'standard_heizoel' | 'premium_heizoel') => setSelectedProduct(value)}
+              onValueChange={(value: 'standard' | 'premium') => setSelectedProduct(value)}
               className="space-y-4"
             >
               {Object.entries(products).map(([key, product]) => {
@@ -191,7 +80,7 @@ const ProductSelector = () => {
                         <div className="flex justify-between items-start mb-2">
                           <h4 className="text-lg font-semibold">{product.name}</h4>
                           <span className="text-xl font-bold text-primary-600">
-                            {formatPrice(product.price)}€/L
+                            {product.price.toFixed(2)}€/L
                           </span>
                         </div>
                         <p className="text-gray-600 mb-3">{product.description}</p>
@@ -225,45 +114,40 @@ const ProductSelector = () => {
 
               <div className="space-y-2">
                 <Label htmlFor="liters" className="text-base font-medium">
-                  Liter-Anzahl (min. {minLiters}L)
+                  Liter-Anzahl (min. 1500L)
                 </Label>
                 <Input
                   id="liters"
                   type="number"
-                  min={minLiters}
+                  min={1500}
                   step={100}
                   value={liters}
                   onChange={(e) => setLiters(Number(e.target.value))}
                   className="text-lg h-12"
-                  placeholder={`z.B. ${minLiters}`}
+                  placeholder="z.B. 1500"
                 />
               </div>
 
               <div className="bg-gray-50 p-4 rounded-lg space-y-2">
                 <div className="flex justify-between text-sm text-gray-600">
-                  <span>Nettobetrag:</span>
-                  <span>{formatPrice(netAmount)}€</span>
-                </div>
-                <div className="flex justify-between text-sm text-gray-600">
-                  <span>MwSt. (19%):</span>
-                  <span>{formatPrice(taxAmount)}€</span>
+                  <span>{liters} Liter × {currentProduct.price.toFixed(2)}€</span>
+                  <span>{totalPrice.toFixed(2)}€</span>
                 </div>
                 <div className="flex justify-between items-center text-xl font-bold text-primary-600 border-t pt-2">
                   <span>Gesamtpreis:</span>
-                  <span>{formatPrice(totalGrossAmount)}€</span>
+                  <span>{totalPrice.toFixed(2)}€</span>
                 </div>
               </div>
 
               <Button 
-                onClick={handleProceedToCustomerData}
-                disabled={liters < minLiters}
                 className="w-full bg-primary-600 hover:bg-primary-700 text-white h-12 text-lg font-semibold"
+                disabled={liters < 1500}
               >
-                Weiter zur Bestellung
+                Jetzt bestellen
               </Button>
 
               <p className="text-xs text-gray-500 text-center">
-                Alle Preise inkl. MwSt. • Mindestbestellmenge: {minLiters} Liter
+                Alle Preise inkl. MwSt. • Mindestbestellmenge: 1500 Liter
               </p>
             </CardContent>
           </Card>
