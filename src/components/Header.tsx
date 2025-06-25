@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Menu, X, Phone, Bell } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -21,7 +20,7 @@ const Header = () => {
                 <ClickToCall variant="header" />
                 <div className="flex items-center space-x-2">
                   <Bell size={14} />
-                  <span>info@hill-clear.de</span>
+                  <span>info@hill-heizoel.de</span>
                 </div>
               </div>
               <div className="text-primary-600 font-medium">

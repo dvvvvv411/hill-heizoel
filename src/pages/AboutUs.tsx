@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Building, Users, Award, Clock, MapPin, Shield, CheckCircle, Mail, Phone } from 'lucide-react';
 import { Card, CardContent } from "@/components/ui/card";
@@ -22,9 +21,9 @@ const AboutUs = () => {
       
       const targets = {
         years: 21,
-        customers: 15000,
+        customers: 100000,
         rating: 4.9,
-        deliveries: 50000
+        deliveries: 200000
       };
 
       let currentStep = 0;
@@ -77,7 +76,7 @@ const AboutUs = () => {
     {
       year: "2024",
       title: "Heute",
-      description: "Über 15.000 zufriedene Kunden in Bayern"
+      description: "Über 100.000 zufriedene Kunden in Bayern"
     }
   ];
 
@@ -208,7 +207,7 @@ const AboutUs = () => {
                   modernste Logistik und persönliche Betreuung.
                 </p>
                 <p>
-                  Mit über 15.000 zufriedenen Kunden und mehr als 50.000 erfolgreichen 
+                  Mit über 100.000 zufriedenen Kunden und mehr als 200.000 erfolgreichen 
                   Lieferungen haben wir uns das Vertrauen der Menschen in Bayern verdient. 
                   Unser Team aus erfahrenen Fachkräften steht Ihnen jederzeit mit Rat 
                   und Tat zur Seite.

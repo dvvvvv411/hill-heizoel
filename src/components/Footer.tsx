@@ -1,5 +1,6 @@
 
 import { Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -30,12 +31,12 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="text-lg font-semibold">Quick Links</h3>
             <ul className="space-y-2 text-gray-300">
-              <li><a href="#home" className="hover:text-primary-400 transition-colors">Home</a></li>
-              <li><a href="#preise" className="hover:text-primary-400 transition-colors">Preisrechner</a></li>
-              <li><a href="#liefergebiet" className="hover:text-primary-400 transition-colors">Liefergebiet</a></li>
-              <li><a href="#ueber-uns" className="hover:text-primary-400 transition-colors">Über uns</a></li>
-              <li><a href="#" className="hover:text-primary-400 transition-colors">AGB</a></li>
-              <li><a href="#" className="hover:text-primary-400 transition-colors">Datenschutz</a></li>
+              <li><Link to="/" className="hover:text-primary-400 transition-colors">Home</Link></li>
+              <li><Link to="/produkte" className="hover:text-primary-400 transition-colors">Produkte</Link></li>
+              <li><Link to="/services" className="hover:text-primary-400 transition-colors">Services</Link></li>
+              <li><Link to="/ueber-uns" className="hover:text-primary-400 transition-colors">Über uns</Link></li>
+              <li><Link to="/agb" className="hover:text-primary-400 transition-colors">AGB</Link></li>
+              <li><Link to="/datenschutz" className="hover:text-primary-400 transition-colors">Datenschutz</Link></li>
             </ul>
           </div>
 
@@ -49,12 +50,12 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-3">
                 <Mail size={16} className="text-primary-400" />
-                <span>info@hill-clear.de</span>
+                <span>info@hill-heizoel.de</span>
               </div>
               <div className="flex items-start space-x-3">
                 <MapPin size={16} className="text-primary-400 mt-1" />
                 <div>
-                  <div>Musterstraße 123</div>
+                  <div>Rottmannstr. 22a</div>
                   <div>80333 München</div>
                 </div>
               </div>
@@ -93,10 +94,10 @@ const Footer = () => {
               © 2024 HILL-Clear Projects GmbH. Alle Rechte vorbehalten.
             </div>
             <div className="flex space-x-6 mt-4 md:mt-0 text-sm text-gray-400">
-              <a href="#" className="hover:text-primary-400 transition-colors">Impressum</a>
-              <a href="#" className="hover:text-primary-400 transition-colors">Datenschutz</a>
-              <a href="#" className="hover:text-primary-400 transition-colors">AGB</a>
-              <a href="#" className="hover:text-primary-400 transition-colors">Widerrufsrecht</a>
+              <Link to="/impressum" className="hover:text-primary-400 transition-colors">Impressum</Link>
+              <Link to="/datenschutz" className="hover:text-primary-400 transition-colors">Datenschutz</Link>
+              <Link to="/agb" className="hover:text-primary-400 transition-colors">AGB</Link>
+              <Link to="/widerrufsrecht" className="hover:text-primary-400 transition-colors">Widerrufsrecht</Link>
             </div>
           </div>
         </div>
