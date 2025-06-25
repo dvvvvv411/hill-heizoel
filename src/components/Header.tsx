@@ -45,6 +45,9 @@ const Header = () => {
             <Link to="/" className="text-gray-700 hover:text-primary-600 transition-colors">
               Home
             </Link>
+            <Link to="/produkte" className="text-gray-700 hover:text-primary-600 transition-colors">
+              Produkte
+            </Link>
             <a href="#preise" className="text-gray-700 hover:text-primary-600 transition-colors">
               Preise
             </a>
@@ -73,6 +76,9 @@ const Header = () => {
           <nav className="md:hidden pb-4 space-y-4">
             <Link to="/" className="block text-gray-700 hover:text-primary-600 transition-colors">
               Home
+            </Link>
+            <Link to="/produkte" className="block text-gray-700 hover:text-primary-600 transition-colors">
+              Produkte
             </Link>
             <a href="#preise" className="block text-gray-700 hover:text-primary-600 transition-colors">
               Preise
