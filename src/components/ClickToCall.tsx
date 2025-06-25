@@ -36,13 +36,6 @@ const ClickToCall = ({
         >
           <Phone size={24} />
         </Button>
-        <Button
-          onClick={handleWhatsApp}
-          className="w-14 h-14 rounded-full bg-green-500 hover:bg-green-600 text-white shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-110"
-          aria-label="WhatsApp"
-        >
-          <MessageCircle size={24} />
-        </Button>
       </div>
     );
   }

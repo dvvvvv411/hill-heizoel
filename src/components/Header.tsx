@@ -65,6 +65,8 @@ const Header = () => {
       <header className="bg-white/95 backdrop-blur-sm shadow-sm sticky top-0 z-50 lg:hidden">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center py-4">
+            <div className="flex-1"></div>
+            
             <Link to="/" className="flex items-center">
               <img 
                 src="https://i.imgur.com/4xhodpH.png" 
@@ -73,14 +75,7 @@ const Header = () => {
               />
             </Link>
 
-            <div className="flex items-center space-x-2">
-              <a
-                href="tel:089123456789"
-                className="p-2 bg-accent-orange-500 text-white rounded-full hover:bg-accent-orange-600 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
-                aria-label="Anrufen"
-              >
-                <Phone size={20} />
-              </a>
+            <div className="flex-1 flex justify-end">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="p-2 border border-gray-300 rounded-full min-w-[44px] min-h-[44px] flex items-center justify-center hover:border-accent-orange-500 transition-colors"
@@ -127,15 +122,20 @@ const Header = () => {
               </Link>
               
               <div className="pt-4 border-t border-gray-200">
-                <ClickToCall className="px-4" />
+                <div className="px-4">
+                  <a
+                    href="tel:089123456789"
+                    className="flex items-center py-3 px-4 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors min-h-[48px] w-full"
+                  >
+                    <Phone size={20} className="mr-3" />
+                    <span className="font-medium">Jetzt anrufen</span>
+                  </a>
+                </div>
               </div>
             </nav>
           </div>
         </div>
       </header>
-
-      {/* Floating Action Buttons for Mobile */}
-      <ClickToCall variant="floating" />
     </>
   );
 };
