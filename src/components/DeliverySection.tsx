@@ -26,9 +26,9 @@ const DeliverySection = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Bayern Map Image */}
           <div className="relative">
-            <Card className="overflow-hidden shadow-xl bg-gradient-to-br from-primary-50 to-primary-100">
+            <Card className="glass-effect backdrop-blur-md border-white/20 shadow-strong overflow-hidden bg-gradient-to-br from-primary-50/80 to-primary-100/80">
               <CardContent className="p-8">
-                <div className="relative bg-white rounded-2xl p-8 shadow-inner">
+                <div className="relative glass-effect backdrop-blur-sm border-white/20 rounded-2xl p-8 shadow-medium">
                   {/* Bayern Map Image Placeholder */}
                   <div className="relative flex items-center justify-center">
                     <img 
@@ -39,23 +39,23 @@ const DeliverySection = () => {
                   </div>
                   
                   {/* Floating Delivery Truck */}
-                  <div className="absolute top-4 right-4 bg-primary-600 text-white rounded-full p-3 shadow-lg animate-float">
+                  <div className="absolute top-4 right-4 bg-gradient-to-br from-primary-600/90 to-primary-700/90 backdrop-blur-md text-white rounded-full p-3 shadow-strong animate-float">
                     <Truck size={24} />
                   </div>
                   
                   {/* Location Pin */}
-                  <div className="absolute top-6 left-6 bg-red-500 text-white rounded-full p-2 shadow-lg animate-bounce-subtle">
+                  <div className="absolute top-6 left-6 bg-gradient-to-br from-red-500/90 to-red-600/90 backdrop-blur-md text-white rounded-full p-2 shadow-strong animate-bounce-subtle">
                     <MapPin size={20} />
                   </div>
                 </div>
                 
                 {/* Bottom Stats */}
                 <div className="mt-6 grid grid-cols-2 gap-4">
-                  <div className="text-center bg-white/80 rounded-lg p-3">
+                  <div className="text-center glass-effect backdrop-blur-sm border-white/20 rounded-lg p-3">
                     <div className="text-2xl font-bold text-primary-600">100%</div>
                     <div className="text-sm text-gray-600">Bayern Abdeckung</div>
                   </div>
-                  <div className="text-center bg-white/80 rounded-lg p-3">
+                  <div className="text-center glass-effect backdrop-blur-sm border-white/20 rounded-lg p-3">
                     <div className="text-2xl font-bold text-primary-600">20+</div>
                     <div className="text-sm text-gray-600">Hauptstädte</div>
                   </div>
@@ -63,14 +63,14 @@ const DeliverySection = () => {
               </CardContent>
             </Card>
             
-            <div className="absolute -bottom-4 -right-4 bg-primary-600 text-white px-6 py-3 rounded-full font-bold shadow-lg animate-pulse">
+            <div className="absolute -bottom-4 -right-4 glass-effect backdrop-blur-md border-white/20 bg-gradient-to-br from-primary-600/90 to-primary-700/90 text-white px-6 py-3 rounded-full font-bold shadow-strong animate-pulse">
               Ganz Bayern!
             </div>
           </div>
 
           {/* Cities List */}
           <div>
-            <Card className="shadow-xl">
+            <Card className="glass-effect backdrop-blur-md border-white/20 shadow-strong">
               <CardHeader>
                 <CardTitle className="text-2xl text-primary-600 flex items-center">
                   <CheckCircle className="mr-3 text-green-500" size={28} />
@@ -82,7 +82,7 @@ const DeliverySection = () => {
                   {cities.map((city, index) => (
                     <div 
                       key={index} 
-                      className="flex items-center space-x-2 p-2 hover:bg-primary-50 rounded-lg transition-colors"
+                      className="flex items-center space-x-2 p-2 glass-effect backdrop-blur-sm border-white/10 hover:border-white/20 rounded-lg transition-all duration-300 hover:scale-105"
                     >
                       <CheckCircle size={16} className="text-green-500 flex-shrink-0" />
                       <span className="text-gray-700">{city}</span>
@@ -90,7 +90,7 @@ const DeliverySection = () => {
                   ))}
                 </div>
                 
-                <div className="mt-6 p-4 bg-primary-50 rounded-lg">
+                <div className="mt-6 p-4 glass-effect backdrop-blur-sm border-white/20 bg-primary-50/80 rounded-lg">
                   <p className="text-primary-700 font-medium mb-2">
                     Ihr Ort ist nicht dabei?
                   </p>
@@ -107,21 +107,21 @@ const DeliverySection = () => {
 
         {/* Additional Info */}
         <div className="mt-16 grid md:grid-cols-3 gap-8">
-          <Card className="text-center shadow-lg">
+          <Card className="glass-effect backdrop-blur-md border-white/20 text-center shadow-medium hover:shadow-strong hover:scale-105 transition-all duration-300">
             <CardContent className="p-6">
               <div className="text-3xl font-bold text-primary-600 mb-2">Kostenlos</div>
               <div className="text-gray-600">Lieferung ab 1000L</div>
             </CardContent>
           </Card>
           
-          <Card className="text-center shadow-lg">
+          <Card className="glass-effect backdrop-blur-md border-white/20 text-center shadow-medium hover:shadow-strong hover:scale-105 transition-all duration-300">
             <CardContent className="p-6">
               <div className="text-3xl font-bold text-primary-600 mb-2">4-7 Tage</div>
               <div className="text-gray-600">Lieferzeit</div>
             </CardContent>
           </Card>
           
-          <Card className="text-center shadow-lg">
+          <Card className="glass-effect backdrop-blur-md border-white/20 text-center shadow-medium hover:shadow-strong hover:scale-105 transition-all duration-300">
             <CardContent className="p-6">
               <div className="text-3xl font-bold text-primary-600 mb-2">8-18 Uhr</div>
               <div className="text-gray-600">Lieferfenster</div>

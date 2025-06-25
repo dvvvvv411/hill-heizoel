@@ -71,7 +71,7 @@ const ReviewsSection = () => {
           </p>
           
           {/* Overall Rating */}
-          <div className="mt-8 inline-flex items-center space-x-2 bg-primary-50 px-6 py-3 rounded-full">
+          <div className="mt-8 inline-flex items-center space-x-2 glass-effect backdrop-blur-md border-white/20 px-6 py-3 rounded-full shadow-medium">
             <div className="flex space-x-1">
               {renderStars(5)}
             </div>
@@ -83,7 +83,7 @@ const ReviewsSection = () => {
         {/* Reviews Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {reviews.map((review, index) => (
-            <Card key={index} className="shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <Card key={index} className="glass-effect backdrop-blur-md border-white/20 shadow-medium hover:shadow-strong transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02]">
               <CardContent className="p-6">
                 <div className="flex items-start justify-between mb-4">
                   <Quote className="text-primary-600 opacity-50" size={24} />
@@ -96,7 +96,7 @@ const ReviewsSection = () => {
                   "{review.text}"
                 </p>
                 
-                <div className="border-t pt-4">
+                <div className="border-t border-white/20 pt-4">
                   <div className="flex items-center justify-between">
                     <div>
                       <div className="font-semibold text-gray-900">{review.name}</div>
@@ -114,7 +114,7 @@ const ReviewsSection = () => {
 
         {/* CTA Section */}
         <div className="mt-16 text-center">
-          <div className="bg-gradient-to-r from-primary-600 to-primary-700 rounded-2xl p-8 md:p-12 text-white">
+          <div className="bg-gradient-to-r from-primary-600/95 to-primary-700/95 backdrop-blur-md rounded-2xl p-8 md:p-12 text-white shadow-strong">
             <h3 className="text-3xl font-bold mb-4">
               Werden auch Sie Teil unserer zufriedenen Kunden!
             </h3>
@@ -122,10 +122,10 @@ const ReviewsSection = () => {
               Überzeugen Sie sich selbst von unserem erstklassigen Service und unseren fairen Preisen.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+              <button className="glass-effect backdrop-blur-md border-white/20 bg-white/90 text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-white hover:scale-105 transition-all duration-300">
                 Jetzt Preis berechnen
               </button>
-              <button className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors">
+              <button className="glass-effect backdrop-blur-md border-white/20 border-2 text-white px-8 py-4 rounded-lg font-semibold hover:bg-white/10 hover:scale-105 transition-all duration-300">
                 089 123 456 789
               </button>
             </div>

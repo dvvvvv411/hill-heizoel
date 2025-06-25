@@ -61,10 +61,10 @@ const BenefitsSection = () => {
             return (
               <Card 
                 key={index} 
-                className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group"
+                className="glass-effect backdrop-blur-md border-white/20 shadow-medium hover:shadow-strong transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02] group"
               >
                 <CardContent className="p-8 text-center">
-                  <div className={`w-16 h-16 ${benefit.color} rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                  <div className={`w-16 h-16 ${benefit.color} backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}>
                     <IconComponent size={32} />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-3">
@@ -80,7 +80,7 @@ const BenefitsSection = () => {
         </div>
 
         {/* Additional Stats */}
-        <div className="mt-20 bg-primary-600 rounded-2xl p-8 md:p-12 text-white">
+        <div className="mt-20 bg-gradient-to-r from-primary-600/95 to-primary-700/95 backdrop-blur-md rounded-2xl p-8 md:p-12 text-white shadow-strong">
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <div>
               <div className="text-4xl font-bold mb-2">1000L</div>
