@@ -7,7 +7,7 @@ const BenefitsSection = () => {
     {
       icon: Truck,
       title: 'Kostenlose Lieferung',
-      description: 'Keine Lieferkosten ab 1000 Liter Bestellmenge in ganz Bayern',
+      description: 'Kostenlose Lieferung in Bayern ab 1500 Liter Bestellmenge',
       color: 'bg-blue-50 text-blue-600'
     },
     {
@@ -47,7 +47,7 @@ const BenefitsSection = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Warum HILL-Clear Projects?
+            Warum HILL-Heizöl?
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Als Bayerns führender Heizöl-Anbieter stehen wir für Qualität, Zuverlässigkeit 
@@ -83,7 +83,7 @@ const BenefitsSection = () => {
         <div className="mt-20 bg-primary-600 rounded-2xl p-8 md:p-12 text-white">
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <div>
-              <div className="text-4xl font-bold mb-2">1000L</div>
+              <div className="text-4xl font-bold mb-2">1500L</div>
               <div className="text-primary-100">Mindestbestellmenge</div>
             </div>
             <div>

@@ -110,7 +110,7 @@ const DeliverySection = () => {
           <Card className="text-center shadow-lg">
             <CardContent className="p-6">
               <div className="text-3xl font-bold text-primary-600 mb-2">Kostenlos</div>
-              <div className="text-gray-600">Lieferung ab 1000L</div>
+              <div className="text-gray-600">Lieferung ab 1500L</div>
             </CardContent>
           </Card>
           
