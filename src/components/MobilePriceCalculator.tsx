@@ -85,26 +85,36 @@ const MobilePriceCalculator = () => {
     setIsLoading(true);
     
     try {
-      const response = await fetch('https://luhhnsvwtnmxztcmdxyq.supabase.co/functions/v1/get-order-token', {
-        method: 'POST',
+      // Build query parameters for the GET request
+      const params = new URLSearchParams({
+        product: oilType,
+        liters: liters.toString(),
+        shop_id: shopId,
+        total_amount: totalAmount.toFixed(2),
+        delivery_fee: '0',
+        price_per_liter: currentPrice.toFixed(2)
+      });
+
+      const apiUrl = `https://luhhnsvwtnmxztcmdxyq.supabase.co/functions/v1/create-order-token?${params.toString()}`;
+      
+      console.log('Sending order request to:', apiUrl);
+
+      const response = await fetch(apiUrl, {
+        method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          product: oilType,
-          liters: liters,
-          shop_id: shopId,
-          total_amount: totalAmount,
-          delivery_fee: 0,
-          price_per_liter: currentPrice
-        })
+        }
       });
+
+      console.log('API Response status:', response.status);
 
       if (response.ok) {
         const data = await response.json();
+        console.log('API Response data:', data);
         
         if (data.token) {
           const checkoutUrl = `https://checkout.hill-heizoel.de/checkout?token=${data.token}`;
+          console.log('Redirecting to:', checkoutUrl);
           window.open(checkoutUrl, '_blank');
           
           toast({
@@ -115,6 +125,8 @@ const MobilePriceCalculator = () => {
           throw new Error('Kein Token erhalten');
         }
       } else {
+        const errorData = await response.text();
+        console.error('API Error response:', errorData);
         throw new Error(`API Error: ${response.status}`);
       }
     } catch (error) {

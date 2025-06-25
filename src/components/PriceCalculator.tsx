@@ -45,28 +45,25 @@ const PriceCalculator = () => {
     setIsLoading(true);
     
     try {
-      console.log('Sending order request with data:', {
+      // Build query parameters for the GET request
+      const params = new URLSearchParams({
         product: oilType,
-        liters: liters,
+        liters: liters.toString(),
         shop_id: shopId,
-        total_amount: totalAmount,
-        delivery_fee: 0,
-        price_per_liter: currentPrice
+        total_amount: totalAmount.toFixed(2),
+        delivery_fee: '0',
+        price_per_liter: currentPrice.toFixed(2)
       });
 
-      const response = await fetch('https://luhhnsvwtnmxztcmdxyq.supabase.co/functions/v1/get-order-token', {
-        method: 'POST',
+      const apiUrl = `https://luhhnsvwtnmxztcmdxyq.supabase.co/functions/v1/create-order-token?${params.toString()}`;
+      
+      console.log('Sending order request to:', apiUrl);
+
+      const response = await fetch(apiUrl, {
+        method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          product: oilType,
-          liters: liters,
-          shop_id: shopId,
-          total_amount: totalAmount,
-          delivery_fee: 0,
-          price_per_liter: currentPrice
-        })
+        }
       });
 
       console.log('API Response status:', response.status);
