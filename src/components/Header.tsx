@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { Menu, X, Phone, Mail } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -30,29 +31,29 @@ const Header = () => {
 
         {/* Main Navigation */}
         <div className="flex justify-between items-center py-4">
-          <div className="flex items-center">
+          <Link to="/" className="flex items-center">
             <div className="text-2xl font-bold text-primary-600">
               HILL-Clear
             </div>
             <div className="ml-2 text-sm text-gray-600 hidden sm:block">
               Projects GmbH
             </div>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#home" className="text-gray-700 hover:text-primary-600 transition-colors">
+            <Link to="/" className="text-gray-700 hover:text-primary-600 transition-colors">
               Home
-            </a>
+            </Link>
             <a href="#preise" className="text-gray-700 hover:text-primary-600 transition-colors">
               Preise
             </a>
             <a href="#liefergebiet" className="text-gray-700 hover:text-primary-600 transition-colors">
               Liefergebiet
             </a>
-            <a href="#ueber-uns" className="text-gray-700 hover:text-primary-600 transition-colors">
+            <Link to="/ueber-uns" className="text-gray-700 hover:text-primary-600 transition-colors">
               Über uns
-            </a>
+            </Link>
             <Button className="bg-primary-600 hover:bg-primary-700 text-white px-6">
               Jetzt bestellen
             </Button>
@@ -70,18 +71,18 @@ const Header = () => {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <nav className="md:hidden pb-4 space-y-4">
-            <a href="#home" className="block text-gray-700 hover:text-primary-600 transition-colors">
+            <Link to="/" className="block text-gray-700 hover:text-primary-600 transition-colors">
               Home
-            </a>
+            </Link>
             <a href="#preise" className="block text-gray-700 hover:text-primary-600 transition-colors">
               Preise
             </a>
             <a href="#liefergebiet" className="block text-gray-700 hover:text-primary-600 transition-colors">
               Liefergebiet
             </a>
-            <a href="#ueber-uns" className="block text-gray-700 hover:text-primary-600 transition-colors">
+            <Link to="/ueber-uns" className="block text-gray-700 hover:text-primary-600 transition-colors">
               Über uns
-            </a>
+            </Link>
             <Button className="bg-primary-600 hover:bg-primary-700 text-white w-full">
               Jetzt bestellen
             </Button>
