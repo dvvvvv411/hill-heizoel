@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Building, Users, Award, Clock, MapPin, Shield, CheckCircle, Mail, Phone } from 'lucide-react';
 import { Card, CardContent } from "@/components/ui/card";
@@ -51,61 +52,6 @@ const AboutUs = () => {
     const timer = setTimeout(animateStats, 500);
     return () => clearTimeout(timer);
   }, []);
-
-  const timeline = [
-    {
-      year: "2003",
-      title: "Firmengründung",
-      description: "HILL-Clear Projects GmbH wird in München gegründet"
-    },
-    {
-      year: "2008",
-      title: "Expansion",
-      description: "Ausweitung des Liefergebiets auf ganz Bayern"
-    },
-    {
-      year: "2012",
-      title: "Digitalisierung",
-      description: "Einführung des Online-Bestellsystems"
-    },
-    {
-      year: "2018",
-      title: "Qualitätszertifikat",
-      description: "ISO 9001 Zertifizierung für Qualitätsmanagement"
-    },
-    {
-      year: "2024",
-      title: "Heute",
-      description: "Über 100.000 zufriedene Kunden in Bayern"
-    }
-  ];
-
-  const team = [
-    {
-      name: "Michael Hillmann",
-      position: "Geschäftsführer",
-      description: "20 Jahre Erfahrung in der Energiebranche",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face"
-    },
-    {
-      name: "Sandra Weber",
-      position: "Vertriebsleiterin",
-      description: "Expertin für Kundenbetreuung und Logistik",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face"
-    },
-    {
-      name: "Thomas Müller",
-      position: "Technischer Leiter",
-      description: "Spezialist für Heizöl-Qualität und Lagerung",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face"
-    },
-    {
-      name: "Anna Schmidt",
-      position: "Kundenservice",
-      description: "Ihre Ansprechpartnerin für alle Fragen",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face"
-    }
-  ];
 
   const certifications = [
     {
@@ -281,80 +227,6 @@ const AboutUs = () => {
                 </p>
               </CardContent>
             </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Team Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Unser Team
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Lernen Sie die Menschen kennen, die täglich dafür sorgen, 
-              dass Sie zuverlässig mit Heizöl versorgt werden.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {team.map((member, index) => (
-              <Card key={index} className="text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-                <CardContent className="p-6">
-                  <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden">
-                    <img 
-                      src={member.image} 
-                      alt={member.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">{member.name}</h3>
-                  <p className="text-primary-600 font-semibold mb-3">{member.position}</p>
-                  <p className="text-gray-600 text-sm">{member.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Timeline */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Unsere Entwicklung
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Über zwei Jahrzehnte Wachstum und Innovation in der Heizöl-Branche
-            </p>
-          </div>
-
-          <div className="relative">
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-primary-200"></div>
-            
-            <div className="space-y-12">
-              {timeline.map((item, index) => (
-                <div key={index} className={`flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
-                  <div className={`w-1/2 ${index % 2 === 0 ? 'pr-8 text-right' : 'pl-8 text-left'}`}>
-                    <Card className="shadow-lg">
-                      <CardContent className="p-6">
-                        <div className="text-3xl font-bold text-primary-600 mb-2">{item.year}</div>
-                        <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
-                        <p className="text-gray-600">{item.description}</p>
-                      </CardContent>
-                    </Card>
-                  </div>
-                  
-                  <div className="w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center relative z-10">
-                    <div className="w-4 h-4 bg-white rounded-full"></div>
-                  </div>
-                  
-                  <div className="w-1/2"></div>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
