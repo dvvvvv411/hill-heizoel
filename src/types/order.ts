@@ -22,6 +22,10 @@ export interface CustomerData {
   delivery_instructions?: string;
 }
 
+export interface CompleteOrderData extends OrderData {
+  customer: CustomerData;
+}
+
 export interface OrderResponse {
   token: string;
   order_id?: string;

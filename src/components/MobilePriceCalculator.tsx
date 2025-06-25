@@ -1,3 +1,4 @@
+
 import { useState, useRef } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -6,11 +7,15 @@ import { Label } from "@/components/ui/label";
 import { Truck, Shield, Clock, Calculator, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
-import { OrderData, PriceData } from '../types/order';
+import { OrderData, PriceData, CustomerData, CompleteOrderData } from '../types/order';
 import { OrderService } from '../services/orderService';
 import { calculateNetAmount, calculateTaxAmount, formatPrice } from '../utils/taxCalculations';
+import CustomerDataForm from './CustomerDataForm';
+
+type Step = 'calculator' | 'customer-data';
 
 const MobilePriceCalculator = () => {
+  const [currentStep, setCurrentStep] = useState<Step>('calculator');
   const [liters, setLiters] = useState<number>(1500);
   const [oilType, setOilType] = useState<'standard_heizoel' | 'premium_heizoel'>('standard_heizoel');
   const [isLoading, setIsLoading] = useState(false);
@@ -77,7 +82,7 @@ const MobilePriceCalculator = () => {
     }
   };
 
-  const handleOrder = async () => {
+  const handleProceedToCustomerData = () => {
     if (liters < minLiters || liters > maxLiters) {
       toast({
         title: "Ungültige Literzahl",
@@ -86,7 +91,10 @@ const MobilePriceCalculator = () => {
       });
       return;
     }
+    setCurrentStep('customer-data');
+  };
 
+  const handleCustomerDataSubmit = async (customerData: CustomerData) => {
     setIsLoading(true);
     
     try {
@@ -101,7 +109,12 @@ const MobilePriceCalculator = () => {
         net_amount: netAmount
       };
 
-      const response = await OrderService.createOrder(orderData);
+      const completeOrderData: CompleteOrderData = {
+        ...orderData,
+        customer: customerData
+      };
+
+      const response = await OrderService.createOrder(completeOrderData);
       const checkoutUrl = OrderService.getCheckoutUrl(response.token);
       
       window.open(checkoutUrl, '_blank');
@@ -110,6 +123,11 @@ const MobilePriceCalculator = () => {
         title: "Bestellung weitergeleitet",
         description: "Sie werden zum Checkout weitergeleitet.",
       });
+
+      // Reset form after successful order
+      setCurrentStep('calculator');
+      setLiters(1500);
+      setOilType('standard_heizoel');
     } catch (error) {
       console.error('Order error:', error);
       toast({
@@ -122,7 +140,23 @@ const MobilePriceCalculator = () => {
     }
   };
 
+  const handleBackToCalculator = () => {
+    setCurrentStep('calculator');
+  };
+
   const currentProduct = products.find(p => p.id === oilType)!;
+
+  if (currentStep === 'customer-data') {
+    return (
+      <div className="w-full max-w-sm mx-auto">
+        <CustomerDataForm
+          onSubmit={handleCustomerDataSubmit}
+          isLoading={isLoading}
+          onBack={handleBackToCalculator}
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="w-full max-w-sm mx-auto">
@@ -316,20 +350,11 @@ const MobilePriceCalculator = () => {
       {/* Sticky Order Button - Updated */}
       <div className="fixed bottom-0 left-0 right-0 p-4 bg-white/95 backdrop-blur-sm border-t border-gray-200 z-40 lg:hidden">
         <Button 
-          onClick={handleOrder}
-          disabled={isLoading || liters < minLiters || liters > maxLiters}
+          onClick={handleProceedToCustomerData}
+          disabled={liters < minLiters || liters > maxLiters}
           className="w-full bg-accent-orange-500 hover:bg-accent-orange-600 text-white h-14 text-lg font-semibold transition-all duration-200 hover:scale-105"
         >
-          {isLoading ? (
-            <div className="flex items-center space-x-2">
-              <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-              <span>Wird verarbeitet...</span>
-            </div>
-          ) : (
-            <>
-              <span>Jetzt bestellen - {formatPrice(totalGrossAmount)}€</span>
-            </>
-          )}
+          Weiter zur Bestellung - {formatPrice(totalGrossAmount)}€
         </Button>
       </div>
     </div>

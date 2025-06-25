@@ -7,9 +7,12 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Check, Droplets, Shield } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
-import { OrderData, PriceData } from '../types/order';
+import { OrderData, CustomerData, CompleteOrderData } from '../types/order';
 import { OrderService } from '../services/orderService';
 import { calculateNetAmount, calculateTaxAmount, formatPrice } from '../utils/taxCalculations';
+import CustomerDataForm from './CustomerDataForm';
+
+type Step = 'selection' | 'customer-data';
 
 const products = {
   standard_heizoel: {
@@ -41,6 +44,7 @@ const products = {
 };
 
 const ProductSelector = () => {
+  const [currentStep, setCurrentStep] = useState<Step>('selection');
   const [selectedProduct, setSelectedProduct] = useState<'standard_heizoel' | 'premium_heizoel'>('standard_heizoel');
   const [liters, setLiters] = useState<number>(1500);
   const [isLoading, setIsLoading] = useState(false);
@@ -54,7 +58,7 @@ const ProductSelector = () => {
   const taxAmount = calculateTaxAmount(netAmount);
   const minLiters = 1500;
 
-  const handleOrder = async () => {
+  const handleProceedToCustomerData = () => {
     if (liters < minLiters) {
       toast({
         title: "Ungültige Literzahl",
@@ -63,7 +67,10 @@ const ProductSelector = () => {
       });
       return;
     }
+    setCurrentStep('customer-data');
+  };
 
+  const handleCustomerDataSubmit = async (customerData: CustomerData) => {
     setIsLoading(true);
     
     try {
@@ -78,7 +85,12 @@ const ProductSelector = () => {
         net_amount: netAmount
       };
 
-      const response = await OrderService.createOrder(orderData);
+      const completeOrderData: CompleteOrderData = {
+        ...orderData,
+        customer: customerData
+      };
+
+      const response = await OrderService.createOrder(completeOrderData);
       const checkoutUrl = OrderService.getCheckoutUrl(response.token);
       
       window.open(checkoutUrl, '_blank');
@@ -87,6 +99,11 @@ const ProductSelector = () => {
         title: "Bestellung weitergeleitet",
         description: "Sie werden zum Checkout weitergeleitet.",
       });
+
+      // Reset form after successful order
+      setCurrentStep('selection');
+      setSelectedProduct('standard_heizoel');
+      setLiters(1500);
     } catch (error) {
       console.error('Order error:', error);
       toast({
@@ -98,6 +115,24 @@ const ProductSelector = () => {
       setIsLoading(false);
     }
   };
+
+  const handleBackToSelection = () => {
+    setCurrentStep('selection');
+  };
+
+  if (currentStep === 'customer-data') {
+    return (
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <CustomerDataForm
+            onSubmit={handleCustomerDataSubmit}
+            isLoading={isLoading}
+            onBack={handleBackToSelection}
+          />
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="py-16 bg-white">
@@ -200,18 +235,11 @@ const ProductSelector = () => {
               </div>
 
               <Button 
-                onClick={handleOrder}
-                disabled={isLoading || liters < minLiters}
+                onClick={handleProceedToCustomerData}
+                disabled={liters < minLiters}
                 className="w-full bg-primary-600 hover:bg-primary-700 text-white h-12 text-lg font-semibold"
               >
-                {isLoading ? (
-                  <div className="flex items-center space-x-2">
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                    <span>Wird verarbeitet...</span>
-                  </div>
-                ) : (
-                  'Jetzt bestellen'
-                )}
+                Weiter zur Bestellung
               </Button>
 
               <p className="text-xs text-gray-500 text-center">

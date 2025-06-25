@@ -1,13 +1,13 @@
 
-import { OrderData, OrderResponse } from '../types/order';
+import { CompleteOrderData, OrderResponse } from '../types/order';
 
 const API_BASE_URL = 'https://luhhnsvwtnmxztcmdxyq.supabase.co/functions/v1';
 
 export class OrderService {
-  static async createOrder(orderData: OrderData): Promise<OrderResponse> {
-    console.log('Creating order with data:', orderData);
+  static async createOrder(orderData: CompleteOrderData): Promise<OrderResponse> {
+    console.log('Creating order with complete data:', orderData);
     
-    const response = await fetch(`${API_BASE_URL}/get-order-token`, {
+    const response = await fetch(`${API_BASE_URL}/create-order`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

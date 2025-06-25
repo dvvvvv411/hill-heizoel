@@ -7,11 +7,15 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Label } from "@/components/ui/label";
 import { Truck, Shield, Clock, Calculator } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
-import { OrderData, PriceData } from '../types/order';
+import { OrderData, PriceData, CustomerData, CompleteOrderData } from '../types/order';
 import { OrderService } from '../services/orderService';
 import { calculateNetAmount, calculateTaxAmount, formatPrice } from '../utils/taxCalculations';
+import CustomerDataForm from './CustomerDataForm';
+
+type Step = 'calculator' | 'customer-data';
 
 const PriceCalculator = () => {
+  const [currentStep, setCurrentStep] = useState<Step>('calculator');
   const [liters, setLiters] = useState<number>(1500);
   const [oilType, setOilType] = useState<'standard_heizoel' | 'premium_heizoel'>('standard_heizoel');
   const [isLoading, setIsLoading] = useState(false);
@@ -38,7 +42,7 @@ const PriceCalculator = () => {
     }
   };
 
-  const handleOrder = async () => {
+  const handleProceedToCustomerData = () => {
     if (liters < minLiters || liters > maxLiters) {
       toast({
         title: "Ungültige Literzahl",
@@ -47,7 +51,10 @@ const PriceCalculator = () => {
       });
       return;
     }
+    setCurrentStep('customer-data');
+  };
 
+  const handleCustomerDataSubmit = async (customerData: CustomerData) => {
     setIsLoading(true);
     
     try {
@@ -62,7 +69,12 @@ const PriceCalculator = () => {
         net_amount: netAmount
       };
 
-      const response = await OrderService.createOrder(orderData);
+      const completeOrderData: CompleteOrderData = {
+        ...orderData,
+        customer: customerData
+      };
+
+      const response = await OrderService.createOrder(completeOrderData);
       const checkoutUrl = OrderService.getCheckoutUrl(response.token);
       
       console.log('Redirecting to checkout:', checkoutUrl);
@@ -72,6 +84,11 @@ const PriceCalculator = () => {
         title: "Bestellung weitergeleitet",
         description: "Sie werden zum Checkout weitergeleitet.",
       });
+
+      // Reset form after successful order
+      setCurrentStep('calculator');
+      setLiters(1500);
+      setOilType('standard_heizoel');
     } catch (error) {
       console.error('Order error:', error);
       toast({
@@ -84,9 +101,23 @@ const PriceCalculator = () => {
     }
   };
 
+  const handleBackToCalculator = () => {
+    setCurrentStep('calculator');
+  };
+
   const getDisplayName = (type: string) => {
     return type === 'standard_heizoel' ? 'Standard Heizöl' : 'Premium Heizöl';
   };
+
+  if (currentStep === 'customer-data') {
+    return (
+      <CustomerDataForm
+        onSubmit={handleCustomerDataSubmit}
+        isLoading={isLoading}
+        onBack={handleBackToCalculator}
+      />
+    );
+  }
 
   return (
     <Card className="w-full max-w-md mx-auto shadow-xl border-0 bg-white/95 backdrop-blur-sm">
@@ -193,18 +224,11 @@ const PriceCalculator = () => {
 
         {/* Order Button */}
         <Button 
-          onClick={handleOrder}
-          disabled={isLoading || liters < minLiters || liters > maxLiters}
+          onClick={handleProceedToCustomerData}
+          disabled={liters < minLiters || liters > maxLiters}
           className="w-full bg-primary-600 hover:bg-primary-700 text-white h-12 text-lg font-semibold transition-all duration-200 hover:scale-105"
         >
-          {isLoading ? (
-            <div className="flex items-center space-x-2">
-              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-              <span>Wird verarbeitet...</span>
-            </div>
-          ) : (
-            'Jetzt bestellen'
-          )}
+          Weiter zur Bestellung
         </Button>
 
         <p className="text-xs text-gray-500 text-center">
