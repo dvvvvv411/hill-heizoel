@@ -1,4 +1,3 @@
-
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -33,7 +32,7 @@ const Datenschutz = () => {
                 <p>Deutschland</p>
                 <p className="mt-4">
                   <span className="font-semibold">E-Mail:</span> info@hill-heizoel.de<br />
-                  <span className="font-semibold">Telefon:</span> 089 123 456 789
+                  <span className="font-semibold">Telefon:</span> 089 628 265 95
                 </p>
               </div>
             </CardContent>
@@ -148,7 +147,7 @@ const Datenschutz = () => {
               </p>
               <div className="mt-3 space-y-1 text-gray-700 text-sm">
                 <p><span className="font-semibold">E-Mail:</span> info@hill-heizoel.de</p>
-                <p><span className="font-semibold">Telefon:</span> 089 123 456 789</p>
+                <p><span className="font-semibold">Telefon:</span> 089 628 265 95</p>
               </div>
             </CardContent>
           </Card>

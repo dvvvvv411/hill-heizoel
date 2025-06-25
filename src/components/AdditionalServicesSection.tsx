@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Bell, Phone, Clock, Truck, Map } from 'lucide-react';
@@ -106,7 +107,7 @@ const AdditionalServicesSection = () => {
                       <span className="text-sm font-medium text-primary-600">
                         {service.price}
                       </span>
-                      <a href="tel:089123456789">
+                      <a href="tel:08962826595">
                         <Button variant="outline" size="sm" className="border-primary-600 text-primary-600 hover:bg-primary-50">
                           Mehr erfahren
                         </Button>
@@ -128,9 +129,9 @@ const AdditionalServicesSection = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <div className="flex items-center gap-2">
                 <Phone className="w-5 h-5" />
-                <span className="text-xl font-semibold">089 123 456 789</span>
+                <span className="text-xl font-semibold">089 628 265 95</span>
               </div>
-              <a href="tel:089123456789">
+              <a href="tel:08962826595">
                 <Button variant="outline" className="bg-white text-primary-600 hover:bg-gray-50">
                   Rückruf anfordern
                 </Button>

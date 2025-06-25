@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Phone, Bell, Map } from 'lucide-react';
@@ -8,7 +9,7 @@ const ServiceContact = () => {
     {
       icon: Phone,
       title: 'Service-Hotline',
-      info: '089 123 456 789',
+      info: '089 628 265 95',
       description: 'Kostenlose Beratung und Bestellannahme',
       availability: 'Mo-Fr 7:00-18:00, Sa 8:00-12:00'
     },
@@ -70,7 +71,7 @@ const ServiceContact = () => {
             >
               Jetzt bestellen
             </Button>
-            <a href="tel:089123456789">
+            <a href="tel:08962826595">
               <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50 px-8 py-3">
                 Kostenlose Beratung
               </Button>

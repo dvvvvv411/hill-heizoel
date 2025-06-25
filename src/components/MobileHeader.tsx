@@ -24,7 +24,7 @@ const MobileHeader = () => {
           {/* Quick Actions */}
           <div className="flex items-center space-x-2">
             <a
-              href="tel:089123456789"
+              href="tel:08962826595"
               className="p-2 bg-primary-600 text-white rounded-full hover:bg-primary-700 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
               aria-label="Anrufen"
             >
@@ -78,11 +78,11 @@ const MobileHeader = () => {
             {/* Contact Actions */}
             <div className="pt-4 border-t border-gray-200 space-y-2">
               <a
-                href="tel:089123456789"
+                href="tel:08962826595"
                 className="flex items-center py-3 px-4 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors min-h-[48px]"
               >
                 <Phone size={20} className="mr-3" />
-                <span className="font-medium">089 123 456 789</span>
+                <span className="font-medium">089 628 265 95</span>
               </a>
               <a
                 href="mailto:info@hill-clear.de"

@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Shield, Truck, Bell, Phone, Clock } from 'lucide-react';
@@ -152,7 +153,7 @@ const QualityAssuranceSection = () => {
                   Qualitätszertifikate ansehen
                 </Button>
               </Link>
-              <a href="tel:089123456789">
+              <a href="tel:08962826595">
                 <Button variant="outline" className="bg-white text-primary-600 hover:bg-gray-50">
                   Kundenservice kontaktieren
                 </Button>

@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Menu, X, Phone, Bell } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -137,7 +138,7 @@ const Header = () => {
               <div className="pt-4 border-t border-gray-200">
                 <div className="px-4">
                   <a
-                    href="tel:089123456789"
+                    href="tel:08962826595"
                     className="flex items-center py-3 px-4 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors min-h-[48px] w-full"
                   >
                     <Phone size={20} className="mr-3" />

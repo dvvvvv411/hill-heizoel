@@ -9,12 +9,12 @@ interface ClickToCallProps {
 }
 
 const ClickToCall = ({ 
-  phoneNumber = "089123456789", 
+  phoneNumber = "08962826595", 
   variant = 'inline',
   className = "" 
 }: ClickToCallProps) => {
   const formatPhoneNumber = (phone: string) => {
-    return phone.replace(/(\d{3})(\d{3})(\d{3})(\d{3})/, '$1 $2 $3 $4');
+    return phone.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1 $2 $3 $4');
   };
 
   const handleCall = () => {

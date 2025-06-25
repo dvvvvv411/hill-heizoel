@@ -96,7 +96,7 @@ const DeliverySection = () => {
                   </p>
                   <p className="text-gray-600 text-sm">
                     Kein Problem! Wir beliefern auch weitere Orte in Bayern. 
-                    Kontaktieren Sie uns unter <span className="font-medium">089 123 456 789</span> 
+                    Kontaktieren Sie uns unter <span className="font-medium">089 628 265 95</span> 
                     und wir prüfen die Liefermöglichkeit.
                   </p>
                 </div>
