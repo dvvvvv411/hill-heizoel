@@ -61,6 +61,17 @@ const MobilePriceCalculator = () => {
     setOilType(productId);
   };
 
+  const scrollToProduct = (direction: 'left' | 'right') => {
+    if (scrollRef.current) {
+      const scrollAmount = 200;
+      const newScrollLeft = scrollRef.current.scrollLeft + (direction === 'right' ? scrollAmount : -scrollAmount);
+      scrollRef.current.scrollTo({
+        left: newScrollLeft,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   const handleOrder = async () => {
     if (liters < minLiters || liters > maxLiters) {
       toast({
@@ -130,41 +141,82 @@ const MobilePriceCalculator = () => {
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
-          {/* Product Selection - Swipeable */}
+          {/* Product Selection - Improved with navigation */}
           <div className="space-y-3">
             <Label className="text-base font-medium">Heizöltyp wählen</Label>
-            <div 
-              ref={scrollRef}
-              className="flex space-x-3 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-2"
-              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-            >
-              {products.map((product) => (
-                <div
-                  key={product.id}
-                  className={cn(
-                    "flex-shrink-0 w-full p-4 border-2 rounded-lg cursor-pointer transition-all snap-start",
-                    oilType === product.id 
-                      ? "border-accent-orange-500 bg-accent-orange-50" 
-                      : "border-gray-200 bg-white"
-                  )}
-                  onClick={() => selectProduct(product.id)}
-                >
-                  <div className="text-center">
-                    <h4 className="font-semibold text-sm mb-1">{product.name}</h4>
-                    <p className="text-2xl font-bold text-accent-orange-600 mb-1">
-                      {product.price.toFixed(2)}€/L
-                    </p>
-                    <p className="text-xs text-gray-600 mb-2">{product.description}</p>
-                    <div className="flex flex-wrap gap-1 justify-center">
-                      {product.features.map((feature, idx) => (
-                        <span key={idx} className="text-xs bg-gray-100 px-2 py-1 rounded">
-                          {feature}
-                        </span>
-                      ))}
+            
+            {/* Navigation and scroll indicators */}
+            <div className="relative">
+              {/* Navigation buttons */}
+              <button
+                onClick={() => scrollToProduct('left')}
+                className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white border border-gray-200 rounded-full p-1 shadow-md transition-all duration-200"
+                aria-label="Vorheriges Produkt"
+              >
+                <ChevronLeft size={16} className="text-gray-600" />
+              </button>
+              
+              <button
+                onClick={() => scrollToProduct('right')}
+                className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white border border-gray-200 rounded-full p-1 shadow-md transition-all duration-200"
+                aria-label="Nächstes Produkt"
+              >
+                <ChevronRight size={16} className="text-gray-600" />
+              </button>
+
+              {/* Scrollable container with improved visibility */}
+              <div 
+                ref={scrollRef}
+                className="flex gap-3 overflow-x-auto scrollbar-hide px-8 py-2"
+                style={{ 
+                  scrollbarWidth: 'none', 
+                  msOverflowStyle: 'none',
+                  scrollSnapType: 'x mandatory'
+                }}
+              >
+                {products.map((product, index) => (
+                  <div
+                    key={product.id}
+                    className={cn(
+                      "flex-shrink-0 w-44 p-3 border-2 rounded-lg cursor-pointer transition-all duration-200 scroll-snap-align-start",
+                      oilType === product.id 
+                        ? "border-accent-orange-500 bg-accent-orange-50 shadow-md scale-105" 
+                        : "border-gray-200 bg-white hover:border-accent-orange-300 hover:shadow-sm"
+                    )}
+                    onClick={() => selectProduct(product.id)}
+                  >
+                    <div className="text-center">
+                      <h4 className="font-semibold text-sm mb-1 text-gray-800">{product.name}</h4>
+                      <p className="text-xl font-bold text-accent-orange-600 mb-1">
+                        {product.price.toFixed(2)}€/L
+                      </p>
+                      <p className="text-xs text-gray-600 mb-2">{product.description}</p>
+                      <div className="flex flex-wrap gap-1 justify-center">
+                        {product.features.map((feature, idx) => (
+                          <span key={idx} className="text-xs bg-gray-100 px-2 py-1 rounded">
+                            {feature}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+
+              {/* Scroll indicators */}
+              <div className="flex justify-center mt-2 gap-1">
+                {products.map((_, index) => (
+                  <div
+                    key={index}
+                    className={cn(
+                      "w-2 h-2 rounded-full transition-all duration-200",
+                      index === products.findIndex(p => p.id === oilType)
+                        ? "bg-accent-orange-500" 
+                        : "bg-gray-300"
+                    )}
+                  />
+                ))}
+              </div>
             </div>
           </div>
 
