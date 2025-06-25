@@ -12,7 +12,7 @@ const Footer = () => {
             <img 
               src="https://i.imgur.com/4xhodpH.png" 
               alt="HILL-Heizöl" 
-              className="h-48"
+              className="h-12"
             />
             <p className="text-gray-300 leading-relaxed">
               Ihr zuverlässiger Partner für Heizöl in Bayern seit über 20 Jahren. 
