@@ -4,6 +4,7 @@ import ServiceHero from '../components/ServiceHero';
 import DeliveryServiceSection from '../components/DeliveryServiceSection';
 import AdditionalServicesSection from '../components/AdditionalServicesSection';
 import QualityAssuranceSection from '../components/QualityAssuranceSection';
+import PriceOverviewSection from '../components/PriceOverviewSection';
 import ServiceContact from '../components/ServiceContact';
 import Footer from '../components/Footer';
 
@@ -15,6 +16,7 @@ const Services = () => {
       <DeliveryServiceSection />
       <AdditionalServicesSection />
       <QualityAssuranceSection />
+      <PriceOverviewSection />
       <ServiceContact />
       <Footer />
     </div>
