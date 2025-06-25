@@ -1,4 +1,3 @@
-
 import { Building, Users, Award, Clock } from 'lucide-react';
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -152,26 +151,6 @@ const CompanySection = () => {
                 bei uns an erster Stelle.
               </p>
             </div>
-          </div>
-        </div>
-
-        {/* Contact Info */}
-        <div className="mt-16 text-center">
-          <h3 className="text-2xl font-bold text-gray-900 mb-6">
-            HILL-Clear Projects GmbH
-          </h3>
-          <div className="space-y-2 text-gray-600">
-            <p>Musterstraße 123</p>
-            <p>80333 München, Bayern</p>
-            <p>Deutschland</p>
-          </div>
-          <div className="mt-6 space-y-2">
-            <p className="text-lg font-semibold text-primary-600">
-              Telefon: 089 123 456 789
-            </p>
-            <p className="text-lg font-semibold text-primary-600">
-              E-Mail: info@hill-clear.de
-            </p>
           </div>
         </div>
       </div>
