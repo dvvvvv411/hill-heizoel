@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Menu, X, Phone, Mail } from 'lucide-react';
+import { Menu, X, phone, Bell } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Link } from 'react-router-dom';
 
@@ -15,11 +15,11 @@ const Header = () => {
           <div className="flex justify-between items-center text-sm text-gray-600">
             <div className="flex items-center space-x-6">
               <div className="flex items-center space-x-2">
-                <Phone size={14} />
+                <phone size={14} />
                 <span>089 123 456 789</span>
               </div>
               <div className="flex items-center space-x-2">
-                <Mail size={14} />
+                <Bell size={14} />
                 <span>info@hill-clear.de</span>
               </div>
             </div>
@@ -47,6 +47,9 @@ const Header = () => {
             </Link>
             <Link to="/produkte" className="text-gray-700 hover:text-primary-600 transition-colors">
               Produkte
+            </Link>
+            <Link to="/services" className="text-gray-700 hover:text-primary-600 transition-colors">
+              Services
             </Link>
             <a href="#preise" className="text-gray-700 hover:text-primary-600 transition-colors">
               Preise
@@ -79,6 +82,9 @@ const Header = () => {
             </Link>
             <Link to="/produkte" className="block text-gray-700 hover:text-primary-600 transition-colors">
               Produkte
+            </Link>
+            <Link to="/services" className="block text-gray-700 hover:text-primary-600 transition-colors">
+              Services
             </Link>
             <a href="#preise" className="block text-gray-700 hover:text-primary-600 transition-colors">
               Preise
