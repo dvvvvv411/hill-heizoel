@@ -1,4 +1,3 @@
-
 import { Building, Users, Award, Clock } from 'lucide-react';
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -70,16 +69,16 @@ const CompanySection = () => {
             </div>
           </div>
 
-          {/* Company Image / Logo Area */}
+          {/* Company Image */}
           <div className="relative">
             <Card className="overflow-hidden shadow-xl">
               <CardContent className="p-0">
-                <div className="bg-gradient-to-br from-primary-500 to-primary-700 h-96 flex items-center justify-center text-white">
-                  <div className="text-center">
-                    <div className="text-6xl font-bold mb-4">HILL</div>
-                    <div className="text-2xl font-light">Clear Projects GmbH</div>
-                    <div className="text-primary-100 mt-4">Bayern's Heizöl-Experte</div>
-                  </div>
+                <div className="h-96 flex items-center justify-center bg-gray-100">
+                  <img 
+                    src="https://i.imgur.com/xPI8LoI.jpeg" 
+                    alt="HILL-Heizöl Unternehmen" 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </CardContent>
             </Card>
