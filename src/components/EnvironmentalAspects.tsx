@@ -81,7 +81,7 @@ const EnvironmentalAspects = () => {
                 </div>
                 <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
                   <span className="font-medium">Schwefel-Emissionen</span>
-                  <span className="text-green-600 font-semibold">< 50 mg/kg</span>
+                  <span className="text-green-600 font-semibold">{"< 50 mg/kg"}</span>
                 </div>
                 <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
                   <span className="font-medium">Partikel-Emissionen</span>
