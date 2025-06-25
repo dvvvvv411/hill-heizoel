@@ -1,7 +1,6 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Shield, Award, FileText, CheckCircle } from 'lucide-react';
+import { Shield, Award, FileText, CheckCircle, Leaf } from 'lucide-react';
 
 const QualityCertificates = () => {
   const certificates = [
