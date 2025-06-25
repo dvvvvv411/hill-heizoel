@@ -38,7 +38,7 @@ const products = {
 
 const ProductSelector = () => {
   const [selectedProduct, setSelectedProduct] = useState<'standard' | 'premium'>('standard');
-  const [liters, setLiters] = useState<number>(1000);
+  const [liters, setLiters] = useState<number>(1500);
 
   const currentProduct = products[selectedProduct];
   const totalPrice = liters * currentProduct.price;
@@ -114,17 +114,17 @@ const ProductSelector = () => {
 
               <div className="space-y-2">
                 <Label htmlFor="liters" className="text-base font-medium">
-                  Liter-Anzahl (min. 500L)
+                  Liter-Anzahl (min. 1500L)
                 </Label>
                 <Input
                   id="liters"
                   type="number"
-                  min={500}
+                  min={1500}
                   step={100}
                   value={liters}
                   onChange={(e) => setLiters(Number(e.target.value))}
                   className="text-lg h-12"
-                  placeholder="z.B. 1000"
+                  placeholder="z.B. 1500"
                 />
               </div>
 
@@ -141,13 +141,13 @@ const ProductSelector = () => {
 
               <Button 
                 className="w-full bg-primary-600 hover:bg-primary-700 text-white h-12 text-lg font-semibold"
-                disabled={liters < 500}
+                disabled={liters < 1500}
               >
                 Jetzt bestellen
               </Button>
 
               <p className="text-xs text-gray-500 text-center">
-                Alle Preise inkl. MwSt. • Mindestbestellmenge: 500 Liter
+                Alle Preise inkl. MwSt. • Mindestbestellmenge: 1500 Liter
               </p>
             </CardContent>
           </Card>

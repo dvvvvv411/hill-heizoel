@@ -9,7 +9,7 @@ import { Truck, Shield, Clock, Calculator } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 
 const PriceCalculator = () => {
-  const [liters, setLiters] = useState<number>(1000);
+  const [liters, setLiters] = useState<number>(1500);
   const [oilType, setOilType] = useState<'standard_heizoel' | 'premium_heizoel'>('standard_heizoel');
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
@@ -22,8 +22,8 @@ const PriceCalculator = () => {
   const shopId = "83f973c5-280e-484a-bbfe-00b994b7988c";
   const currentPrice = prices[oilType];
   const totalAmount = liters * currentPrice;
-  const minLiters = 500;
-  const maxLiters = 10000;
+  const minLiters = 1500;
+  const maxLiters = 32000;
 
   const handleLitersChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = Number(e.target.value);
@@ -196,7 +196,7 @@ const PriceCalculator = () => {
           </div>
           <div className="flex items-center space-x-2">
             <Clock size={16} className="text-primary-600" />
-            <span>Lieferung innerhalb 2-3 Werktagen</span>
+            <span>Lieferung innerhalb 4-7 Werktagen</span>
           </div>
           <div className="flex items-center space-x-2">
             <Shield size={16} className="text-primary-600" />
