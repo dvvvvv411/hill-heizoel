@@ -150,7 +150,7 @@ const QualityAssuranceSection = () => {
               <Button variant="outline" className="bg-white text-primary-600 hover:bg-gray-50">
                 Qualitätszertifikate ansehen
               </Button>
-              <Button variant="outline" className="border-white text-white hover:bg-primary-500">
+              <Button variant="outline" className="border-white text-white hover:bg-primary-800 hover:border-primary-800">
                 Kundenservice kontaktieren
               </Button>
             </div>
