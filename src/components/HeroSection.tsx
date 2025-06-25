@@ -45,10 +45,10 @@ const HeroSection = () => {
             {/* USPs */}
             <div className="space-y-3">
               {[
-                'Kostenlose Lieferung ab 500 Liter',
-                'Lieferung innerhalb 2-3 Werktagen',
+                'Kostenlose Lieferung ab 1000 Liter',
+                'Lieferung innerhalb 4-7 Werktagen',
                 'Geprüfte Premium-Qualität',
-                'Über 10.000 zufriedene Kunden'
+                'Über 100.000 zufriedene Kunden'
               ].map((usp, index) => (
                 <div key={index} className="flex items-center space-x-3">
                   <CheckCircle className="text-primary-600 flex-shrink-0" size={18} />
@@ -91,7 +91,7 @@ const HeroSection = () => {
               <p className="text-sm text-gray-500 mb-4">Vertrauen Sie auf über 20 Jahre Erfahrung</p>
               <div className="grid grid-cols-3 gap-4 lg:flex lg:items-center lg:space-x-8">
                 <div className="text-center">
-                  <div className="text-xl lg:text-2xl font-bold text-primary-600">10.000+</div>
+                  <div className="text-xl lg:text-2xl font-bold text-primary-600">100.000+</div>
                   <div className="text-xs lg:text-sm text-gray-500">Zufriedene Kunden</div>
                 </div>
                 <div className="text-center">

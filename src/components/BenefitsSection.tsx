@@ -7,7 +7,7 @@ const BenefitsSection = () => {
     {
       icon: Truck,
       title: 'Kostenlose Lieferung',
-      description: 'Keine Lieferkosten ab 500 Liter Bestellmenge in ganz Bayern',
+      description: 'Keine Lieferkosten ab 1000 Liter Bestellmenge in ganz Bayern',
       color: 'bg-blue-50 text-blue-600'
     },
     {
@@ -19,7 +19,7 @@ const BenefitsSection = () => {
     {
       icon: Clock,
       title: 'Schnelle Lieferung',
-      description: 'Lieferung innerhalb von 2-3 Werktagen direkt zu Ihnen',
+      description: 'Lieferung innerhalb von 4-7 Werktagen direkt zu Ihnen',
       color: 'bg-orange-50 text-orange-600'
     },
     {
@@ -36,7 +36,7 @@ const BenefitsSection = () => {
     },
     {
       icon: Users,
-      title: '10.000+ Kunden',
+      title: '100.000+ Kunden',
       description: 'Tausende zufriedene Kunden vertrauen auf unsere Qualität',
       color: 'bg-indigo-50 text-indigo-600'
     }
@@ -83,11 +83,11 @@ const BenefitsSection = () => {
         <div className="mt-20 bg-primary-600 rounded-2xl p-8 md:p-12 text-white">
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <div>
-              <div className="text-4xl font-bold mb-2">500L</div>
+              <div className="text-4xl font-bold mb-2">1000L</div>
               <div className="text-primary-100">Mindestbestellmenge</div>
             </div>
             <div>
-              <div className="text-4xl font-bold mb-2">2-3</div>
+              <div className="text-4xl font-bold mb-2">4-7</div>
               <div className="text-primary-100">Werktage Lieferzeit</div>
             </div>
             <div>

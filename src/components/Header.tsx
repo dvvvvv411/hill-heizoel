@@ -25,7 +25,7 @@ const Header = () => {
                 </div>
               </div>
               <div className="text-primary-600 font-medium">
-                Kostenlose Lieferung ab 500L
+                Kostenlose Lieferung ab 1000 Liter
               </div>
             </div>
           </div>

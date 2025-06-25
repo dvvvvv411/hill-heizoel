@@ -12,7 +12,7 @@ const CompanySection = () => {
     },
     {
       icon: Users,
-      number: '10.000+',
+      number: '100.000+',
       label: 'Kunden',
       description: 'Zufriedene Heizöl-Kunden'
     },
@@ -53,7 +53,7 @@ const CompanySection = () => {
               <p>
                 Seit der Gründung im Jahr 2003 haben wir uns zu einem der führenden 
                 Heizöl-Anbieter in Bayern entwickelt. Was als kleines Familienunternehmen 
-                in München begann, ist heute ein zuverlässiger Partner für über 10.000 
+                in München begann, ist heute ein zuverlässiger Partner für über 100.000 
                 Kunden in ganz Bayern.
               </p>
               <p>
