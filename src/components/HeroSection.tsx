@@ -12,7 +12,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section id="home" className="relative min-h-screen bg-gradient-to-br from-primary-50 via-white to-primary-100 overflow-hidden">
+    <section id="home" className="relative bg-gradient-to-br from-primary-50 via-white to-primary-100 overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -20,8 +20,8 @@ const HeroSection = () => {
         }}></div>
       </div>
 
-      <div className="container mx-auto px-4 pt-20 pb-24 lg:pb-16 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[80vh]">
+      <div className="container mx-auto px-4 pt-12 pb-12 lg:pb-8 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[60vh]">
           {/* Left Content */}
           <div className="space-y-6 lg:space-y-8 animate-fade-in">
             <div className="space-y-4">
@@ -123,7 +123,7 @@ const HeroSection = () => {
       </div>
 
       {/* Scroll Indicator - Hidden on Mobile */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hidden lg:block">
+      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 animate-bounce hidden lg:block">
         <div className="w-6 h-10 border-2 border-primary-600 rounded-full flex justify-center">
           <div className="w-1 h-3 bg-primary-600 rounded-full mt-2 animate-pulse"></div>
         </div>
