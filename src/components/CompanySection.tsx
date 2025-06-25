@@ -74,11 +74,11 @@ const CompanySection = () => {
           <div className="relative">
             <Card className="overflow-hidden shadow-xl">
               <CardContent className="p-0">
-                <div className="h-96 flex items-center justify-center bg-gray-100">
+                <div className="h-96 w-full">
                   <img 
                     src="https://i.imgur.com/xPI8LoI.jpeg" 
                     alt="HILL-Heizöl Unternehmen" 
-                    className="max-w-full max-h-full object-contain"
+                    className="w-full h-full object-cover"
                   />
                 </div>
               </CardContent>
