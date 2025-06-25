@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { truck, Clock, Shield } from 'lucide-react';
+import { Truck, Clock, Shield } from 'lucide-react';
 
 const ServiceHero = () => {
   return (
@@ -18,7 +18,7 @@ const ServiceHero = () => {
           <div className="grid md:grid-cols-3 gap-8 mt-12">
             <div className="text-center">
               <div className="w-20 h-20 bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <truck className="w-10 h-10 text-white" />
+                <Truck className="w-10 h-10 text-white" />
               </div>
               <h3 className="text-xl font-semibold mb-2">Kostenlose Lieferung</h3>
               <p className="text-gray-600">In ganz Bayern ab 500 Liter</p>

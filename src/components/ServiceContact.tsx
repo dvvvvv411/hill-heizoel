@@ -1,12 +1,11 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { phone, Bell, Clock, map } from 'lucide-react';
+import { Phone, Bell, Clock, Map } from 'lucide-react';
 
 const ServiceContact = () => {
   const contactOptions = [
     {
-      icon: phone,
+      icon: Phone,
       title: 'Service-Hotline',
       info: '089 123 456 789',
       description: 'Kostenlose Beratung und Bestellannahme',
@@ -27,7 +26,7 @@ const ServiceContact = () => {
       availability: 'Antwort innerhalb 2 Stunden'
     },
     {
-      icon: map,
+      icon: Map,
       title: 'Vor-Ort-Beratung',
       info: 'Kostenloser Hausbesuch',
       description: 'Persönliche Beratung bei Ihnen zu Hause',

@@ -1,12 +1,12 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { truck, map, Clock, Bell, phone } from 'lucide-react';
+import { Truck, Map, Clock, Bell, Phone } from 'lucide-react';
 
 const DeliveryServiceSection = () => {
   const deliveryFeatures = [
     {
-      icon: truck,
+      icon: Truck,
       title: 'Kostenlose Lieferung',
       description: 'In ganz Bayern ab 500 Liter Mindestbestellmenge',
       details: 'Keine versteckten Kosten - der angezeigte Preis ist der Endpreis'
@@ -18,7 +18,7 @@ const DeliveryServiceSection = () => {
       details: 'Wunschtermin nach telefonischer Absprache möglich'
     },
     {
-      icon: map,
+      icon: Map,
       title: 'Liefergebiet Bayern',
       description: 'Flächendeckende Belieferung in ganz Bayern',
       details: 'Optimierte Routen für schnelle und umweltschonende Lieferung'
@@ -76,7 +76,7 @@ const DeliveryServiceSection = () => {
           <Card className="shadow-lg">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <truck className="w-6 h-6 text-primary-600" />
+                <Truck className="w-6 h-6 text-primary-600" />
                 Tankwagen-Ausstattung
               </CardTitle>
             </CardHeader>
@@ -95,7 +95,7 @@ const DeliveryServiceSection = () => {
           <Card className="shadow-lg">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <map className="w-6 h-6 text-primary-600" />
+                <Map className="w-6 h-6 text-primary-600" />
                 Liefergebiet & Zeiten
               </CardTitle>
             </CardHeader>

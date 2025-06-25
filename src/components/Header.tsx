@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Menu, X, phone, Bell } from 'lucide-react';
+import { Menu, X, Phone, Bell } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Link } from 'react-router-dom';
 
@@ -15,7 +15,7 @@ const Header = () => {
           <div className="flex justify-between items-center text-sm text-gray-600">
             <div className="flex items-center space-x-6">
               <div className="flex items-center space-x-2">
-                <phone size={14} />
+                <Phone size={14} />
                 <span>089 123 456 789</span>
               </div>
               <div className="flex items-center space-x-2">

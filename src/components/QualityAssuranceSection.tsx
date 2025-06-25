@@ -1,12 +1,12 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Shield, truck, Bell, phone, Clock } from 'lucide-react';
+import { Shield, Truck, Bell, Phone, Clock } from 'lucide-react';
 
 const QualityAssuranceSection = () => {
   const qualityFeatures = [
     {
-      icon: truck,
+      icon: Truck,
       title: 'TÜV-geprüfte Tankwagen',
       description: 'Alle unsere Fahrzeuge werden regelmäßig vom TÜV geprüft',
       details: [
@@ -39,7 +39,7 @@ const QualityAssuranceSection = () => {
       ]
     },
     {
-      icon: phone,
+      icon: Phone,
       title: 'Kundenservice-Hotline',
       description: '24/7 erreichbarer Kundenservice für alle Anliegen',
       details: [
@@ -113,7 +113,7 @@ const QualityAssuranceSection = () => {
           <Card className="bg-blue-50 border-blue-200">
             <CardHeader className="text-center">
               <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <truck className="w-8 h-8 text-white" />
+                <Truck className="w-8 h-8 text-white" />
               </div>
               <CardTitle className="text-blue-800">TÜV-Zertifiziert</CardTitle>
             </CardHeader>

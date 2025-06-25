@@ -1,12 +1,12 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Bell, phone, Clock, truck, map } from 'lucide-react';
+import { Bell, Phone, Clock, Truck, Map } from 'lucide-react';
 
 const AdditionalServicesSection = () => {
   const additionalServices = [
     {
-      icon: map,
+      icon: Map,
       title: 'Tankinhaltsmessung',
       description: 'Professionelle Messung Ihres aktuellen Heizölbestands',
       features: [
@@ -18,7 +18,7 @@ const AdditionalServicesSection = () => {
       price: 'Kostenlos bei Bestellung'
     },
     {
-      icon: phone,
+      icon: Phone,
       title: 'Heizungsberatung',
       description: 'Fachkundige Beratung rund um Ihre Heizungsanlage',
       features: [
@@ -54,7 +54,7 @@ const AdditionalServicesSection = () => {
       price: 'Kostenloser Service'
     },
     {
-      icon: truck,
+      icon: Truck,
       title: 'Sammelbestellungen',
       description: 'Gemeinsame Bestellungen für bessere Preise',
       features: [
@@ -125,7 +125,7 @@ const AdditionalServicesSection = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <div className="flex items-center gap-2">
-                <phone className="w-5 h-5" />
+                <Phone className="w-5 h-5" />
                 <span className="text-xl font-semibold">089 123 456 789</span>
               </div>
               <Button variant="outline" className="bg-white text-primary-600 hover:bg-gray-50">
