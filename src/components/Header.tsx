@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Menu, X, Phone, Bell } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -42,7 +43,7 @@ const Header = () => {
 
             <nav className="flex items-center space-x-8">
               <Link to="/" className="text-gray-700 hover:text-primary-600 transition-colors">
-                Home
+                Startseite
               </Link>
               <Link to="/produkte" className="text-gray-700 hover:text-primary-600 transition-colors">
                 Produkte
@@ -100,7 +101,7 @@ const Header = () => {
                 className="block py-3 px-4 text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-colors rounded-lg font-medium min-h-[48px] flex items-center"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Home
+                Startseite
               </Link>
               <Link 
                 to="/produkte" 
