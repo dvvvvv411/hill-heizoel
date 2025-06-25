@@ -3,31 +3,40 @@ import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
-import { Truck, Shield, Clock } from 'lucide-react';
+import { Truck, Shield, Clock, Calculator } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 
 const PriceCalculator = () => {
   const [liters, setLiters] = useState<number>(1000);
-  const [oilType, setOilType] = useState<'standard' | 'premium'>('standard');
+  const [oilType, setOilType] = useState<'standard_heizoel' | 'premium_heizoel'>('standard_heizoel');
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
   const prices = {
-    standard: 0.70,
-    premium: 0.73
+    standard_heizoel: 0.70,
+    premium_heizoel: 0.73
   };
 
+  const shopId = "83f973c5-280e-484a-bbfe-00b994b7988c";
   const currentPrice = prices[oilType];
-  const totalPrice = liters * currentPrice;
+  const totalAmount = liters * currentPrice;
   const minLiters = 500;
+  const maxLiters = 10000;
+
+  const handleLitersChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = Number(e.target.value);
+    if (value >= minLiters && value <= maxLiters) {
+      setLiters(value);
+    }
+  };
 
   const handleOrder = async () => {
-    if (liters < minLiters) {
+    if (liters < minLiters || liters > maxLiters) {
       toast({
-        title: "Mindestbestellmenge nicht erreicht",
-        description: `Die Mindestbestellmenge beträgt ${minLiters} Liter.`,
+        title: "Ungültige Literzahl",
+        description: `Bitte wählen Sie zwischen ${minLiters} und ${maxLiters} Litern.`,
         variant: "destructive"
       });
       return;
@@ -36,43 +45,75 @@ const PriceCalculator = () => {
     setIsLoading(true);
     
     try {
+      console.log('Sending order request with data:', {
+        product: oilType,
+        liters: liters,
+        shop_id: shopId,
+        total_amount: totalAmount,
+        delivery_fee: 0,
+        price_per_liter: currentPrice
+      });
+
       const response = await fetch('https://luhhnsvwtnmxztcmdxyq.supabase.co/functions/v1/get-order-token', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          shopId: '83f973c5-280e-484a-bbfe-00b994b7988c',
-          product: oilType === 'standard' ? 'Standard Heizöl' : 'Premium Heizöl',
-          quantity: liters,
-          pricePerLiter: currentPrice,
-          totalPrice: totalPrice
+          product: oilType,
+          liters: liters,
+          shop_id: shopId,
+          total_amount: totalAmount,
+          delivery_fee: 0,
+          price_per_liter: currentPrice
         })
       });
 
+      console.log('API Response status:', response.status);
+      
       if (response.ok) {
         const data = await response.json();
-        // Redirect to checkout with token
-        window.location.href = `https://checkout.hill-clear.de?token=${data.token}`;
+        console.log('API Response data:', data);
+        
+        if (data.token) {
+          // Redirect to checkout with token
+          const checkoutUrl = `https://checkout.hill-heizoel.de/checkout?token=${data.token}`;
+          console.log('Redirecting to:', checkoutUrl);
+          window.open(checkoutUrl, '_blank');
+          
+          toast({
+            title: "Bestellung weitergeleitet",
+            description: "Sie werden zum Checkout weitergeleitet.",
+          });
+        } else {
+          throw new Error('Kein Token erhalten');
+        }
       } else {
-        throw new Error('Bestellung konnte nicht verarbeitet werden');
+        const errorData = await response.text();
+        console.error('API Error response:', errorData);
+        throw new Error(`API Error: ${response.status}`);
       }
     } catch (error) {
+      console.error('Order error:', error);
       toast({
         title: "Fehler bei der Bestellung",
-        description: "Bitte versuchen Sie es später erneut oder kontaktieren Sie uns telefonisch.",
+        description: "Bitte versuchen Sie es später erneut oder kontaktieren Sie uns telefonisch unter 089 123 456 789.",
         variant: "destructive"
       });
-      console.error('Order error:', error);
     } finally {
       setIsLoading(false);
     }
   };
 
+  const getDisplayName = (type: string) => {
+    return type === 'standard_heizoel' ? 'Standard Heizöl' : 'Premium Heizöl';
+  };
+
   return (
     <Card className="w-full max-w-md mx-auto shadow-xl border-0 bg-white/95 backdrop-blur-sm">
       <CardHeader className="text-center pb-4">
-        <CardTitle className="text-2xl font-bold text-gray-800">
+        <CardTitle className="text-2xl font-bold text-gray-800 flex items-center justify-center gap-2">
+          <Calculator className="w-6 h-6 text-primary-600" />
           Preisrechner
         </CardTitle>
         <p className="text-gray-600">Berechnen Sie Ihren Heizölpreis</p>
@@ -81,54 +122,69 @@ const PriceCalculator = () => {
         {/* Oil Type Selection */}
         <div className="space-y-3">
           <Label className="text-base font-medium">Heizöltyp wählen</Label>
-          <RadioGroup value={oilType} onValueChange={(value: 'standard' | 'premium') => setOilType(value)}>
-            <div className="flex items-center space-x-2 p-3 border rounded-lg hover:bg-gray-50 transition-colors">
-              <RadioGroupItem value="standard" id="standard" />
-              <Label htmlFor="standard" className="flex-1 cursor-pointer">
-                <div className="flex justify-between items-center">
+          <Select value={oilType} onValueChange={(value: 'standard_heizoel' | 'premium_heizoel') => setOilType(value)}>
+            <SelectTrigger className="h-12 text-base">
+              <SelectValue placeholder="Heizöltyp auswählen" />
+            </SelectTrigger>
+            <SelectContent className="bg-white">
+              <SelectItem value="standard_heizoel">
+                <div className="flex justify-between items-center w-full">
                   <span>Standard Heizöl</span>
-                  <span className="font-bold text-primary-600">{prices.standard.toFixed(2)}€/L</span>
+                  <span className="font-bold text-primary-600 ml-4">{prices.standard_heizoel.toFixed(2)}€/L</span>
                 </div>
-              </Label>
-            </div>
-            <div className="flex items-center space-x-2 p-3 border rounded-lg hover:bg-gray-50 transition-colors">
-              <RadioGroupItem value="premium" id="premium" />
-              <Label htmlFor="premium" className="flex-1 cursor-pointer">
-                <div className="flex justify-between items-center">
+              </SelectItem>
+              <SelectItem value="premium_heizoel">
+                <div className="flex justify-between items-center w-full">
                   <span>Premium Heizöl</span>
-                  <span className="font-bold text-primary-600">{prices.premium.toFixed(2)}€/L</span>
+                  <span className="font-bold text-primary-600 ml-4">{prices.premium_heizoel.toFixed(2)}€/L</span>
                 </div>
-              </Label>
-            </div>
-          </RadioGroup>
+              </SelectItem>
+            </SelectContent>
+          </Select>
         </div>
 
         {/* Liter Input */}
         <div className="space-y-2">
           <Label htmlFor="liters" className="text-base font-medium">
-            Liter-Anzahl (min. {minLiters}L)
+            Liter-Anzahl ({minLiters} - {maxLiters}L)
           </Label>
           <Input
             id="liters"
             type="number"
             min={minLiters}
-            step={100}
+            max={maxLiters}
+            step={50}
             value={liters}
-            onChange={(e) => setLiters(Number(e.target.value))}
+            onChange={handleLitersChange}
             className="text-lg h-12"
             placeholder={`z.B. ${minLiters}`}
           />
+          {(liters < minLiters || liters > maxLiters) && (
+            <p className="text-sm text-red-600">
+              Bitte wählen Sie zwischen {minLiters} und {maxLiters} Litern.
+            </p>
+          )}
         </div>
 
-        {/* Price Display */}
-        <div className="bg-primary-50 p-4 rounded-lg space-y-2">
+        {/* Live Price Display */}
+        <div className="bg-primary-50 p-4 rounded-lg space-y-3">
           <div className="flex justify-between text-sm text-gray-600">
-            <span>{liters} Liter × {currentPrice.toFixed(2)}€</span>
-            <span>{(liters * currentPrice).toFixed(2)}€</span>
+            <span>Produkt:</span>
+            <span className="font-medium">{getDisplayName(oilType)}</span>
           </div>
-          <div className="flex justify-between items-center text-xl font-bold text-primary-600 border-t pt-2">
-            <span>Gesamtpreis:</span>
-            <span>{totalPrice.toFixed(2)}€</span>
+          <div className="flex justify-between text-sm text-gray-600">
+            <span>Menge:</span>
+            <span className="font-medium">{liters} Liter</span>
+          </div>
+          <div className="flex justify-between text-sm text-gray-600">
+            <span>Preis pro Liter:</span>
+            <span className="font-medium">{currentPrice.toFixed(2)}€</span>
+          </div>
+          <div className="border-t pt-2">
+            <div className="flex justify-between items-center text-xl font-bold text-primary-600">
+              <span>Gesamtpreis:</span>
+              <span>{totalAmount.toFixed(2)}€</span>
+            </div>
           </div>
         </div>
 
@@ -144,14 +200,14 @@ const PriceCalculator = () => {
           </div>
           <div className="flex items-center space-x-2">
             <Shield size={16} className="text-primary-600" />
-            <span>Geprüfte Qualität</span>
+            <span>Geprüfte Qualität nach DIN-Norm</span>
           </div>
         </div>
 
         {/* Order Button */}
         <Button 
           onClick={handleOrder}
-          disabled={isLoading || liters < minLiters}
+          disabled={isLoading || liters < minLiters || liters > maxLiters}
           className="w-full bg-primary-600 hover:bg-primary-700 text-white h-12 text-lg font-semibold transition-all duration-200 hover:scale-105"
         >
           {isLoading ? (
@@ -165,7 +221,7 @@ const PriceCalculator = () => {
         </Button>
 
         <p className="text-xs text-gray-500 text-center">
-          Alle Preise inkl. MwSt. • Mindestbestellmenge: {minLiters} Liter
+          Alle Preise inkl. MwSt. • Mindestbestellmenge: {minLiters}L • Maximum: {maxLiters}L
         </p>
       </CardContent>
     </Card>
