@@ -1,4 +1,3 @@
-
 import { Phone, Mail, MapPin, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -12,7 +11,7 @@ const Footer = () => {
             <img 
               src="https://i.imgur.com/ku1Plmj.png" 
               alt="HILL-Heizöl" 
-              className="h-24"
+              className="h-36"
             />
             <p className="text-gray-300 leading-relaxed">
               Ihr zuverlässiger Partner für Heizöl in Bayern seit über 20 Jahren. 
