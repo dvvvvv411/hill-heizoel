@@ -9,9 +9,11 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <div className="text-2xl font-bold text-primary-400">
-              HILL-Clear
-            </div>
+            <img 
+              src="https://i.imgur.com/ku1Plmj.png" 
+              alt="HILL-Heizöl" 
+              className="h-8 brightness-0 invert"
+            />
             <p className="text-gray-300 leading-relaxed">
               Ihr zuverlässiger Partner für Heizöl in Bayern seit über 20 Jahren. 
               Qualität, Service und faire Preise.

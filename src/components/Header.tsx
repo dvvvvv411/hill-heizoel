@@ -25,7 +25,7 @@ const Header = () => {
                 </div>
               </div>
               <div className="text-primary-600 font-medium">
-                Kostenlose Lieferung ab 1000 Liter
+                Kostenlose Lieferung in Bayern
               </div>
             </div>
           </div>
@@ -33,12 +33,11 @@ const Header = () => {
           {/* Main Navigation */}
           <div className="flex justify-between items-center py-4">
             <Link to="/" className="flex items-center">
-              <div className="text-2xl font-bold text-primary-600">
-                HILL-Clear
-              </div>
-              <div className="ml-2 text-sm text-gray-600">
-                Projects GmbH
-              </div>
+              <img 
+                src="https://i.imgur.com/ku1Plmj.png" 
+                alt="HILL-Heizöl" 
+                className="h-8"
+              />
             </Link>
 
             <nav className="flex items-center space-x-8">
@@ -67,9 +66,11 @@ const Header = () => {
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center py-4">
             <Link to="/" className="flex items-center">
-              <div className="text-xl font-bold text-primary-600">
-                HILL-Clear
-              </div>
+              <img 
+                src="https://i.imgur.com/ku1Plmj.png" 
+                alt="HILL-Heizöl" 
+                className="h-6"
+              />
             </Link>
 
             <div className="flex items-center space-x-2">
