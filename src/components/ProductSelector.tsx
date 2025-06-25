@@ -6,9 +6,13 @@ import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Check, Droplets, Shield } from 'lucide-react';
+import { useToast } from "@/hooks/use-toast";
+import { OrderData, PriceData } from '../types/order';
+import { OrderService } from '../services/orderService';
+import { calculateNetAmount, calculateTaxAmount, formatPrice } from '../utils/taxCalculations';
 
 const products = {
-  standard: {
+  standard_heizoel: {
     name: 'Standard Heizöl',
     price: 0.70,
     description: 'Schwefelarmes Heizöl EL',
@@ -21,7 +25,7 @@ const products = {
     icon: Droplets,
     color: 'bg-blue-500'
   },
-  premium: {
+  premium_heizoel: {
     name: 'Premium Heizöl',
     price: 0.73,
     description: 'Additivierte Qualität',
@@ -37,11 +41,63 @@ const products = {
 };
 
 const ProductSelector = () => {
-  const [selectedProduct, setSelectedProduct] = useState<'standard' | 'premium'>('standard');
+  const [selectedProduct, setSelectedProduct] = useState<'standard_heizoel' | 'premium_heizoel'>('standard_heizoel');
   const [liters, setLiters] = useState<number>(1500);
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
 
+  const shopId = "83f973c5-280e-484a-bbfe-00b994b7988c";
   const currentProduct = products[selectedProduct];
-  const totalPrice = liters * currentProduct.price;
+  const currentPrice = currentProduct.price;
+  const totalGrossAmount = liters * currentPrice;
+  const netAmount = calculateNetAmount(totalGrossAmount);
+  const taxAmount = calculateTaxAmount(netAmount);
+  const minLiters = 1500;
+
+  const handleOrder = async () => {
+    if (liters < minLiters) {
+      toast({
+        title: "Ungültige Literzahl",
+        description: `Mindestbestellmenge: ${minLiters} Liter`,
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setIsLoading(true);
+    
+    try {
+      const orderData: OrderData = {
+        product: selectedProduct,
+        liters: liters,
+        shop_id: shopId,
+        total_amount: totalGrossAmount,
+        delivery_fee: 0,
+        price_per_liter: currentPrice,
+        tax_amount: taxAmount,
+        net_amount: netAmount
+      };
+
+      const response = await OrderService.createOrder(orderData);
+      const checkoutUrl = OrderService.getCheckoutUrl(response.token);
+      
+      window.open(checkoutUrl, '_blank');
+      
+      toast({
+        title: "Bestellung weitergeleitet",
+        description: "Sie werden zum Checkout weitergeleitet.",
+      });
+    } catch (error) {
+      console.error('Order error:', error);
+      toast({
+        title: "Fehler bei der Bestellung",
+        description: "Bitte versuchen Sie es später erneut.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <section className="py-16 bg-white">
@@ -61,7 +117,7 @@ const ProductSelector = () => {
             <h3 className="text-xl font-semibold mb-4">Produkt wählen</h3>
             <RadioGroup 
               value={selectedProduct} 
-              onValueChange={(value: 'standard' | 'premium') => setSelectedProduct(value)}
+              onValueChange={(value: 'standard_heizoel' | 'premium_heizoel') => setSelectedProduct(value)}
               className="space-y-4"
             >
               {Object.entries(products).map(([key, product]) => {
@@ -80,7 +136,7 @@ const ProductSelector = () => {
                         <div className="flex justify-between items-start mb-2">
                           <h4 className="text-lg font-semibold">{product.name}</h4>
                           <span className="text-xl font-bold text-primary-600">
-                            {product.price.toFixed(2)}€/L
+                            {formatPrice(product.price)}€/L
                           </span>
                         </div>
                         <p className="text-gray-600 mb-3">{product.description}</p>
@@ -114,40 +170,52 @@ const ProductSelector = () => {
 
               <div className="space-y-2">
                 <Label htmlFor="liters" className="text-base font-medium">
-                  Liter-Anzahl (min. 1500L)
+                  Liter-Anzahl (min. {minLiters}L)
                 </Label>
                 <Input
                   id="liters"
                   type="number"
-                  min={1500}
+                  min={minLiters}
                   step={100}
                   value={liters}
                   onChange={(e) => setLiters(Number(e.target.value))}
                   className="text-lg h-12"
-                  placeholder="z.B. 1500"
+                  placeholder={`z.B. ${minLiters}`}
                 />
               </div>
 
               <div className="bg-gray-50 p-4 rounded-lg space-y-2">
                 <div className="flex justify-between text-sm text-gray-600">
-                  <span>{liters} Liter × {currentProduct.price.toFixed(2)}€</span>
-                  <span>{totalPrice.toFixed(2)}€</span>
+                  <span>Nettobetrag:</span>
+                  <span>{formatPrice(netAmount)}€</span>
+                </div>
+                <div className="flex justify-between text-sm text-gray-600">
+                  <span>MwSt. (19%):</span>
+                  <span>{formatPrice(taxAmount)}€</span>
                 </div>
                 <div className="flex justify-between items-center text-xl font-bold text-primary-600 border-t pt-2">
                   <span>Gesamtpreis:</span>
-                  <span>{totalPrice.toFixed(2)}€</span>
+                  <span>{formatPrice(totalGrossAmount)}€</span>
                 </div>
               </div>
 
               <Button 
+                onClick={handleOrder}
+                disabled={isLoading || liters < minLiters}
                 className="w-full bg-primary-600 hover:bg-primary-700 text-white h-12 text-lg font-semibold"
-                disabled={liters < 1500}
               >
-                Jetzt bestellen
+                {isLoading ? (
+                  <div className="flex items-center space-x-2">
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                    <span>Wird verarbeitet...</span>
+                  </div>
+                ) : (
+                  'Jetzt bestellen'
+                )}
               </Button>
 
               <p className="text-xs text-gray-500 text-center">
-                Alle Preise inkl. MwSt. • Mindestbestellmenge: 1500 Liter
+                Alle Preise inkl. MwSt. • Mindestbestellmenge: {minLiters} Liter
               </p>
             </CardContent>
           </Card>

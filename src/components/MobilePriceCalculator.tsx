@@ -1,4 +1,3 @@
-
 import { useState, useRef } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,6 +6,9 @@ import { Label } from "@/components/ui/label";
 import { Truck, Shield, Clock, Calculator, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
+import { OrderData, PriceData } from '../types/order';
+import { OrderService } from '../services/orderService';
+import { calculateNetAmount, calculateTaxAmount, formatPrice } from '../utils/taxCalculations';
 
 const MobilePriceCalculator = () => {
   const [liters, setLiters] = useState<number>(1500);
@@ -15,7 +17,8 @@ const MobilePriceCalculator = () => {
   const { toast } = useToast();
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  const prices = {
+  // Prices are gross prices (including 19% MwSt)
+  const prices: PriceData = {
     standard_heizoel: 0.70,
     premium_heizoel: 0.73
   };
@@ -39,7 +42,9 @@ const MobilePriceCalculator = () => {
 
   const shopId = "83f973c5-280e-484a-bbfe-00b994b7988c";
   const currentPrice = prices[oilType];
-  const totalAmount = liters * currentPrice;
+  const totalGrossAmount = liters * currentPrice;
+  const netAmount = calculateNetAmount(totalGrossAmount);
+  const taxAmount = calculateTaxAmount(netAmount);
   const minLiters = 1500;
   const maxLiters = 32000;
 
@@ -85,38 +90,26 @@ const MobilePriceCalculator = () => {
     setIsLoading(true);
     
     try {
-      const response = await fetch('https://luhhnsvwtnmxztcmdxyq.supabase.co/functions/v1/get-order-token', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          product: oilType,
-          liters: liters,
-          shop_id: shopId,
-          total_amount: totalAmount,
-          delivery_fee: 0,
-          price_per_liter: currentPrice
-        })
-      });
+      const orderData: OrderData = {
+        product: oilType,
+        liters: liters,
+        shop_id: shopId,
+        total_amount: totalGrossAmount,
+        delivery_fee: 0,
+        price_per_liter: currentPrice,
+        tax_amount: taxAmount,
+        net_amount: netAmount
+      };
 
-      if (response.ok) {
-        const data = await response.json();
-        
-        if (data.token) {
-          const checkoutUrl = `https://checkout.hill-heizoel.de/checkout?token=${data.token}`;
-          window.open(checkoutUrl, '_blank');
-          
-          toast({
-            title: "Bestellung weitergeleitet",
-            description: "Sie werden zum Checkout weitergeleitet.",
-          });
-        } else {
-          throw new Error('Kein Token erhalten');
-        }
-      } else {
-        throw new Error(`API Error: ${response.status}`);
-      }
+      const response = await OrderService.createOrder(orderData);
+      const checkoutUrl = OrderService.getCheckoutUrl(response.token);
+      
+      window.open(checkoutUrl, '_blank');
+      
+      toast({
+        title: "Bestellung weitergeleitet",
+        description: "Sie werden zum Checkout weitergeleitet.",
+      });
     } catch (error) {
       console.error('Order error:', error);
       toast({
@@ -272,7 +265,7 @@ const MobilePriceCalculator = () => {
             </div>
           </div>
 
-          {/* Price Display */}
+          {/* Price Display - Updated with tax breakdown */}
           <div className="bg-gradient-to-r from-primary-50 to-accent-orange-50 p-4 rounded-lg space-y-2 border border-accent-orange-200">
             <div className="flex justify-between text-sm text-gray-600">
               <span>Produkt:</span>
@@ -284,12 +277,20 @@ const MobilePriceCalculator = () => {
             </div>
             <div className="flex justify-between text-sm text-gray-600">
               <span>Preis pro Liter:</span>
-              <span className="font-medium text-accent-orange-600">{currentPrice.toFixed(2)}€</span>
+              <span className="font-medium text-accent-orange-600">{formatPrice(currentPrice)}€</span>
+            </div>
+            <div className="flex justify-between text-sm text-gray-600">
+              <span>Nettobetrag:</span>
+              <span className="font-medium">{formatPrice(netAmount)}€</span>
+            </div>
+            <div className="flex justify-between text-sm text-gray-600">
+              <span>MwSt. (19%):</span>
+              <span className="font-medium">{formatPrice(taxAmount)}€</span>
             </div>
             <div className="border-t pt-2">
               <div className="flex justify-between items-center text-xl font-bold">
                 <span>Gesamtpreis:</span>
-                <span className="text-accent-orange-600">{totalAmount.toFixed(2)}€</span>
+                <span className="text-accent-orange-600">{formatPrice(totalGrossAmount)}€</span>
               </div>
             </div>
           </div>
@@ -312,7 +313,7 @@ const MobilePriceCalculator = () => {
         </CardContent>
       </Card>
 
-      {/* Sticky Order Button */}
+      {/* Sticky Order Button - Updated */}
       <div className="fixed bottom-0 left-0 right-0 p-4 bg-white/95 backdrop-blur-sm border-t border-gray-200 z-40 lg:hidden">
         <Button 
           onClick={handleOrder}
@@ -326,7 +327,7 @@ const MobilePriceCalculator = () => {
             </div>
           ) : (
             <>
-              <span>Jetzt bestellen - {totalAmount.toFixed(2)}€</span>
+              <span>Jetzt bestellen - {formatPrice(totalGrossAmount)}€</span>
             </>
           )}
         </Button>

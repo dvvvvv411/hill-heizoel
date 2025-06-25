@@ -7,6 +7,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Label } from "@/components/ui/label";
 import { Truck, Shield, Clock, Calculator } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
+import { OrderData, PriceData } from '../types/order';
+import { OrderService } from '../services/orderService';
+import { calculateNetAmount, calculateTaxAmount, formatPrice } from '../utils/taxCalculations';
 
 const PriceCalculator = () => {
   const [liters, setLiters] = useState<number>(1500);
@@ -14,14 +17,17 @@ const PriceCalculator = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
-  const prices = {
+  // Prices are gross prices (including 19% MwSt)
+  const prices: PriceData = {
     standard_heizoel: 0.70,
     premium_heizoel: 0.73
   };
 
   const shopId = "83f973c5-280e-484a-bbfe-00b994b7988c";
   const currentPrice = prices[oilType];
-  const totalAmount = liters * currentPrice;
+  const totalGrossAmount = liters * currentPrice;
+  const netAmount = calculateNetAmount(totalGrossAmount);
+  const taxAmount = calculateTaxAmount(netAmount);
   const minLiters = 1500;
   const maxLiters = 32000;
 
@@ -45,59 +51,32 @@ const PriceCalculator = () => {
     setIsLoading(true);
     
     try {
-      console.log('Sending order request with data:', {
+      const orderData: OrderData = {
         product: oilType,
         liters: liters,
         shop_id: shopId,
-        total_amount: totalAmount,
+        total_amount: totalGrossAmount,
         delivery_fee: 0,
-        price_per_liter: currentPrice
-      });
+        price_per_liter: currentPrice,
+        tax_amount: taxAmount,
+        net_amount: netAmount
+      };
 
-      const response = await fetch('https://luhhnsvwtnmxztcmdxyq.supabase.co/functions/v1/get-order-token', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          product: oilType,
-          liters: liters,
-          shop_id: shopId,
-          total_amount: totalAmount,
-          delivery_fee: 0,
-          price_per_liter: currentPrice
-        })
-      });
-
-      console.log('API Response status:', response.status);
+      const response = await OrderService.createOrder(orderData);
+      const checkoutUrl = OrderService.getCheckoutUrl(response.token);
       
-      if (response.ok) {
-        const data = await response.json();
-        console.log('API Response data:', data);
-        
-        if (data.token) {
-          // Redirect to checkout with token
-          const checkoutUrl = `https://checkout.hill-heizoel.de/checkout?token=${data.token}`;
-          console.log('Redirecting to:', checkoutUrl);
-          window.open(checkoutUrl, '_blank');
-          
-          toast({
-            title: "Bestellung weitergeleitet",
-            description: "Sie werden zum Checkout weitergeleitet.",
-          });
-        } else {
-          throw new Error('Kein Token erhalten');
-        }
-      } else {
-        const errorData = await response.text();
-        console.error('API Error response:', errorData);
-        throw new Error(`API Error: ${response.status}`);
-      }
+      console.log('Redirecting to checkout:', checkoutUrl);
+      window.open(checkoutUrl, '_blank');
+      
+      toast({
+        title: "Bestellung weitergeleitet",
+        description: "Sie werden zum Checkout weitergeleitet.",
+      });
     } catch (error) {
       console.error('Order error:', error);
       toast({
         title: "Fehler bei der Bestellung",
-        description: "Bitte versuchen Sie es später erneut oder kontaktieren Sie uns telefonisch unter 089 123 456 789.",
+        description: "Bitte versuchen Sie es später erneut oder kontaktieren Sie uns telefonisch unter 089 628 26 595.",
         variant: "destructive"
       });
     } finally {
@@ -130,13 +109,13 @@ const PriceCalculator = () => {
               <SelectItem value="standard_heizoel">
                 <div className="flex justify-between items-center w-full">
                   <span>Standard Heizöl</span>
-                  <span className="font-bold text-accent-orange-600 ml-4">{prices.standard_heizoel.toFixed(2)}€/L</span>
+                  <span className="font-bold text-accent-orange-600 ml-4">{formatPrice(prices.standard_heizoel)}€/L</span>
                 </div>
               </SelectItem>
               <SelectItem value="premium_heizoel">
                 <div className="flex justify-between items-center w-full">
                   <span>Premium Heizöl</span>
-                  <span className="font-bold text-accent-orange-600 ml-4">{prices.premium_heizoel.toFixed(2)}€/L</span>
+                  <span className="font-bold text-accent-orange-600 ml-4">{formatPrice(prices.premium_heizoel)}€/L</span>
                 </div>
               </SelectItem>
             </SelectContent>
@@ -178,12 +157,20 @@ const PriceCalculator = () => {
           </div>
           <div className="flex justify-between text-sm text-gray-600">
             <span>Preis pro Liter:</span>
-            <span className="font-medium text-accent-orange-600">{currentPrice.toFixed(2)}€</span>
+            <span className="font-medium text-accent-orange-600">{formatPrice(currentPrice)}€</span>
+          </div>
+          <div className="flex justify-between text-sm text-gray-600">
+            <span>Nettobetrag:</span>
+            <span className="font-medium">{formatPrice(netAmount)}€</span>
+          </div>
+          <div className="flex justify-between text-sm text-gray-600">
+            <span>MwSt. (19%):</span>
+            <span className="font-medium">{formatPrice(taxAmount)}€</span>
           </div>
           <div className="border-t pt-2">
             <div className="flex justify-between items-center text-xl font-bold">
               <span>Gesamtpreis:</span>
-              <span className="text-accent-orange-600">{totalAmount.toFixed(2)}€</span>
+              <span className="text-accent-orange-600">{formatPrice(totalGrossAmount)}€</span>
             </div>
           </div>
         </div>
