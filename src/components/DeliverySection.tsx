@@ -24,78 +24,18 @@ const DeliverySection = () => {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Improved Bayern Map */}
+          {/* Bayern Map Image */}
           <div className="relative">
             <Card className="overflow-hidden shadow-xl bg-gradient-to-br from-primary-50 to-primary-100">
               <CardContent className="p-8">
                 <div className="relative bg-white rounded-2xl p-8 shadow-inner">
-                  {/* Detailed Bayern SVG Map */}
+                  {/* Bayern Map Image Placeholder */}
                   <div className="relative flex items-center justify-center">
-                    <svg width="350" height="300" viewBox="0 0 350 300" className="drop-shadow-lg">
-                      {/* Bayern Outline - More detailed shape */}
-                      <path
-                        d="M50 120 L70 80 L120 60 L180 50 L220 55 L260 70 L300 90 L320 110 L315 140 L305 170 L290 200 L270 230 L240 250 L200 265 L160 270 L120 265 L90 250 L70 220 L55 190 L45 160 Z"
-                        fill="url(#bavariaGradient)"
-                        stroke="#006b51"
-                        strokeWidth="3"
-                        className="animate-pulse-subtle"
-                      />
-                      
-                      {/* Gradient Definition */}
-                      <defs>
-                        <linearGradient id="bavariaGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                          <stop offset="0%" stopColor="#006b51" stopOpacity="0.8"/>
-                          <stop offset="50%" stopColor="#007d5e" stopOpacity="0.6"/>
-                          <stop offset="100%" stopColor="#005a44" stopOpacity="0.9"/>
-                        </linearGradient>
-                        <filter id="glow">
-                          <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                          <feMerge> 
-                            <feMergeNode in="coloredBlur"/>
-                            <feMergeNode in="SourceGraphic"/>
-                          </feMerge>
-                        </filter>
-                      </defs>
-                      
-                      {/* Major Cities as Pulsing Dots */}
-                      <circle cx="140" cy="200" r="6" fill="#ef4444" className="animate-pulse" opacity="0.9">
-                        <animate attributeName="r" values="4;8;4" dur="2s" repeatCount="indefinite"/>
-                      </circle>
-                      <text x="140" y="218" textAnchor="middle" className="text-xs font-medium fill-gray-700">München</text>
-                      
-                      <circle cx="200" cy="140" r="5" fill="#ef4444" className="animate-pulse" opacity="0.8">
-                        <animate attributeName="r" values="3;7;3" dur="2.5s" repeatCount="indefinite"/>
-                      </circle>
-                      <text x="200" y="155" textAnchor="middle" className="text-xs font-medium fill-gray-700">Nürnberg</text>
-                      
-                      <circle cx="110" cy="170" r="4" fill="#ef4444" className="animate-pulse" opacity="0.7">
-                        <animate attributeName="r" values="3;6;3" dur="3s" repeatCount="indefinite"/>
-                      </circle>
-                      <text x="110" y="185" textAnchor="middle" className="text-xs font-medium fill-gray-700">Augsburg</text>
-                      
-                      <circle cx="180" cy="110" r="4" fill="#ef4444" className="animate-pulse" opacity="0.7">
-                        <animate attributeName="r" values="3;6;3" dur="2.2s" repeatCount="indefinite"/>
-                      </circle>
-                      <text x="180" y="125" textAnchor="middle" className="text-xs font-medium fill-gray-700">Würzburg</text>
-                      
-                      <circle cx="230" cy="160" r="4" fill="#ef4444" className="animate-pulse" opacity="0.7">
-                        <animate attributeName="r" values="3;6;3" dur="2.8s" repeatCount="indefinite"/>
-                      </circle>
-                      <text x="230" y="175" textAnchor="middle" className="text-xs font-medium fill-gray-700">Regensburg</text>
-                      
-                      {/* Delivery Routes - Animated Lines */}
-                      <g stroke="#006b51" strokeWidth="2" fill="none" opacity="0.6">
-                        <path d="M140 200 Q200 140 200 140" strokeDasharray="5,5">
-                          <animate attributeName="stroke-dashoffset" values="0;-10" dur="1s" repeatCount="indefinite"/>
-                        </path>
-                        <path d="M140 200 Q110 170 110 170" strokeDasharray="5,5">
-                          <animate attributeName="stroke-dashoffset" values="0;-10" dur="1.2s" repeatCount="indefinite"/>
-                        </path>
-                        <path d="M200 140 Q180 110 180 110" strokeDasharray="5,5">
-                          <animate attributeName="stroke-dashoffset" values="0;-10" dur="1.5s" repeatCount="indefinite"/>
-                        </path>
-                      </g>
-                    </svg>
+                    <img 
+                      src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&h=400"
+                      alt="Bayern Karte - Liefergebiet"
+                      className="w-full max-w-md h-64 object-cover rounded-lg shadow-lg"
+                    />
                   </div>
                   
                   {/* Floating Delivery Truck */}
