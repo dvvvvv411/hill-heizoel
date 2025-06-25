@@ -21,7 +21,7 @@ const ServiceHero = () => {
                 <Truck className="w-10 h-10 text-white" />
               </div>
               <h3 className="text-xl font-semibold mb-2">Kostenlose Lieferung</h3>
-              <p className="text-gray-600">In ganz Bayern ab 500 Liter</p>
+              <p className="text-gray-600">In ganz Bayern ab 1500 Liter</p>
             </div>
             
             <div className="text-center">

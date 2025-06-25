@@ -8,7 +8,7 @@ const DeliveryServiceSection = () => {
     {
       icon: Truck,
       title: 'Kostenlose Lieferung',
-      description: 'In ganz Bayern ab 500 Liter Mindestbestellmenge',
+      description: 'In ganz Bayern ab 1500 Liter Mindestbestellmenge',
       details: 'Keine versteckten Kosten - der angezeigte Preis ist der Endpreis'
     },
     {
@@ -48,7 +48,7 @@ const DeliveryServiceSection = () => {
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
             Zuverlässige und termingerechte Heizöllieferung direkt zu Ihnen nach Hause. 
-            Kostenlos in ganz Bayern ab 500 Liter.
+            Kostenlos in ganz Bayern ab 1500 Liter.
           </p>
         </div>
 
@@ -118,7 +118,7 @@ const DeliveryServiceSection = () => {
                 <div className="p-4 bg-green-50 rounded-lg">
                   <h4 className="font-semibold mb-2 text-green-800">Mindestbestellmenge</h4>
                   <p className="text-sm text-green-700">
-                    <strong>500 Liter</strong> für kostenlose Lieferung
+                    <strong>1500 Liter</strong> für kostenlose Lieferung
                   </p>
                 </div>
               </div>
