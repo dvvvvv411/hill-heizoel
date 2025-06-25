@@ -1,3 +1,4 @@
+
 import { Building, Users, Award, Clock } from 'lucide-react';
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -77,7 +78,7 @@ const CompanySection = () => {
                   <img 
                     src="https://i.imgur.com/xPI8LoI.jpeg" 
                     alt="HILL-Heizöl Unternehmen" 
-                    className="w-full h-full object-cover"
+                    className="max-w-full max-h-full object-contain"
                   />
                 </div>
               </CardContent>
