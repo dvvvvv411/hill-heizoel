@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Menu, X, Phone, Bell } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -36,7 +35,7 @@ const Header = () => {
               <img 
                 src="https://i.imgur.com/4xhodpH.png" 
                 alt="HILL-Heizöl" 
-                className="h-12"
+                className="h-20"
               />
             </Link>
 
@@ -69,7 +68,7 @@ const Header = () => {
               <img 
                 src="https://i.imgur.com/4xhodpH.png" 
                 alt="HILL-Heizöl" 
-                className="h-10"
+                className="h-18"
               />
             </Link>
 
