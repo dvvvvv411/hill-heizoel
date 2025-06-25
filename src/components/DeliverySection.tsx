@@ -1,5 +1,5 @@
 
-import { MapPin, CheckCircle } from 'lucide-react';
+import { MapPin, CheckCircle, Truck } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const DeliverySection = () => {
@@ -24,36 +24,106 @@ const DeliverySection = () => {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Bayern Map Illustration */}
+          {/* Improved Bayern Map */}
           <div className="relative">
-            <Card className="overflow-hidden shadow-xl">
-              <CardContent className="p-0">
-                <div className="bg-gradient-to-br from-primary-100 to-primary-200 h-96 flex items-center justify-center relative">
-                  {/* Simplified Bayern shape */}
-                  <div className="relative">
-                    <svg width="300" height="300" viewBox="0 0 300 300" className="text-primary-600">
+            <Card className="overflow-hidden shadow-xl bg-gradient-to-br from-primary-50 to-primary-100">
+              <CardContent className="p-8">
+                <div className="relative bg-white rounded-2xl p-8 shadow-inner">
+                  {/* Detailed Bayern SVG Map */}
+                  <div className="relative flex items-center justify-center">
+                    <svg width="350" height="300" viewBox="0 0 350 300" className="drop-shadow-lg">
+                      {/* Bayern Outline - More detailed shape */}
                       <path
-                        fill="currentColor"
-                        d="M50 100 L100 50 L200 60 L250 80 L270 120 L260 180 L230 220 L180 250 L120 240 L80 200 L60 150 Z"
-                        opacity="0.8"
+                        d="M50 120 L70 80 L120 60 L180 50 L220 55 L260 70 L300 90 L320 110 L315 140 L305 170 L290 200 L270 230 L240 250 L200 265 L160 270 L120 265 L90 250 L70 220 L55 190 L45 160 Z"
+                        fill="url(#bavariaGradient)"
+                        stroke="#006b51"
+                        strokeWidth="3"
+                        className="animate-pulse-subtle"
                       />
+                      
+                      {/* Gradient Definition */}
+                      <defs>
+                        <linearGradient id="bavariaGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stopColor="#006b51" stopOpacity="0.8"/>
+                          <stop offset="50%" stopColor="#007d5e" stopOpacity="0.6"/>
+                          <stop offset="100%" stopColor="#005a44" stopOpacity="0.9"/>
+                        </linearGradient>
+                        <filter id="glow">
+                          <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                          <feMerge> 
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                          </feMerge>
+                        </filter>
+                      </defs>
+                      
+                      {/* Major Cities as Pulsing Dots */}
+                      <circle cx="140" cy="200" r="6" fill="#ef4444" className="animate-pulse" opacity="0.9">
+                        <animate attributeName="r" values="4;8;4" dur="2s" repeatCount="indefinite"/>
+                      </circle>
+                      <text x="140" y="218" textAnchor="middle" className="text-xs font-medium fill-gray-700">München</text>
+                      
+                      <circle cx="200" cy="140" r="5" fill="#ef4444" className="animate-pulse" opacity="0.8">
+                        <animate attributeName="r" values="3;7;3" dur="2.5s" repeatCount="indefinite"/>
+                      </circle>
+                      <text x="200" y="155" textAnchor="middle" className="text-xs font-medium fill-gray-700">Nürnberg</text>
+                      
+                      <circle cx="110" cy="170" r="4" fill="#ef4444" className="animate-pulse" opacity="0.7">
+                        <animate attributeName="r" values="3;6;3" dur="3s" repeatCount="indefinite"/>
+                      </circle>
+                      <text x="110" y="185" textAnchor="middle" className="text-xs font-medium fill-gray-700">Augsburg</text>
+                      
+                      <circle cx="180" cy="110" r="4" fill="#ef4444" className="animate-pulse" opacity="0.7">
+                        <animate attributeName="r" values="3;6;3" dur="2.2s" repeatCount="indefinite"/>
+                      </circle>
+                      <text x="180" y="125" textAnchor="middle" className="text-xs font-medium fill-gray-700">Würzburg</text>
+                      
+                      <circle cx="230" cy="160" r="4" fill="#ef4444" className="animate-pulse" opacity="0.7">
+                        <animate attributeName="r" values="3;6;3" dur="2.8s" repeatCount="indefinite"/>
+                      </circle>
+                      <text x="230" y="175" textAnchor="middle" className="text-xs font-medium fill-gray-700">Regensburg</text>
+                      
+                      {/* Delivery Routes - Animated Lines */}
+                      <g stroke="#006b51" strokeWidth="2" fill="none" opacity="0.6">
+                        <path d="M140 200 Q200 140 200 140" strokeDasharray="5,5">
+                          <animate attributeName="stroke-dashoffset" values="0;-10" dur="1s" repeatCount="indefinite"/>
+                        </path>
+                        <path d="M140 200 Q110 170 110 170" strokeDasharray="5,5">
+                          <animate attributeName="stroke-dashoffset" values="0;-10" dur="1.2s" repeatCount="indefinite"/>
+                        </path>
+                        <path d="M200 140 Q180 110 180 110" strokeDasharray="5,5">
+                          <animate attributeName="stroke-dashoffset" values="0;-10" dur="1.5s" repeatCount="indefinite"/>
+                        </path>
+                      </g>
                     </svg>
-                    
-                    {/* Cities as dots */}
-                    <div className="absolute top-1/3 left-1/3 w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
-                    <div className="absolute top-1/2 left-1/2 w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
-                    <div className="absolute top-2/3 left-1/4 w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
                   </div>
                   
-                  {/* Delivery truck icon */}
-                  <div className="absolute top-4 right-4 bg-white rounded-full p-3 shadow-lg">
-                    <MapPin className="text-primary-600" size={24} />
+                  {/* Floating Delivery Truck */}
+                  <div className="absolute top-4 right-4 bg-primary-600 text-white rounded-full p-3 shadow-lg animate-float">
+                    <Truck size={24} />
+                  </div>
+                  
+                  {/* Location Pin */}
+                  <div className="absolute top-6 left-6 bg-red-500 text-white rounded-full p-2 shadow-lg animate-bounce-subtle">
+                    <MapPin size={20} />
+                  </div>
+                </div>
+                
+                {/* Bottom Stats */}
+                <div className="mt-6 grid grid-cols-2 gap-4">
+                  <div className="text-center bg-white/80 rounded-lg p-3">
+                    <div className="text-2xl font-bold text-primary-600">100%</div>
+                    <div className="text-sm text-gray-600">Bayern Abdeckung</div>
+                  </div>
+                  <div className="text-center bg-white/80 rounded-lg p-3">
+                    <div className="text-2xl font-bold text-primary-600">20+</div>
+                    <div className="text-sm text-gray-600">Hauptstädte</div>
                   </div>
                 </div>
               </CardContent>
             </Card>
             
-            <div className="absolute -bottom-4 -right-4 bg-primary-600 text-white px-6 py-3 rounded-full font-bold shadow-lg">
+            <div className="absolute -bottom-4 -right-4 bg-primary-600 text-white px-6 py-3 rounded-full font-bold shadow-lg animate-pulse">
               Ganz Bayern!
             </div>
           </div>
