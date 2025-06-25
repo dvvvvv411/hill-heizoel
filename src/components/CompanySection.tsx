@@ -1,4 +1,3 @@
-
 import { Building, Users, Award, Clock } from 'lucide-react';
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -72,9 +71,9 @@ const CompanySection = () => {
 
           {/* Company Image / Logo Area */}
           <div className="relative">
-            <Card className="glass-effect border-white/20 shadow-strong backdrop-blur-md overflow-hidden">
+            <Card className="overflow-hidden shadow-xl">
               <CardContent className="p-0">
-                <div className="bg-gradient-to-br from-primary-500/90 to-primary-700/90 h-96 flex items-center justify-center text-white backdrop-blur-sm">
+                <div className="bg-gradient-to-br from-primary-500 to-primary-700 h-96 flex items-center justify-center text-white">
                   <div className="text-center">
                     <div className="text-6xl font-bold mb-4">HILL</div>
                     <div className="text-2xl font-light">Clear Projects GmbH</div>
@@ -85,7 +84,7 @@ const CompanySection = () => {
             </Card>
             
             {/* Floating Badge */}
-            <div className="absolute -bottom-6 -right-6 glass-effect backdrop-blur-md border-white/20 rounded-full p-4 shadow-strong">
+            <div className="absolute -bottom-6 -right-6 bg-white rounded-full p-4 shadow-lg">
               <div className="text-center">
                 <div className="text-2xl font-bold text-primary-600">20+</div>
                 <div className="text-xs text-gray-600">Jahre</div>
@@ -99,9 +98,9 @@ const CompanySection = () => {
           {stats.map((stat, index) => {
             const IconComponent = stat.icon;
             return (
-              <Card key={index} className="glass-effect backdrop-blur-md border-white/20 shadow-medium hover:shadow-strong text-center transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02]">
+              <Card key={index} className="text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
                 <CardContent className="p-8">
-                  <div className="bg-gradient-to-br from-primary-100/80 to-primary-200/80 backdrop-blur-sm w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="bg-primary-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                     <IconComponent className="text-primary-600" size={32} />
                   </div>
                   <div className="text-3xl font-bold text-gray-900 mb-2">{stat.number}</div>
@@ -114,14 +113,14 @@ const CompanySection = () => {
         </div>
 
         {/* Values */}
-        <div className="glass-effect backdrop-blur-md border-white/20 rounded-2xl p-8 md:p-12 shadow-strong">
+        <div className="bg-white rounded-2xl p-8 md:p-12 shadow-xl">
           <h3 className="text-3xl font-bold text-center text-gray-900 mb-12">
             Unsere Werte
           </h3>
           
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="bg-gradient-to-br from-blue-100/80 to-blue-200/80 backdrop-blur-sm w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="bg-blue-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
                 <span className="text-3xl">🏆</span>
               </div>
               <h4 className="text-xl font-bold text-gray-900 mb-3">Qualität</h4>
@@ -132,7 +131,7 @@ const CompanySection = () => {
             </div>
             
             <div className="text-center">
-              <div className="bg-gradient-to-br from-green-100/80 to-green-200/80 backdrop-blur-sm w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
                 <span className="text-3xl">🤝</span>
               </div>
               <h4 className="text-xl font-bold text-gray-900 mb-3">Vertrauen</h4>
@@ -143,7 +142,7 @@ const CompanySection = () => {
             </div>
             
             <div className="text-center">
-              <div className="bg-gradient-to-br from-orange-100/80 to-orange-200/80 backdrop-blur-sm w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="bg-orange-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
                 <span className="text-3xl">💚</span>
               </div>
               <h4 className="text-xl font-bold text-gray-900 mb-3">Service</h4>
