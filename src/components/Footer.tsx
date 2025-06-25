@@ -18,14 +18,9 @@ const Footer = () => {
               Ihr zuverlässiger Partner für Heizöl in Bayern seit über 20 Jahren. 
               Qualität, Service und faire Preise.
             </p>
-            <div className="flex space-x-4">
-              <div className="bg-accent-orange-600 w-10 h-10 rounded-full flex items-center justify-center">
-                <span className="text-sm font-bold">H</span>
-              </div>
-              <div>
-                <div className="font-semibold">HILL-Clear Projects GmbH</div>
-                <div className="text-sm text-gray-400">Bayern's Heizöl-Experte</div>
-              </div>
+            <div>
+              <div className="font-semibold">HILL-Clear Projects GmbH</div>
+              <div className="text-sm text-gray-400">Bayern's Heizöl-Experte</div>
             </div>
           </div>
 
