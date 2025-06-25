@@ -1,13 +1,23 @@
-
 import { useState } from 'react';
 import { Menu, X, Phone, Bell } from 'lucide-react';
 import { Button } from "@/components/ui/button";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { cn } from "@/lib/utils";
 import ClickToCall from './ClickToCall';
+import { scrollToCalculator, scrollToCalculatorFromOtherPage } from '../utils/scrollToCalculator';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+
+  const handleOrderClick = () => {
+    if (isHomePage) {
+      scrollToCalculator();
+    } else {
+      scrollToCalculatorFromOtherPage();
+    }
+  };
 
   return (
     <>
@@ -53,7 +63,10 @@ const Header = () => {
               <Link to="/ueber-uns" className="text-gray-700 hover:text-accent-orange-500 transition-colors font-medium">
                 Über uns
               </Link>
-              <Button className="bg-primary-600 hover:bg-primary-700 text-white px-6">
+              <Button 
+                onClick={handleOrderClick}
+                className="bg-primary-600 hover:bg-primary-700 text-white px-6"
+              >
                 Jetzt bestellen
               </Button>
             </nav>

@@ -1,5 +1,6 @@
 
 import { Button } from "@/components/ui/button";
+import { scrollToCalculatorFromOtherPage } from '../utils/scrollToCalculator';
 
 const ProductHero = () => {
   return (
@@ -14,16 +15,19 @@ const ProductHero = () => {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button 
+            onClick={scrollToCalculatorFromOtherPage}
             className="bg-primary-600 hover:bg-primary-700 text-white px-8 py-3 text-lg"
           >
             Jetzt bestellen
           </Button>
-          <Button 
-            variant="outline" 
-            className="border-primary-600 text-primary-600 hover:bg-primary-50 px-8 py-3 text-lg"
-          >
-            Beratung anfordern
-          </Button>
+          <a href="tel:089123456789">
+            <Button 
+              variant="outline" 
+              className="border-primary-600 text-primary-600 hover:bg-primary-50 px-8 py-3 text-lg"
+            >
+              Beratung anfordern
+            </Button>
+          </a>
         </div>
       </div>
     </section>

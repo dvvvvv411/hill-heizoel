@@ -1,7 +1,7 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Truck, Map, Clock, Bell, Phone } from 'lucide-react';
+import { scrollToCalculatorFromOtherPage } from '../utils/scrollToCalculator';
 
 const DeliveryServiceSection = () => {
   const deliveryFeatures = [
@@ -127,7 +127,10 @@ const DeliveryServiceSection = () => {
         </div>
 
         <div className="text-center mt-12">
-          <Button className="bg-primary-600 hover:bg-primary-700 text-white px-8 py-3">
+          <Button 
+            onClick={scrollToCalculatorFromOtherPage}
+            className="bg-primary-600 hover:bg-primary-700 text-white px-8 py-3"
+          >
             Lieferung beauftragen
           </Button>
         </div>

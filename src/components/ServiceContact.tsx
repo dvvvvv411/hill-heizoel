@@ -1,7 +1,7 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Phone, Bell, Map } from 'lucide-react';
+import { scrollToCalculatorFromOtherPage } from '../utils/scrollToCalculator';
 
 const ServiceContact = () => {
   const contactOptions = [
@@ -64,12 +64,17 @@ const ServiceContact = () => {
 
         <div className="text-center mt-12">
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button className="bg-primary-600 hover:bg-primary-700 text-white px-8 py-3">
+            <Button 
+              onClick={scrollToCalculatorFromOtherPage}
+              className="bg-primary-600 hover:bg-primary-700 text-white px-8 py-3"
+            >
               Jetzt bestellen
             </Button>
-            <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50 px-8 py-3">
-              Kostenlose Beratung
-            </Button>
+            <a href="tel:089123456789">
+              <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50 px-8 py-3">
+                Kostenlose Beratung
+              </Button>
+            </a>
           </div>
         </div>
       </div>

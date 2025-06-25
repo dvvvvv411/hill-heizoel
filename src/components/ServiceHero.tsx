@@ -1,6 +1,6 @@
-
 import { Button } from "@/components/ui/button";
 import { Truck, Clock, Shield } from 'lucide-react';
+import { scrollToCalculatorFromOtherPage } from '../utils/scrollToCalculator';
 
 const ServiceHero = () => {
   return (
@@ -42,7 +42,10 @@ const ServiceHero = () => {
           </div>
           
           <div className="mt-12">
-            <Button className="bg-primary-600 hover:bg-primary-700 text-white px-8 py-3 text-lg">
+            <Button 
+              onClick={scrollToCalculatorFromOtherPage}
+              className="bg-primary-600 hover:bg-primary-700 text-white px-8 py-3 text-lg"
+            >
               Jetzt Service anfragen
             </Button>
           </div>
