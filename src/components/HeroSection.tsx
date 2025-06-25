@@ -2,6 +2,8 @@
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import PriceCalculator from './PriceCalculator';
+import MobilePriceCalculator from './MobilePriceCalculator';
+import ClickToCall from './ClickToCall';
 
 const HeroSection = () => {
   const scrollToCalculator = () => {
@@ -18,16 +20,16 @@ const HeroSection = () => {
         }}></div>
       </div>
 
-      <div className="container mx-auto px-4 pt-20 pb-16 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
+      <div className="container mx-auto px-4 pt-20 pb-24 lg:pb-16 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[80vh]">
           {/* Left Content */}
-          <div className="space-y-8 animate-fade-in">
+          <div className="space-y-6 lg:space-y-8 animate-fade-in">
             <div className="space-y-4">
-              <div className="inline-flex items-center px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-medium">
+              <div className="inline-flex items-center px-3 py-2 lg:px-4 bg-primary-100 text-primary-700 rounded-full text-sm font-medium">
                 🔥 Heizöl-Experte seit über 20 Jahren
               </div>
               
-              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight">
+              <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-gray-900 leading-tight text-balance">
                 Heizöl günstig
                 <br />
                 <span className="text-primary-600">bestellen</span>
@@ -35,7 +37,7 @@ const HeroSection = () => {
                 in Bayern
               </h1>
               
-              <p className="text-xl text-gray-600 max-w-lg">
+              <p className="text-lg lg:text-xl text-gray-600 max-w-lg">
                 Kostenlose Lieferung • Ab 70 Cent pro Liter • Schnell & zuverlässig
               </p>
             </div>
@@ -49,14 +51,14 @@ const HeroSection = () => {
                 'Über 10.000 zufriedene Kunden'
               ].map((usp, index) => (
                 <div key={index} className="flex items-center space-x-3">
-                  <CheckCircle className="text-primary-600 flex-shrink-0" size={20} />
-                  <span className="text-gray-700 font-medium">{usp}</span>
+                  <CheckCircle className="text-primary-600 flex-shrink-0" size={18} />
+                  <span className="text-gray-700 font-medium text-sm lg:text-base">{usp}</span>
                 </div>
               ))}
             </div>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            {/* CTA Buttons - Desktop */}
+            <div className="hidden lg:flex flex-col sm:flex-row gap-4">
               <Button 
                 onClick={scrollToCalculator}
                 className="bg-primary-600 hover:bg-primary-700 text-white px-8 py-4 text-lg font-semibold transition-all duration-200 hover:scale-105"
@@ -72,37 +74,56 @@ const HeroSection = () => {
               </Button>
             </div>
 
+            {/* CTA Buttons - Mobile */}
+            <div className="lg:hidden space-y-4">
+              <Button 
+                onClick={scrollToCalculator}
+                className="w-full bg-primary-600 hover:bg-primary-700 text-white py-4 text-lg font-semibold min-h-[48px]"
+              >
+                Preis berechnen
+                <ArrowRight className="ml-2" size={20} />
+              </Button>
+              <ClickToCall />
+            </div>
+
             {/* Trust Indicators */}
-            <div className="pt-8 border-t border-gray-200">
+            <div className="pt-6 lg:pt-8 border-t border-gray-200">
               <p className="text-sm text-gray-500 mb-4">Vertrauen Sie auf über 20 Jahre Erfahrung</p>
-              <div className="flex items-center space-x-8">
+              <div className="grid grid-cols-3 gap-4 lg:flex lg:items-center lg:space-x-8">
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-primary-600">10.000+</div>
-                  <div className="text-sm text-gray-500">Zufriedene Kunden</div>
+                  <div className="text-xl lg:text-2xl font-bold text-primary-600">10.000+</div>
+                  <div className="text-xs lg:text-sm text-gray-500">Zufriedene Kunden</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-primary-600">20+</div>
-                  <div className="text-sm text-gray-500">Jahre Erfahrung</div>
+                  <div className="text-xl lg:text-2xl font-bold text-primary-600">20+</div>
+                  <div className="text-xs lg:text-sm text-gray-500">Jahre Erfahrung</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-primary-600">24h</div>
-                  <div className="text-sm text-gray-500">Service</div>
+                  <div className="text-xl lg:text-2xl font-bold text-primary-600">24h</div>
+                  <div className="text-xs lg:text-sm text-gray-500">Service</div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right Content - Price Calculator */}
-          <div className="animate-slide-up">
+          {/* Right Content - Price Calculators */}
+          <div className="animated-slide-up">
             <div id="price-calculator">
-              <PriceCalculator />
+              {/* Desktop Calculator */}
+              <div className="hidden lg:block">
+                <PriceCalculator />
+              </div>
+              {/* Mobile Calculator */}
+              <div className="lg:hidden">
+                <MobilePriceCalculator />
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+      {/* Scroll Indicator - Hidden on Mobile */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hidden lg:block">
         <div className="w-6 h-10 border-2 border-primary-600 rounded-full flex justify-center">
           <div className="w-1 h-3 bg-primary-600 rounded-full mt-2 animate-pulse"></div>
         </div>

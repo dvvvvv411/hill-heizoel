@@ -1,26 +1,94 @@
 
-<!DOCTYPE html>
-<html lang="de">
+<!doctype html>
+<html lang="de" dir="ltr">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HILL-Clear Projects GmbH - Heizöl günstig bestellen in Bayern</title>
-    <meta name="description" content="Heizöl günstig bestellen in Bayern ✓ Ab 70 Cent pro Liter ✓ Kostenlose Lieferung ✓ Premium Qualität ✓ HILL-Clear Projects GmbH - Ihr Heizöl-Experte seit 2003" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>HILL-Clear Heizöl Bayern - Günstig bestellen ab 70 Cent/L</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Heizöl günstig bestellen in Bayern. Kostenlose Lieferung ab 500L. Premium Qualität ab 70 Cent pro Liter. Schnelle Lieferung in 2-3 Werktagen." />
+    <meta name="keywords" content="Heizöl, Bayern, günstig, bestellen, Lieferung, kostenlos, Premium, Qualität" />
     <meta name="author" content="HILL-Clear Projects GmbH" />
-    <meta name="keywords" content="Heizöl, Bayern, München, günstig, bestellen, Lieferung, Premium" />
-
-    <meta property="og:title" content="HILL-Clear Projects GmbH - Heizöl günstig bestellen in Bayern" />
-    <meta property="og:description" content="Heizöl günstig bestellen in Bayern ✓ Ab 70 Cent pro Liter ✓ Kostenlose Lieferung ✓ Premium Qualität" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@hill_clear" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    
+    <!-- Mobile Optimizations -->
+    <meta name="theme-color" content="#006b51" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="HILL-Clear" />
+    <meta name="format-detection" content="telephone=yes" />
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="/icon-192.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/icon-192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icon-192.png" />
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Prevent FOUC -->
+    <style>
+      body { visibility: hidden; opacity: 0; }
+      .loading { visibility: visible; opacity: 1; }
+    </style>
   </head>
-
-  <body>
+  <body class="loading">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+      // Remove loading class when DOM is ready
+      document.addEventListener('DOMContentLoaded', function() {
+        document.body.classList.remove('loading');
+        document.body.style.visibility = 'visible';
+        document.body.style.opacity = '1';
+      });
+      
+      // Register Service Worker
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js')
+            .then(function(registration) {
+              console.log('SW registered: ', registration);
+            })
+            .catch(function(registrationError) {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+      
+      // Add to homescreen prompt
+      let deferredPrompt;
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        
+        // Show install button/banner
+        const installBanner = document.createElement('div');
+        installBanner.innerHTML = `
+          <div style="position: fixed; bottom: 80px; left: 16px; right: 16px; background: #006b51; color: white; padding: 12px 16px; border-radius: 8px; z-index: 1000; display: flex; align-items: center; justify-content: between; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+            <span style="flex: 1; font-size: 14px;">App installieren für bessere Erfahrung</span>
+            <button onclick="installApp()" style="background: white; color: #006b51; border: none; padding: 8px 16px; border-radius: 4px; font-weight: 600; margin-left: 12px;">Installieren</button>
+            <button onclick="this.parentElement.parentElement.remove()" style="background: none; border: none; color: white; padding: 8px; margin-left: 8px; font-size: 18px;">&times;</button>
+          </div>
+        `;
+        document.body.appendChild(installBanner);
+      });
+      
+      window.installApp = async () => {
+        if (deferredPrompt) {
+          deferredPrompt.prompt();
+          const { outcome } = await deferredPrompt.userChoice;
+          console.log(`User response to the install prompt: ${outcome}`);
+          deferredPrompt = null;
+        }
+      };
+    </script>
   </body>
 </html>
