@@ -1,8 +1,6 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Button } from "@/components/ui/button";
-import { FileText } from 'lucide-react';
 
 const TechnicalSpecs = () => {
   const standardSpecs = [
@@ -51,12 +49,8 @@ const TechnicalSpecs = () => {
             
             <TabsContent value="standard">
               <Card>
-                <CardHeader className="flex flex-row items-center justify-between">
+                <CardHeader>
                   <CardTitle>Standard Heizöl - Technische Daten</CardTitle>
-                  <Button variant="outline" className="flex items-center gap-2">
-                    <FileText className="w-4 h-4" />
-                    PDF herunterladen
-                  </Button>
                 </CardHeader>
                 <CardContent>
                   <div className="overflow-x-auto">
@@ -85,12 +79,8 @@ const TechnicalSpecs = () => {
             
             <TabsContent value="premium">
               <Card>
-                <CardHeader className="flex flex-row items-center justify-between">
+                <CardHeader>
                   <CardTitle>Premium Heizöl - Technische Daten</CardTitle>
-                  <Button variant="outline" className="flex items-center gap-2">
-                    <FileText className="w-4 h-4" />
-                    PDF herunterladen
-                  </Button>
                 </CardHeader>
                 <CardContent>
                   <div className="overflow-x-auto">
