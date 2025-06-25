@@ -2,8 +2,6 @@
 const CACHE_NAME = 'hill-clear-v1';
 const urlsToCache = [
   '/',
-  '/static/css/main.css',
-  '/static/js/main.js',
   '/manifest.json'
 ];
 

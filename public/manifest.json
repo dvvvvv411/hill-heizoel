@@ -13,29 +13,16 @@
   "dir": "ltr",
   "icons": [
     {
-      "src": "/favicon.ico",
-      "sizes": "16x16 32x32",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "/icon-192.png",
+      "src": "https://i.imgur.com/aKp9leP.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable any"
     },
     {
-      "src": "/icon-512.png",
+      "src": "https://i.imgur.com/aKp9leP.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable any"
-    }
-  ],
-  "screenshots": [
-    {
-      "src": "/screenshot-mobile.png",
-      "sizes": "390x844",
-      "type": "image/png",
-      "form_factor": "narrow"
     }
   ],
   "shortcuts": [
@@ -46,7 +33,7 @@
       "url": "/#price-calculator",
       "icons": [
         {
-          "src": "/favicon.ico",
+          "src": "https://i.imgur.com/aKp9leP.png",
           "sizes": "32x32"
         }
       ]
@@ -55,7 +42,7 @@
       "name": "Anrufen",
       "short_name": "Anruf",
       "description": "Direkt anrufen",
-      "url": "tel:089123456789"
+      "url": "tel:08962826595"
     }
   ]
 }
