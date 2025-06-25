@@ -24,53 +24,55 @@ const Typography: React.FC<TypographyProps> = ({
 
   const variants = {
     h1: {
-      component: 'h1',
+      component: 'h1' as const,
       classes: 'text-4xl md:text-5xl lg:text-6xl font-bold font-heading leading-tight'
     },
     h2: {
-      component: 'h2',
+      component: 'h2' as const,
       classes: 'text-3xl md:text-4xl lg:text-5xl font-bold font-heading leading-tight'
     },
     h3: {
-      component: 'h3',
+      component: 'h3' as const,
       classes: 'text-2xl md:text-3xl lg:text-4xl font-semibold font-heading leading-tight'
     },
     h4: {
-      component: 'h4',
+      component: 'h4' as const,
       classes: 'text-xl md:text-2xl lg:text-3xl font-semibold font-heading leading-tight'
     },
     h5: {
-      component: 'h5',
+      component: 'h5' as const,
       classes: 'text-lg md:text-xl font-semibold font-heading leading-tight'
     },
     h6: {
-      component: 'h6',
+      component: 'h6' as const,
       classes: 'text-base md:text-lg font-semibold font-heading leading-tight'
     },
     body: {
-      component: 'p',
+      component: 'p' as const,
       classes: 'text-base leading-relaxed'
     },
     caption: {
-      component: 'span',
+      component: 'span' as const,
       classes: 'text-sm leading-normal'
     },
     overline: {
-      component: 'span',
+      component: 'span' as const,
       classes: 'text-xs uppercase tracking-wider font-semibold'
     }
   };
 
   const { component: Component, classes } = variants[variant];
 
-  return (
-    <Component className={cn(
-      classes,
-      color && colorClasses[color],
-      className
-    )}>
-      {children}
-    </Component>
+  return React.createElement(
+    Component,
+    {
+      className: cn(
+        classes,
+        color && colorClasses[color],
+        className
+      )
+    },
+    children
   );
 };
 
