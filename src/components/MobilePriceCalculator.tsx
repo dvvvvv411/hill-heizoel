@@ -85,25 +85,26 @@ const MobilePriceCalculator = () => {
     setIsLoading(true);
     
     try {
-      // Build query parameters for the GET request
-      const params = new URLSearchParams({
-        product: oilType,
-        liters: liters.toString(),
-        shop_id: shopId,
-        total_amount: totalAmount.toFixed(2),
-        delivery_fee: '0',
-        price_per_liter: currentPrice.toFixed(2)
-      });
-
-      const apiUrl = `https://luhhnsvwtnmxztcmdxyq.supabase.co/functions/v1/create-order-token?${params.toString()}`;
+      const apiUrl = 'https://luhhnsvwtnmxztcmdxyq.supabase.co/functions/v1/create-order-token';
       
+      const requestBody = {
+        product: oilType,
+        liters: liters,
+        shop_id: shopId,
+        total_amount: parseFloat(totalAmount.toFixed(2)),
+        delivery_fee: 0,
+        price_per_liter: parseFloat(currentPrice.toFixed(2))
+      };
+
       console.log('Sending order request to:', apiUrl);
+      console.log('Request body:', requestBody);
 
       const response = await fetch(apiUrl, {
-        method: 'GET',
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-        }
+        },
+        body: JSON.stringify(requestBody)
       });
 
       console.log('API Response status:', response.status);
