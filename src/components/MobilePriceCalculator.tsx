@@ -322,28 +322,26 @@ const MobilePriceCalculator = () => {
               <span>Geprüfte DIN-Qualität</span>
             </div>
           </div>
+
+          {/* Order Button */}
+          <Button 
+            onClick={handleOrder}
+            disabled={isLoading || liters < minLiters || liters > maxLiters}
+            className="w-full bg-accent-orange-500 hover:bg-accent-orange-600 text-white h-14 text-lg font-semibold transition-all duration-200 hover:scale-105"
+          >
+            {isLoading ? (
+              <div className="flex items-center space-x-2">
+                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                <span>Wird verarbeitet...</span>
+              </div>
+            ) : (
+              <>
+                <span>Jetzt bestellen - {totalAmount.toFixed(2)}€</span>
+              </>
+            )}
+          </Button>
         </CardContent>
       </Card>
-
-      {/* Sticky Order Button */}
-      <div className="fixed bottom-0 left-0 right-0 p-4 bg-white/95 backdrop-blur-sm border-t border-gray-200 z-40 lg:hidden">
-        <Button 
-          onClick={handleOrder}
-          disabled={isLoading || liters < minLiters || liters > maxLiters}
-          className="w-full bg-accent-orange-500 hover:bg-accent-orange-600 text-white h-14 text-lg font-semibold transition-all duration-200 hover:scale-105"
-        >
-          {isLoading ? (
-            <div className="flex items-center space-x-2">
-              <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-              <span>Wird verarbeitet...</span>
-            </div>
-          ) : (
-            <>
-              <span>Jetzt bestellen - {totalAmount.toFixed(2)}€</span>
-            </>
-          )}
-        </Button>
-      </div>
     </div>
   );
 };

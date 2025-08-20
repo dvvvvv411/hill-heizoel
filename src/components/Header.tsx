@@ -135,17 +135,6 @@ const Header = () => {
                 Über uns
               </Link>
               
-              <div className="pt-4 border-t border-gray-200">
-                <div className="px-4">
-                  <a
-                    href="tel:08962826595"
-                    className="flex items-center py-3 px-4 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors min-h-[48px] w-full"
-                  >
-                    <Phone size={20} className="mr-3" />
-                    <span className="font-medium">Jetzt anrufen</span>
-                  </a>
-                </div>
-              </div>
             </nav>
           </div>
         </div>

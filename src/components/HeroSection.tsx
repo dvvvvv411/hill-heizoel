@@ -83,7 +83,6 @@ const HeroSection = () => {
                 Preis berechnen
                 <ArrowRight className="ml-2" size={20} />
               </Button>
-              <ClickToCall />
             </div>
 
             {/* Trust Indicators */}
