@@ -38,7 +38,7 @@ const CompanySection = () => {
             Über HILL-Heizöl
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Ihr zuverlässiger Partner für Heizöl in Bayern seit über 20 Jahren. 
+            Ihr zuverlässiger Partner für Heizöl in Deutschland seit über 20 Jahren. 
             Wir stehen für Qualität, Service und faire Preise.
           </p>
         </div>
@@ -52,9 +52,9 @@ const CompanySection = () => {
             <div className="space-y-4 text-gray-700 leading-relaxed">
               <p>
                 Seit der Gründung im Jahr 2003 haben wir uns zu einem der führenden 
-                Heizöl-Anbieter in Bayern entwickelt. Was als kleines Familienunternehmen 
+                Heizöl-Anbieter in Deutschland entwickelt. Was als kleines Familienunternehmen 
                 in München begann, ist heute ein zuverlässiger Partner für über 100.000 
-                Kunden in ganz Bayern.
+                Kunden in ganz Deutschland.
               </p>
               <p>
                 Unser Erfolgsrezept ist einfach: Wir bieten erstklassige Qualität zu 

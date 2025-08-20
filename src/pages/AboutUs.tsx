@@ -83,7 +83,7 @@ const AboutUs = () => {
             Über HILL-Clear Projects GmbH
           </h1>
           <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-8">
-            Seit über 20 Jahren Ihr zuverlässiger Partner für Premium-Heizöl in Bayern. 
+            Seit über 20 Jahren Ihr zuverlässiger Partner für Premium-Heizöl in Deutschland. 
             Qualität, Service und faire Preise sind unser Versprechen an Sie.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -142,7 +142,7 @@ const AboutUs = () => {
               <div className="space-y-4 text-gray-700 text-lg leading-relaxed">
                 <p>
                   Im Jahr 2003 wurde HILL-Clear Projects GmbH mit dem Ziel gegründet, 
-                  Kunden in Bayern mit hochwertigem Heizöl zu fairen Preisen zu versorgen. 
+                  Kunden in Deutschland mit hochwertigem Heizöl zu fairen Preisen zu versorgen. 
                   Was als kleines Familienunternehmen begann, hat sich zu einem der 
                   führenden Heizöl-Anbieter in der Region entwickelt.
                 </p>
@@ -154,7 +154,7 @@ const AboutUs = () => {
                 </p>
                 <p>
                   Mit über 100.000 zufriedenen Kunden und mehr als 200.000 erfolgreichen 
-                  Lieferungen haben wir uns das Vertrauen der Menschen in Bayern verdient. 
+                  Lieferungen haben wir uns das Vertrauen der Menschen in Deutschland verdient. 
                   Unser Team aus erfahrenen Fachkräften steht Ihnen jederzeit mit Rat 
                   und Tat zur Seite.
                 </p>
@@ -325,7 +325,7 @@ const AboutUs = () => {
                     HILL-Clear Projects GmbH
                   </h2>
                   <p className="text-xl text-gray-600">
-                    Ihr Partner für Heizöl in Bayern
+                    Ihr Partner für Heizöl in Deutschland
                   </p>
                 </div>
 

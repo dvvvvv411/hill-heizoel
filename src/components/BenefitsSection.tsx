@@ -31,7 +31,7 @@ const BenefitsSection = () => {
     {
       icon: Award,
       title: 'Über 20 Jahre Erfahrung',
-      description: 'Zuverlässiger Partner für Heizöl in Bayern seit 2003',
+      description: 'Zuverlässiger Partner für Heizöl in Deutschland seit 2003',
       color: 'bg-red-50 text-red-600'
     },
     {
@@ -50,7 +50,7 @@ const BenefitsSection = () => {
             Warum HILL-Heizöl?
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Als Bayerns führender Heizöl-Anbieter stehen wir für Qualität, Zuverlässigkeit 
+            Als führender Heizöl-Anbieter in Deutschland stehen wir für Qualität, Zuverlässigkeit 
             und erstklassigen Service. Überzeugen Sie sich von unseren Vorteilen.
           </p>
         </div>

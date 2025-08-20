@@ -34,7 +34,7 @@ const HeroSection = () => {
                 <br />
                 <span className="text-primary-600">bestellen</span>
                 <br />
-                in Bayern
+                Deutschlandweit
               </h1>
               
               <p className="text-lg lg:text-xl text-gray-600 max-w-lg">
