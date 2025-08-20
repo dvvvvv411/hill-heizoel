@@ -13,7 +13,7 @@ const ServiceHero = () => {
           </h1>
           <p className="text-xl text-gray-600 mb-8">
             Zuverlässige Lieferung, kompetente Beratung und erstklassiger Service 
-            rund um Ihre Heizölversorgung in ganz Bayern.
+            rund um Ihre Heizölversorgung in ganz Deutschland.
           </p>
           
           <div className="grid md:grid-cols-3 gap-8 mt-12">
@@ -22,7 +22,7 @@ const ServiceHero = () => {
                 <Truck className="w-10 h-10 text-white" />
               </div>
               <h3 className="text-xl font-semibold mb-2">Kostenlose Lieferung</h3>
-              <p className="text-gray-600">In ganz Bayern ab 1500 Liter</p>
+              <p className="text-gray-600">In ganz Deutschland ab 1500 Liter</p>
             </div>
             
             <div className="text-center">

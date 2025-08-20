@@ -80,7 +80,7 @@ const AGB = () => {
               <div>
                 <h3 className="font-semibold text-gray-900 mb-2">Liefergebiet</h3>
                 <p className="text-gray-700 text-sm leading-relaxed">
-                  Wir liefern innerhalb Deutschlands, schwerpunktmäßig in Bayern.
+                  Wir liefern innerhalb Deutschlands.
                 </p>
               </div>
               

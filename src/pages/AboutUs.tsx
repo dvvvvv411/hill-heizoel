@@ -239,7 +239,7 @@ const AboutUs = () => {
               Unser Liefergebiet
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Wir liefern zuverlässig in ganz Bayern - von München bis Nürnberg, 
+              Wir liefern zuverlässig in ganz Deutschland - von München bis Nürnberg, 
               von Augsburg bis Regensburg.
             </p>
           </div>
@@ -249,7 +249,7 @@ const AboutUs = () => {
               <div>
                 <div className="flex items-center mb-6">
                   <MapPin className="text-primary-600 mr-3" size={32} />
-                  <h3 className="text-2xl font-bold text-gray-900">Ganz Bayern</h3>
+                  <h3 className="text-2xl font-bold text-gray-900">Ganz Deutschland</h3>
                 </div>
                 <div className="space-y-4">
                   <div className="flex items-center">
@@ -277,7 +277,7 @@ const AboutUs = () => {
               <div className="bg-gradient-to-br from-primary-100 to-primary-200 rounded-xl p-8 text-center">
                 <div className="text-6xl mb-4">🗺️</div>
                 <h4 className="text-xl font-bold text-gray-900 mb-2">Kostenlose Lieferung</h4>
-                <p className="text-gray-700 mb-4">ab 1500 Liter in ganz Bayern</p>
+                <p className="text-gray-700 mb-4">ab 1500 Liter in ganz Deutschland</p>
                 <div className="text-2xl font-bold text-primary-600">4-7</div>
                 <div className="text-sm text-gray-600">Werktage</div>
               </div>

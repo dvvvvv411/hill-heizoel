@@ -15,10 +15,10 @@ const DeliverySection = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Unser Liefergebiet in Bayern
+            Unser Liefergebiet in Deutschland
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Wir liefern zuverlässig und kostenfrei in ganz Bayern. 
+            Wir liefern zuverlässig und kostenfrei in ganz Deutschland.
             Ihr Ort ist nicht dabei? Kontaktieren Sie uns - wir finden eine Lösung!
           </p>
         </div>
@@ -33,7 +33,7 @@ const DeliverySection = () => {
                   <div className="relative flex items-center justify-center">
                     <img 
                       src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&h=400"
-                      alt="Bayern Karte - Liefergebiet"
+                      alt="Deutschland Karte - Liefergebiet"
                       className="w-full max-w-md h-64 object-cover rounded-lg shadow-lg"
                     />
                   </div>
@@ -53,7 +53,7 @@ const DeliverySection = () => {
                 <div className="mt-6 grid grid-cols-2 gap-4">
                   <div className="text-center bg-white/80 rounded-lg p-3">
                     <div className="text-2xl font-bold text-primary-600">100%</div>
-                    <div className="text-sm text-gray-600">Bayern Abdeckung</div>
+                    <div className="text-sm text-gray-600">Deutschland Abdeckung</div>
                   </div>
                   <div className="text-center bg-white/80 rounded-lg p-3">
                     <div className="text-2xl font-bold text-primary-600">20+</div>
@@ -64,7 +64,7 @@ const DeliverySection = () => {
             </Card>
             
             <div className="absolute -bottom-4 -right-4 bg-primary-600 text-white px-6 py-3 rounded-full font-bold shadow-lg animate-pulse">
-              Ganz Bayern!
+              Ganz Deutschland!
             </div>
           </div>
 
@@ -72,9 +72,9 @@ const DeliverySection = () => {
           <div>
             <Card className="shadow-xl">
               <CardHeader>
-                <CardTitle className="text-2xl text-primary-600 flex items-center">
+                 <CardTitle className="text-2xl text-primary-600 flex items-center">
                   <CheckCircle className="mr-3 text-green-500" size={28} />
-                  Lieferstädte in Bayern
+                  Lieferstädte in Deutschland
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -95,7 +95,7 @@ const DeliverySection = () => {
                     Ihr Ort ist nicht dabei?
                   </p>
                   <p className="text-gray-600 text-sm">
-                    Kein Problem! Wir beliefern auch weitere Orte in Bayern. 
+                    Kein Problem! Wir beliefern auch weitere Orte in Deutschland. 
                     Kontaktieren Sie uns unter <span className="font-medium">089 628 265 95</span> 
                     und wir prüfen die Liefermöglichkeit.
                   </p>

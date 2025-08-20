@@ -38,14 +38,14 @@ const HeroSection = () => {
               </h1>
               
               <p className="text-lg lg:text-xl text-gray-600 max-w-lg">
-                Kostenlose Lieferung in Bayern • <span className="text-accent-orange-600 font-semibold">Ab 70 Cent pro Liter</span> • Schnell & zuverlässig
+                Kostenlose Lieferung in Deutschland • <span className="text-accent-orange-600 font-semibold">Ab 70 Cent pro Liter</span> • Schnell & zuverlässig
               </p>
             </div>
 
             {/* USPs */}
             <div className="space-y-3">
               {[
-                { text: 'Kostenlose Lieferung in Bayern ab 1500 Liter', highlight: true },
+                { text: 'Kostenlose Lieferung in Deutschland ab 1500 Liter', highlight: true },
                 { text: 'Lieferung innerhalb 4-7 Werktagen', highlight: false },
                 { text: 'Geprüfte Premium-Qualität', highlight: false },
                 { text: 'Über 100.000 zufriedene Kunden', highlight: true }

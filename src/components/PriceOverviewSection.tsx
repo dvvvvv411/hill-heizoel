@@ -343,7 +343,7 @@ const PriceOverviewSection = () => {
             <div className="text-center mt-8">
               <div className="flex items-center justify-center space-x-2 text-sm text-gray-600 mb-4">
                 <MapPin size={16} className="text-primary-600" />
-                <span>Kostenlose Lieferung in ganz Bayern</span>
+                <span>Kostenlose Lieferung in ganz Deutschland</span>
               </div>
               <Button variant="outline" className="border-primary-600 text-primary-600">
                 Haben Sie Fragen? Rufen Sie uns an: 089 123 456 789

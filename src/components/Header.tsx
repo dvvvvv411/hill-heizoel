@@ -36,7 +36,7 @@ const Header = () => {
                 </div>
               </div>
               <div className="text-accent-orange-500 font-medium">
-                Kostenlose Lieferung in Bayern
+                Kostenlose Lieferung in Deutschland
               </div>
             </div>
           </div>

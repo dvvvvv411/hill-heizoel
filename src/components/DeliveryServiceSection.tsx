@@ -8,7 +8,7 @@ const DeliveryServiceSection = () => {
     {
       icon: Truck,
       title: 'Kostenlose Lieferung',
-      description: 'In ganz Bayern ab 1500 Liter Mindestbestellmenge',
+      description: 'In ganz Deutschland ab 1500 Liter Mindestbestellmenge',
       details: 'Keine versteckten Kosten - der angezeigte Preis ist der Endpreis'
     },
     {
@@ -19,8 +19,8 @@ const DeliveryServiceSection = () => {
     },
     {
       icon: Map,
-      title: 'Liefergebiet Bayern',
-      description: 'Flächendeckende Belieferung in ganz Bayern',
+      title: 'Liefergebiet Deutschland',
+      description: 'Flächendeckende Belieferung in ganz Deutschland',
       details: 'Optimierte Routen für schnelle und umweltschonende Lieferung'
     },
     {
@@ -48,7 +48,7 @@ const DeliveryServiceSection = () => {
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
             Zuverlässige und termingerechte Heizöllieferung direkt zu Ihnen nach Hause. 
-            Kostenlos in ganz Bayern ab 1500 Liter.
+            Kostenlos in ganz Deutschland ab 1500 Liter.
           </p>
         </div>
 
@@ -104,7 +104,7 @@ const DeliveryServiceSection = () => {
                 <div className="p-4 bg-primary-50 rounded-lg">
                   <h4 className="font-semibold mb-2">Liefergebiet</h4>
                   <p className="text-sm text-gray-600">
-                    Ganz Bayern - von München bis Nürnberg, von Augsburg bis Regensburg
+                    Ganz Deutschland - von München bis Nürnberg, von Augsburg bis Regensburg
                   </p>
                 </div>
                 <div className="p-4 bg-primary-50 rounded-lg">

@@ -7,7 +7,7 @@ const BenefitsSection = () => {
     {
       icon: Truck,
       title: 'Kostenlose Lieferung',
-      description: 'Kostenlose Lieferung in Bayern ab 1500 Liter Bestellmenge',
+      description: 'Kostenlose Lieferung in Deutschland ab 1500 Liter Bestellmenge',
       color: 'bg-blue-50 text-blue-600'
     },
     {
