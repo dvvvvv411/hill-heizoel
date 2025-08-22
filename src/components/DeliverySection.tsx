@@ -96,7 +96,7 @@ const DeliverySection = () => {
                   </p>
                   <p className="text-gray-600 text-sm">
                     Kein Problem! Wir beliefern auch weitere Orte in Deutschland. 
-                    Kontaktieren Sie uns unter <span className="font-medium">089 628 265 95</span> 
+                    Kontaktieren Sie uns unter <span className="font-medium">089 414 340 24</span> 
                     und wir prüfen die Liefermöglichkeit.
                   </p>
                 </div>

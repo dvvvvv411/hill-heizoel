@@ -70,7 +70,7 @@ const HeroSection = () => {
                 variant="outline" 
                 className="border-accent-orange-500 text-accent-orange-600 hover:bg-accent-orange-50 hover:border-accent-orange-600 px-8 py-4 text-lg font-semibold"
               >
-                089 628 265 95
+                089 414 340 24
               </Button>
             </div>
 
