@@ -126,7 +126,7 @@ const ReviewsSection = () => {
                 Jetzt Preis berechnen
               </button>
               <button className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors">
-                089 123 456 789
+                089 414 340 24
               </button>
             </div>
           </div>

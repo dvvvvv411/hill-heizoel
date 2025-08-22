@@ -346,7 +346,7 @@ const PriceOverviewSection = () => {
                 <span>Kostenlose Lieferung in ganz Deutschland</span>
               </div>
               <Button variant="outline" className="border-primary-600 text-primary-600">
-                Haben Sie Fragen? Rufen Sie uns an: 089 123 456 789
+                Haben Sie Fragen? Rufen Sie uns an: 089 414 340 24
               </Button>
             </div>
           </TabsContent>

@@ -95,7 +95,7 @@ const PriceCalculator = () => {
       console.error('Order error:', error);
       toast({
         title: "Fehler bei der Bestellung",
-        description: "Bitte versuchen Sie es später erneut oder kontaktieren Sie uns telefonisch unter 089 123 456 789.",
+        description: "Bitte versuchen Sie es später erneut oder kontaktieren Sie uns telefonisch unter 089 414 340 24.",
         variant: "destructive"
       });
     } finally {
