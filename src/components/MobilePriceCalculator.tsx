@@ -9,7 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 
 const MobilePriceCalculator = () => {
-  const [liters, setLiters] = useState<number>(1500);
+  const [liters, setLiters] = useState<string>('1500');
   const [oilType, setOilType] = useState<'standard_heizoel' | 'premium_heizoel'>('standard_heizoel');
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
@@ -39,21 +39,20 @@ const MobilePriceCalculator = () => {
 
   const shopId = "83f973c5-280e-484a-bbfe-00b994b7988c";
   const currentPrice = prices[oilType];
-  const totalAmount = liters * currentPrice;
+  const litersNum = parseInt(liters) || 0;
+  const canCalculate = liters !== '' && litersNum >= 1500 && litersNum <= 32000;
+  const totalAmount = canCalculate ? litersNum * currentPrice : 0;
   const minLiters = 1500;
   const maxLiters = 32000;
 
   const handleLitersChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = Number(e.target.value);
-    if (value >= minLiters && value <= maxLiters) {
-      setLiters(value);
-    }
+    setLiters(e.target.value);
   };
 
   const adjustLiters = (amount: number) => {
-    const newValue = liters + amount;
+    const newValue = litersNum + amount;
     if (newValue >= minLiters && newValue <= maxLiters) {
-      setLiters(newValue);
+      setLiters(newValue.toString());
     }
   };
 
@@ -73,7 +72,7 @@ const MobilePriceCalculator = () => {
   };
 
   const handleOrder = async () => {
-    if (liters < minLiters || liters > maxLiters) {
+    if (!canCalculate) {
       toast({
         title: "Ungültige Literzahl",
         description: `Bitte wählen Sie zwischen ${minLiters} und ${maxLiters} Litern.`,
@@ -89,7 +88,7 @@ const MobilePriceCalculator = () => {
       
       const requestBody = {
         product: oilType,
-        liters: liters,
+        liters: litersNum,
         shop_id: shopId,
         total_amount: parseFloat(totalAmount.toFixed(2)),
         delivery_fee: 0,
@@ -244,7 +243,7 @@ const MobilePriceCalculator = () => {
                 variant="outline"
                 className="flex-shrink-0 w-12 h-12 p-0 border-accent-orange-300 hover:bg-accent-orange-50"
                 onClick={() => adjustLiters(-100)}
-                disabled={liters <= minLiters}
+                disabled={litersNum <= minLiters}
               >
                 <ChevronLeft size={20} />
               </Button>
@@ -264,11 +263,21 @@ const MobilePriceCalculator = () => {
                 variant="outline"
                 className="flex-shrink-0 w-12 h-12 p-0 border-accent-orange-300 hover:bg-accent-orange-50"
                 onClick={() => adjustLiters(100)}
-                disabled={liters >= maxLiters}
+                disabled={litersNum >= maxLiters}
               >
                 <ChevronRight size={20} />
               </Button>
             </div>
+            {liters !== '' && litersNum < minLiters && (
+              <p className="text-sm text-red-600 text-center">
+                Mindestbestellmenge: {minLiters} Liter
+              </p>
+            )}
+            {liters !== '' && litersNum > maxLiters && (
+              <p className="text-sm text-red-600 text-center">
+                Maximalmenge: {maxLiters} Liter
+              </p>
+            )}
             <div className="flex justify-center space-x-2">
               {[1500, 2000, 5000, 10000].map((amount) => (
                 <Button
@@ -277,7 +286,7 @@ const MobilePriceCalculator = () => {
                   variant="outline"
                   size="sm"
                   className="text-xs px-3 py-1 h-8 border-accent-orange-300 hover:bg-accent-orange-50 hover:border-accent-orange-500"
-                  onClick={() => setLiters(amount)}
+                  onClick={() => setLiters(amount.toString())}
                 >
                   {amount}L
                 </Button>
@@ -293,7 +302,7 @@ const MobilePriceCalculator = () => {
             </div>
             <div className="flex justify-between text-sm text-gray-600">
               <span>Menge:</span>
-              <span className="font-medium">{liters} Liter</span>
+              <span className="font-medium">{liters || '—'} Liter</span>
             </div>
             <div className="flex justify-between text-sm text-gray-600">
               <span>Preis pro Liter:</span>
@@ -302,7 +311,7 @@ const MobilePriceCalculator = () => {
             <div className="border-t pt-2">
               <div className="flex justify-between items-center text-xl font-bold">
                 <span>Gesamtpreis:</span>
-                <span className="text-accent-orange-600">{totalAmount.toFixed(2)}€</span>
+                <span className="text-accent-orange-600">{canCalculate ? totalAmount.toFixed(2) : '—'}€</span>
               </div>
             </div>
           </div>
@@ -326,7 +335,7 @@ const MobilePriceCalculator = () => {
           {/* Order Button */}
           <Button 
             onClick={handleOrder}
-            disabled={isLoading || liters < minLiters || liters > maxLiters}
+            disabled={isLoading || !canCalculate}
             className="w-full bg-accent-orange-500 hover:bg-accent-orange-600 text-white h-14 text-lg font-semibold transition-all duration-200 hover:scale-105"
           >
             {isLoading ? (
@@ -336,7 +345,7 @@ const MobilePriceCalculator = () => {
               </div>
             ) : (
               <>
-                <span>Jetzt bestellen - {totalAmount.toFixed(2)}€</span>
+                <span>{canCalculate ? `Jetzt bestellen - ${totalAmount.toFixed(2)}€` : 'Jetzt bestellen'}</span>
               </>
             )}
           </Button>

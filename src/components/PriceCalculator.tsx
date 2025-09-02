@@ -9,7 +9,7 @@ import { Truck, Shield, Clock, Calculator } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 
 const PriceCalculator = () => {
-  const [liters, setLiters] = useState<number>(1500);
+  const [liters, setLiters] = useState<string>('1500');
   const [oilType, setOilType] = useState<'standard_heizoel' | 'premium_heizoel'>('standard_heizoel');
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
@@ -21,19 +21,18 @@ const PriceCalculator = () => {
 
   const shopId = "83f973c5-280e-484a-bbfe-00b994b7988c";
   const currentPrice = prices[oilType];
-  const totalAmount = liters * currentPrice;
+  const litersNum = parseInt(liters) || 0;
+  const canCalculate = liters !== '' && litersNum >= 1500 && litersNum <= 32000;
+  const totalAmount = canCalculate ? litersNum * currentPrice : 0;
   const minLiters = 1500;
   const maxLiters = 32000;
 
   const handleLitersChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = Number(e.target.value);
-    if (value >= minLiters && value <= maxLiters) {
-      setLiters(value);
-    }
+    setLiters(e.target.value);
   };
 
   const handleOrder = async () => {
-    if (liters < minLiters || liters > maxLiters) {
+    if (!canCalculate) {
       toast({
         title: "Ungültige Literzahl",
         description: `Bitte wählen Sie zwischen ${minLiters} und ${maxLiters} Litern.`,
@@ -49,7 +48,7 @@ const PriceCalculator = () => {
       
       const requestBody = {
         product: oilType,
-        liters: liters,
+        liters: litersNum,
         shop_id: shopId,
         total_amount: parseFloat(totalAmount.toFixed(2)),
         delivery_fee: 0,
@@ -157,9 +156,14 @@ const PriceCalculator = () => {
             className="text-lg h-12"
             placeholder={`z.B. ${minLiters}`}
           />
-          {(liters < minLiters || liters > maxLiters) && (
+          {liters !== '' && litersNum < minLiters && (
             <p className="text-sm text-red-600">
-              Bitte wählen Sie zwischen {minLiters} und {maxLiters} Litern.
+              Mindestbestellmenge: {minLiters} Liter
+            </p>
+          )}
+          {liters !== '' && litersNum > maxLiters && (
+            <p className="text-sm text-red-600">
+              Maximalmenge: {maxLiters} Liter
             </p>
           )}
         </div>
@@ -172,7 +176,7 @@ const PriceCalculator = () => {
           </div>
           <div className="flex justify-between text-sm text-gray-600">
             <span>Menge:</span>
-            <span className="font-medium">{liters} Liter</span>
+            <span className="font-medium">{liters || '—'} Liter</span>
           </div>
           <div className="flex justify-between text-sm text-gray-600">
             <span>Preis pro Liter:</span>
@@ -181,7 +185,7 @@ const PriceCalculator = () => {
           <div className="border-t pt-2">
             <div className="flex justify-between items-center text-xl font-bold">
               <span>Gesamtpreis:</span>
-              <span className="text-accent-orange-600">{totalAmount.toFixed(2)}€</span>
+              <span className="text-accent-orange-600">{canCalculate ? totalAmount.toFixed(2) : '—'}€</span>
             </div>
           </div>
         </div>
@@ -205,7 +209,7 @@ const PriceCalculator = () => {
         {/* Order Button */}
         <Button 
           onClick={handleOrder}
-          disabled={isLoading || liters < minLiters || liters > maxLiters}
+          disabled={isLoading || !canCalculate}
           className="w-full bg-primary-600 hover:bg-primary-700 text-white h-12 text-lg font-semibold transition-all duration-200 hover:scale-105"
         >
           {isLoading ? (
