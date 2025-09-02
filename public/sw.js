@@ -1,5 +1,5 @@
 
-const CACHE_NAME = 'hill-clear-v1';
+const CACHE_NAME = 'hill-clear-v2';
 const urlsToCache = [
   '/',
   '/manifest.json'
@@ -12,33 +12,53 @@ self.addEventListener('install', (event) => {
       .then((cache) => {
         return cache.addAll(urlsToCache);
       })
+      .then(() => self.skipWaiting())
   );
 });
 
 // Fetch Event
 self.addEventListener('fetch', (event) => {
+  // Skip caching for module scripts and assets during development
+  if (event.request.url.includes('/@') || 
+      event.request.url.includes('.js?') || 
+      event.request.url.includes('.tsx') ||
+      event.request.url.includes('vite') ||
+      event.request.destination === 'script') {
+    return;
+  }
+
   event.respondWith(
-    caches.match(event.request)
-      .then((response) => {
-        // Return cached version or fetch from network
-        return response || fetch(event.request);
-      }
-    )
+    // Network first for navigations
+    if (event.request.mode === 'navigate') {
+      fetch(event.request).catch(() => {
+        return caches.match('/');
+      });
+    } else {
+      caches.match(event.request)
+        .then((response) => {
+          return response || fetch(event.request);
+        });
+    }
   );
 });
 
 // Activate Service Worker
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames.map((cacheName) => {
-          if (cacheName !== CACHE_NAME) {
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    })
+    Promise.all([
+      // Clean up old caches
+      caches.keys().then((cacheNames) => {
+        return Promise.all(
+          cacheNames.map((cacheName) => {
+            if (cacheName !== CACHE_NAME) {
+              return caches.delete(cacheName);
+            }
+          })
+        );
+      }),
+      // Take control immediately
+      self.clients.claim()
+    ])
   );
 });
 
