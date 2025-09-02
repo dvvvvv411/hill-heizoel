@@ -239,8 +239,8 @@ const AboutUs = () => {
               Unser Liefergebiet
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Wir liefern zuverlässig in ganz Deutschland - von München bis Nürnberg, 
-              von Augsburg bis Regensburg.
+              Wir liefern zuverlässig in ganz Deutschland – von Berlin bis München, 
+              von Hamburg bis Stuttgart, vom Ruhrgebiet bis nach Sachsen.
             </p>
           </div>
 
@@ -254,23 +254,23 @@ const AboutUs = () => {
                 <div className="space-y-4">
                   <div className="flex items-center">
                     <CheckCircle className="text-green-500 mr-3" size={20} />
-                    <span>München und Umgebung</span>
+                    <span>Berlin und Brandenburg</span>
                   </div>
                   <div className="flex items-center">
                     <CheckCircle className="text-green-500 mr-3" size={20} />
-                    <span>Nürnberg und Franken</span>
+                    <span>Hamburg und Norddeutschland</span>
                   </div>
                   <div className="flex items-center">
                     <CheckCircle className="text-green-500 mr-3" size={20} />
-                    <span>Augsburg und Schwaben</span>
+                    <span>Köln/Düsseldorf und Ruhrgebiet</span>
                   </div>
                   <div className="flex items-center">
                     <CheckCircle className="text-green-500 mr-3" size={20} />
-                    <span>Regensburg und Oberpfalz</span>
+                    <span>Frankfurt am Main und Rhein-Main-Gebiet</span>
                   </div>
                   <div className="flex items-center">
                     <CheckCircle className="text-green-500 mr-3" size={20} />
-                    <span>Ingolstadt und Umkreis</span>
+                    <span>Stuttgart und Baden-Württemberg</span>
                   </div>
                 </div>
               </div>

@@ -6,42 +6,42 @@ const ReviewsSection = () => {
   const reviews = [
     {
       name: 'Maria Huber',
-      location: 'München',
+      location: 'Berlin',
       rating: 5,
       text: 'Bereits zum dritten Mal bestellt und immer top zufrieden! Pünktliche Lieferung, faire Preise und sehr freundlicher Service. Kann HILL-Heizöl nur weiterempfehlen!',
       date: '2024-01-15'
     },
     {
       name: 'Thomas Wagner',
-      location: 'Nürnberg',
+      location: 'Hamburg',
       rating: 5,
       text: 'Schnelle und unkomplizierte Bestellung. Der Fahrer war sehr höflich und die Qualität des Heizöls ist ausgezeichnet. Heize seit Jahren günstiger als mit Gas!',
       date: '2024-01-10'
     },
     {
       name: 'Familie Schneider',
-      location: 'Augsburg',
+      location: 'Köln',
       rating: 5,
       text: 'Hervorragender Kundenservice! Hatten eine Frage zur Lieferung und wurden sofort freundlich beraten. Die Lieferung kam pünktlich und alles lief perfekt.',
       date: '2024-01-08'
     },
     {
       name: 'Johann Müller',
-      location: 'Regensburg',
+      location: 'Frankfurt am Main',
       rating: 5,
       text: 'Seit 5 Jahren treuer Kunde. Zuverlässig, günstig und immer gute Qualität. Besonders schätze ich die kostenlose Lieferung und die schnelle Abwicklung.',
       date: '2024-01-05'
     },
     {
       name: 'Sarah Becker',
-      location: 'Würzburg',
+      location: 'Stuttgart',
       rating: 5,
       text: 'Online-Bestellung war super einfach, der Preisrechner sehr hilfreich. Lieferung kam wie versprochen und das Personal war sehr professionell.',
       date: '2024-01-03'
     },
     {
       name: 'Klaus Fischer',
-      location: 'Ingolstadt',
+      location: 'Leipzig',
       rating: 5,
       text: 'Beste Heizölpreise in der Region! Habe verschiedene Anbieter verglichen und HILL-Heizöl war nicht nur günstiger, sondern auch noch serviceorientierter.',
       date: '2023-12-28'
