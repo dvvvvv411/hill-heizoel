@@ -76,7 +76,7 @@ const PriceCalculator = () => {
           // Redirect to checkout with token
           const checkoutUrl = `https://checkout.hill-heizoel.de/checkout?token=${data.token}`;
           console.log('Redirecting to:', checkoutUrl);
-          window.open(checkoutUrl, '_blank');
+          window.location.assign(checkoutUrl);
           
           toast({
             title: "Bestellung weitergeleitet",
