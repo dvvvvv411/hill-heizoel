@@ -9,7 +9,7 @@ interface ClickToCallProps {
 }
 
 const ClickToCall = ({ 
-  phoneNumber = "08941434024", 
+  phoneNumber = "08941613345", 
   variant = 'inline',
   className = "" 
 }: ClickToCallProps) => {

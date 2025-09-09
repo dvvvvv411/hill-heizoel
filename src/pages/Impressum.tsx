@@ -74,7 +74,7 @@ const Impressum = () => {
                   <Phone className="text-primary-600" size={20} />
                   <div>
                     <h3 className="font-semibold text-gray-900">Telefon:</h3>
-                    <p className="text-gray-700">089 414 340 24</p>
+                    <p className="text-gray-700">089 416 133 45</p>
                   </div>
                 </div>
                 

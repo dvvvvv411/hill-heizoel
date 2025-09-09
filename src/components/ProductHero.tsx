@@ -20,7 +20,7 @@ const ProductHero = () => {
           >
             Jetzt bestellen
           </Button>
-          <a href="tel:08941434024">
+          <a href="tel:08941613345">
             <Button 
               variant="outline" 
               className="border-primary-600 text-primary-600 hover:bg-primary-50 px-8 py-3 text-lg"
