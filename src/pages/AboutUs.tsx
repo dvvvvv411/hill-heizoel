@@ -87,10 +87,12 @@ const AboutUs = () => {
             Qualität, Service und faire Preise sind unser Versprechen an Sie.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-primary-600 hover:bg-primary-700">
-              <Phone className="mr-2" size={20} />
-              089 62 82 65 95
-            </Button>
+            <a href="tel:08941613345">
+              <Button size="lg" className="bg-primary-600 hover:bg-primary-700">
+                <Phone className="mr-2" size={20} />
+                089 416 133 45
+              </Button>
+            </a>
             <Button size="lg" variant="outline" className="border-primary-600 text-primary-600 hover:bg-primary-50">
               <Mail className="mr-2" size={20} />
               info@hill-heizoel.de
@@ -345,7 +347,7 @@ const AboutUs = () => {
                     <div className="space-y-3">
                       <div className="flex items-center">
                         <Phone className="text-primary-600 mr-3" size={20} />
-                        <span className="text-gray-700">089 62 82 65 95</span>
+                        <a href="tel:08941613345" className="text-gray-700 hover:underline">089 416 133 45</a>
                       </div>
                       <div className="flex items-center">
                         <Mail className="text-primary-600 mr-3" size={20} />
