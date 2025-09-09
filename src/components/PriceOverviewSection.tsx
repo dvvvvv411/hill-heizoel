@@ -345,9 +345,11 @@ const PriceOverviewSection = () => {
                 <MapPin size={16} className="text-primary-600" />
                 <span>Kostenlose Lieferung in ganz Deutschland</span>
               </div>
-              <Button variant="outline" className="border-primary-600 text-primary-600">
-                Haben Sie Fragen? Rufen Sie uns an: 089 414 340 24
-              </Button>
+              <a href="tel:08941613345">
+                <Button variant="outline" className="border-primary-600 text-primary-600">
+                  Haben Sie Fragen? Rufen Sie uns an: 089 416 133 45
+                </Button>
+              </a>
             </div>
           </TabsContent>
         </Tabs>

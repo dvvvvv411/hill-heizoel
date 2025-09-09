@@ -153,7 +153,7 @@ const QualityAssuranceSection = () => {
                   Qualitätszertifikate ansehen
                 </Button>
               </Link>
-              <a href="tel:08941434024">
+              <a href="tel:08941613345">
                 <Button variant="outline" className="bg-white text-primary-600 hover:bg-gray-50">
                   Kundenservice kontaktieren
                 </Button>

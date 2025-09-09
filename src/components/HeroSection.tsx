@@ -66,12 +66,14 @@ const HeroSection = () => {
                 Preis berechnen
                 <ArrowRight className="ml-2" size={20} />
               </Button>
-              <Button 
-                variant="outline" 
-                className="border-accent-orange-500 text-accent-orange-600 hover:bg-accent-orange-50 hover:border-accent-orange-600 px-8 py-4 text-lg font-semibold"
-              >
-                089 414 340 24
-              </Button>
+              <a href="tel:08941613345">
+                <Button 
+                  variant="outline" 
+                  className="border-accent-orange-500 text-accent-orange-600 hover:bg-accent-orange-50 hover:border-accent-orange-600 px-8 py-4 text-lg font-semibold"
+                >
+                  089 416 133 45
+                </Button>
+              </a>
             </div>
 
             {/* CTA Buttons - Mobile */}

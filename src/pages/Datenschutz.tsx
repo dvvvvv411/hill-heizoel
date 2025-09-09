@@ -32,7 +32,7 @@ const Datenschutz = () => {
                 <p>Deutschland</p>
                 <p className="mt-4">
                   <span className="font-semibold">E-Mail:</span> info@hill-heizoel.de<br />
-                  <span className="font-semibold">Telefon:</span> 089 414 340 24
+                  <span className="font-semibold">Telefon:</span> 089 416 133 45
                 </p>
               </div>
             </CardContent>
@@ -147,7 +147,7 @@ const Datenschutz = () => {
               </p>
               <div className="mt-3 space-y-1 text-gray-700 text-sm">
                 <p><span className="font-semibold">E-Mail:</span> info@hill-heizoel.de</p>
-                <p><span className="font-semibold">Telefon:</span> 089 414 340 24</p>
+                <p><span className="font-semibold">Telefon:</span> 089 416 133 45</p>
               </div>
             </CardContent>
           </Card>

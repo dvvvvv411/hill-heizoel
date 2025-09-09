@@ -125,9 +125,11 @@ const ReviewsSection = () => {
               <button className="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                 Jetzt Preis berechnen
               </button>
-              <button className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors">
-                089 414 340 24
-              </button>
+              <a href="tel:08941613345">
+                <button className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors">
+                  089 416 133 45
+                </button>
+              </a>
             </div>
           </div>
         </div>
